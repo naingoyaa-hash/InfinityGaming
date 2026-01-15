@@ -48,143 +48,143 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrador.cs" />
-    <Compile Include="Alerta.cs" />
-    <Compile Include="Computadora.cs" />
-    <Compile Include="Empleado.cs" />
-    <Compile Include="Factura.cs" />
-    <Compile Include="fmLogin.cs">
+    <Compile Include="CapaPresentacion\Administrador.cs" />
+    <Compile Include="CapaNegocios\Alerta.cs" />
+    <Compile Include="CapaPresentacion\Computadora.cs" />
+    <Compile Include="CapaPresentacion\Empleado.cs" />
+    <Compile Include="CapaNegocios\Factura.cs" />
+    <Compile Include="CapaPresentacion\fmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fmLogin.Designer.cs">
+    <Compile Include="CapaPresentacion\fmLogin.Designer.cs">
       <DependentUpon>fmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="fmMenu.cs">
+    <Compile Include="CapaPresentacion\fmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fmMenu.Designer.cs">
+    <Compile Include="CapaPresentacion\fmMenu.Designer.cs">
       <DependentUpon>fmMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="fmReservas.cs">
+    <Compile Include="CapaPresentacion\fmReservas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fmReservas.Designer.cs">
+    <Compile Include="CapaPresentacion\fmReservas.Designer.cs">
       <DependentUpon>fmReservas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAdministrador.cs">
+    <Compile Include="CapaPresentacion\frmAdministrador.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAdministrador.Designer.cs">
+    <Compile Include="CapaPresentacion\frmAdministrador.Designer.cs">
       <DependentUpon>frmAdministrador.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEquiposRegistrados.cs">
+    <Compile Include="CapaPresentacion\frmEquiposRegistrados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEquiposRegistrados.Designer.cs">
+    <Compile Include="CapaPresentacion\frmEquiposRegistrados.Designer.cs">
       <DependentUpon>frmEquiposRegistrados.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFacturas.cs">
+    <Compile Include="CapaPresentacion\frmFacturas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFacturas.Designer.cs">
+    <Compile Include="CapaPresentacion\frmFacturas.Designer.cs">
       <DependentUpon>frmFacturas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGestion.cs">
+    <Compile Include="CapaPresentacion\frmGestion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGestion.Designer.cs">
+    <Compile Include="CapaPresentacion\frmGestion.Designer.cs">
       <DependentUpon>frmGestion.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmHistorialMantenimiento.cs">
+    <Compile Include="CapaPresentacion\frmHistorialMantenimiento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmHistorialMantenimiento.Designer.cs">
+    <Compile Include="CapaPresentacion\frmHistorialMantenimiento.Designer.cs">
       <DependentUpon>frmHistorialMantenimiento.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmJuegos.cs">
+    <Compile Include="CapaPresentacion\frmJuegos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmJuegos.Designer.cs">
+    <Compile Include="CapaPresentacion\frmJuegos.Designer.cs">
       <DependentUpon>frmJuegos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMantenimiento.cs">
+    <Compile Include="CapaPresentacion\frmMantenimiento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMantenimiento.Designer.cs">
+    <Compile Include="CapaPresentacion\frmMantenimiento.Designer.cs">
       <DependentUpon>frmMantenimiento.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRegistrarEquipo.cs">
+    <Compile Include="CapaPresentacion\frmRegistrarEquipo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRegistrarEquipo.Designer.cs">
+    <Compile Include="CapaPresentacion\frmRegistrarEquipo.Designer.cs">
       <DependentUpon>frmRegistrarEquipo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRegistrarMantenimiento.cs">
+    <Compile Include="CapaPresentacion\frmRegistrarMantenimiento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRegistrarMantenimiento.Designer.cs">
+    <Compile Include="CapaPresentacion\frmRegistrarMantenimiento.Designer.cs">
       <DependentUpon>frmRegistrarMantenimiento.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmReportes.cs">
+    <Compile Include="CapaPresentacion\frmReportes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmReportes.Designer.cs">
+    <Compile Include="CapaPresentacion\frmReportes.Designer.cs">
       <DependentUpon>frmReportes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUsuario.cs">
+    <Compile Include="CapaPresentacion\frmUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUsuario.Designer.cs">
+    <Compile Include="CapaPresentacion\frmUsuario.Designer.cs">
       <DependentUpon>frmUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mantenimiento.cs" />
-    <Compile Include="Pago.cs" />
-    <Compile Include="PlataformaJuegos.cs" />
+    <Compile Include="CapaNegocios\Mantenimiento.cs" />
+    <Compile Include="CapaNegocios\Pago.cs" />
+    <Compile Include="CapaNegocios\PlataformaJuegos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reserva.cs" />
-    <Compile Include="SesionJuego.cs" />
-    <Compile Include="Usuario.cs" />
-    <EmbeddedResource Include="fmLogin.resx">
+    <Compile Include="CapaNegocios\Reserva.cs" />
+    <Compile Include="CapaNegocios\SesionJuego.cs" />
+    <Compile Include="CapaPresentacion\Usuario.cs" />
+    <EmbeddedResource Include="CapaPresentacion\fmLogin.resx">
       <DependentUpon>fmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fmMenu.resx">
+    <EmbeddedResource Include="CapaPresentacion\fmMenu.resx">
       <DependentUpon>fmMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fmReservas.resx">
+    <EmbeddedResource Include="CapaPresentacion\fmReservas.resx">
       <DependentUpon>fmReservas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAdministrador.resx">
+    <EmbeddedResource Include="CapaPresentacion\frmAdministrador.resx">
       <DependentUpon>frmAdministrador.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEquiposRegistrados.resx">
+    <EmbeddedResource Include="CapaPresentacion\frmEquiposRegistrados.resx">
       <DependentUpon>frmEquiposRegistrados.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFacturas.resx">
+    <EmbeddedResource Include="CapaPresentacion\frmFacturas.resx">
       <DependentUpon>frmFacturas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGestion.resx">
+    <EmbeddedResource Include="CapaPresentacion\frmGestion.resx">
       <DependentUpon>frmGestion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmHistorialMantenimiento.resx">
+    <EmbeddedResource Include="CapaPresentacion\frmHistorialMantenimiento.resx">
       <DependentUpon>frmHistorialMantenimiento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmJuegos.resx">
+    <EmbeddedResource Include="CapaPresentacion\frmJuegos.resx">
       <DependentUpon>frmJuegos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMantenimiento.resx">
+    <EmbeddedResource Include="CapaPresentacion\frmMantenimiento.resx">
       <DependentUpon>frmMantenimiento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRegistrarEquipo.resx">
+    <EmbeddedResource Include="CapaPresentacion\frmRegistrarEquipo.resx">
       <DependentUpon>frmRegistrarEquipo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRegistrarMantenimiento.resx">
+    <EmbeddedResource Include="CapaPresentacion\frmRegistrarMantenimiento.resx">
       <DependentUpon>frmRegistrarMantenimiento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmReportes.resx">
+    <EmbeddedResource Include="CapaPresentacion\frmReportes.resx">
       <DependentUpon>frmReportes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUsuario.resx">
+    <EmbeddedResource Include="CapaPresentacion\frmUsuario.resx">
       <DependentUpon>frmUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -323,6 +323,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Captura de pantalla 2026-01-14 220255.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CapaDatos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

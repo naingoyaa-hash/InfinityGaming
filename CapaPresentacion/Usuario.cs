@@ -33,3 +33,4 @@ namespace InfinityGaming
         }
         public bool VerificarRol() { return false; }
     }
+}
