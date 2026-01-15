@@ -37,7 +37,7 @@
             // 
             // cmbEstacion
             // 
-            this.cmbEstacion.BackColor = System.Drawing.Color.Thistle;
+            this.cmbEstacion.BackColor = System.Drawing.SystemColors.Menu;
             this.cmbEstacion.FormattingEnabled = true;
             this.cmbEstacion.Location = new System.Drawing.Point(66, 104);
             this.cmbEstacion.Name = "cmbEstacion";
@@ -46,14 +46,17 @@
             // 
             // dtFecha
             // 
+            this.dtFecha.CalendarForeColor = System.Drawing.SystemColors.ControlLight;
+            this.dtFecha.CalendarMonthBackground = System.Drawing.SystemColors.MenuText;
             this.dtFecha.Location = new System.Drawing.Point(66, 198);
             this.dtFecha.Name = "dtFecha";
             this.dtFecha.Size = new System.Drawing.Size(200, 20);
             this.dtFecha.TabIndex = 1;
+            this.dtFecha.ValueChanged += new System.EventHandler(this.dtFecha_ValueChanged);
             // 
             // dgvHorarios
             // 
-            this.dgvHorarios.BackgroundColor = System.Drawing.Color.White;
+            this.dgvHorarios.BackgroundColor = System.Drawing.Color.Silver;
             this.dgvHorarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHorarios.Location = new System.Drawing.Point(432, 104);
             this.dgvHorarios.Name = "dgvHorarios";
@@ -62,9 +65,12 @@
             // 
             // btnReservar
             // 
+            this.btnReservar.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
+            this.btnReservar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReservar.ForeColor = System.Drawing.Color.Purple;
             this.btnReservar.Location = new System.Drawing.Point(66, 382);
             this.btnReservar.Name = "btnReservar";
-            this.btnReservar.Size = new System.Drawing.Size(75, 23);
+            this.btnReservar.Size = new System.Drawing.Size(99, 38);
             this.btnReservar.TabIndex = 3;
             this.btnReservar.Text = "RESERVAR";
             this.btnReservar.UseVisualStyleBackColor = true;
@@ -74,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::InfinityGaming.Properties.Resources.reservas;
+            this.BackgroundImage = global::InfinityGaming.Properties.Resources.reservas1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnReservar);

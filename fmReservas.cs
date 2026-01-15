@@ -15,20 +15,11 @@ namespace InfinityGaming
         public fmReservas()
         {
             InitializeComponent();
-            DiseñarFormulario();
+            
             CargarDatos();
         }
 
-        void DiseñarFormulario()
-        {
-            this.Text = "Infinity Gaming - Reservas";
-            this.BackColor = Color.Black;
-            this.Size = new Size(900, 600);
-
-            btnReservar.Text = "RESERVAR";
-            btnReservar.BackColor = Color.LimeGreen;
-            btnReservar.ForeColor = Color.Black;
-        }
+        
 
         void CargarDatos()
         {
@@ -42,11 +33,12 @@ namespace InfinityGaming
 
             for (int i = 12; i <= 20; i++)
             {
-                dgvHorarios.Rows.Add("{}:", "Sí");
+                dgvHorarios.Rows.Add(":", "Sí");
             }
         }
 
-        private void btnReservar_Click(object sender, EventArgs e)
+
+        private void btnReservar_Click_1(object sender, EventArgs e)
         {
             if (cmbEstacion.Text == "")
             {
@@ -57,9 +49,9 @@ namespace InfinityGaming
             MessageBox.Show("Reserva realizada con éxito 🔥");
         }
 
-        private void btnReservar_Click_1(object sender, EventArgs e)
+        private void dtFecha_ValueChanged(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
@@ -45,6 +45,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgFactura)).BeginInit();
@@ -59,9 +60,9 @@
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label2.Location = new System.Drawing.Point(62, 190);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 21);
+            this.label2.Size = new System.Drawing.Size(77, 21);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Nombre:";
+            this.label2.Text = "NOMBRE";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
@@ -181,8 +182,8 @@
             // 
             // CANTIDAD
             // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CANTIDAD.DefaultCellStyle = dataGridViewCellStyle1;
             this.CANTIDAD.HeaderText = "CANTIDAD";
             this.CANTIDAD.Name = "CANTIDAD";
             // 
@@ -217,12 +218,27 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Purple;
-            this.button1.Location = new System.Drawing.Point(429, 398);
+            this.button1.Location = new System.Drawing.Point(321, 398);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(222, 40);
             this.button1.TabIndex = 10;
             this.button1.Text = "GENERAR FACTURA";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Purple;
+            this.label1.Image = global::InfinityGaming.Properties.Resources.fondo_1;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Location = new System.Drawing.Point(549, 398);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(243, 34);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "!GRACIAS POR ELEGIRNOS!\r\nVUELVA PRONTO A INFINITY GAMING\r\n";
             // 
             // frmFacturas
             // 
@@ -231,6 +247,7 @@
             this.BackgroundImage = global::InfinityGaming.Properties.Resources.Gemini_Generated_Image_yx6qy3yx6qy3yx6q;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.groupBox2);
@@ -267,5 +284,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
     }
 }
