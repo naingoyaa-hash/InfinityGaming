@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace InfinityGaming
 {
-    public partial class frmFacturas : Form
+    public partial class frmRegistrarMantenimiento : Form
     {
-        public frmFacturas()
+        public frmRegistrarMantenimiento()
         {
             InitializeComponent();
         }
@@ -22,12 +22,7 @@ namespace InfinityGaming
 
         }
 
-        private void btnTranferencia_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }

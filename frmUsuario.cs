@@ -10,24 +10,14 @@ using System.Windows.Forms;
 
 namespace InfinityGaming
 {
-    public partial class frmFacturas : Form
+    public partial class frmUsuario : Form
     {
-        public frmFacturas()
+        public frmUsuario()
         {
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnTranferencia_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void lbUsuarios_Click(object sender, EventArgs e)
         {
 
         }

@@ -73,6 +73,16 @@ namespace InfinityGaming.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _3a066827_e442_4de3_9c19_d3f90b5be609 {
+            get {
+                object obj = ResourceManager.GetObject("3a066827-e442-4de3-9c19-d3f90b5be609", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Captura_de_pantalla_2026_01_13_165401 {
             get {
                 object obj = ResourceManager.GetObject("Captura de pantalla 2026-01-13 165401", resourceCulture);
@@ -163,6 +173,56 @@ namespace InfinityGaming.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Captura_de_pantalla_2026_01_13_200443 {
+            get {
+                object obj = ResourceManager.GetObject("Captura de pantalla 2026-01-13 200443", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Captura_de_pantalla_2026_01_13_200804 {
+            get {
+                object obj = ResourceManager.GetObject("Captura de pantalla 2026-01-13 200804", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Captura_de_pantalla_2026_01_14_210958 {
+            get {
+                object obj = ResourceManager.GetObject("Captura de pantalla 2026-01-14 210958", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Captura_de_pantalla_2026_01_14_220255 {
+            get {
+                object obj = ResourceManager.GetObject("Captura de pantalla 2026-01-14 220255", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Captura_de_pantalla_2026_01_14_220302 {
+            get {
+                object obj = ResourceManager.GetObject("Captura de pantalla 2026-01-14 220302", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ChatGPT_Image_13_ene_2026__05_09_46_p_m_ {
             get {
                 object obj = ResourceManager.GetObject("ChatGPT Image 13 ene 2026, 05_09_46 p.m.", resourceCulture);
@@ -203,9 +263,39 @@ namespace InfinityGaming.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ChatGPT_Image_14_ene_2026__08_33_53_p_m_ {
+            get {
+                object obj = ResourceManager.GetObject("ChatGPT Image 14 ene 2026, 08_33_53 p.m.", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap equipo {
             get {
                 object obj = ResourceManager.GetObject("equipo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EQUIPOS {
+            get {
+                object obj = ResourceManager.GetObject("EQUIPOS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EQUIPOS_REGISTRADOSS {
+            get {
+                object obj = ResourceManager.GetObject("EQUIPOS REGISTRADOSS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +323,69 @@ namespace InfinityGaming.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Gemini_Generated_Image_bn5ltvbn5ltvbn5l {
+            get {
+                object obj = ResourceManager.GetObject("Gemini_Generated_Image_bn5ltvbn5ltvbn5l", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gemini_Generated_Image_fi0p7lfi0p7lfi0p {
+            get {
+                object obj = ResourceManager.GetObject("Gemini_Generated_Image_fi0p7lfi0p7lfi0p", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gemini_Generated_Image_gmluh4gmluh4gmlu {
+            get {
+                object obj = ResourceManager.GetObject("Gemini_Generated_Image_gmluh4gmluh4gmlu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gemini_Generated_Image_xvs5orxvs5orxvs5 {
+            get {
+                object obj = ResourceManager.GetObject("Gemini_Generated_Image_xvs5orxvs5orxvs5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Gemini_Generated_Image_yx6qy3yx6qy3yx6q {
             get {
                 object obj = ResourceManager.GetObject("Gemini_Generated_Image_yx6qy3yx6qy3yx6q", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap juegos {
+            get {
+                object obj = ResourceManager.GetObject("juegos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap REPORTES {
+            get {
+                object obj = ResourceManager.GetObject("REPORTES", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +403,39 @@ namespace InfinityGaming.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap reservas1 {
+            get {
+                object obj = ResourceManager.GetObject("reservas1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap vacio {
+            get {
+                object obj = ResourceManager.GetObject("vacio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap WhatsApp_Image_2026_01_10_at_9_22_44_PM {
             get {
                 object obj = ResourceManager.GetObject("WhatsApp Image 2026-01-10 at 9.22.44 PM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2026_01_13_at_9_12_44_PM {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2026-01-13 at 9.12.44 PM", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
