@@ -8,9 +8,10 @@ namespace InfinityGaming
 {
     internal class Computadora
     {
-        public int IdComputadora { get; set; }
-        public bool Estado { get; set; }
-        private double TiempoRestante { get; set; }
+        private int IdComputadora { get; set; }
+        private string nombreComputadora { get; set; }
+        private bool Estado { get; set; }
+        private int TiempoRestanteSegundos { get; set; }
         public string JuegoActual { get; set; }
 
         public void AsignarPlataforma(PlataformaJuegos plataforma) { }

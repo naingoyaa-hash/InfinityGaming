@@ -10,9 +10,10 @@ namespace InfinityGaming
     {
         private int IdPago { get; set; }
         public double Monto { get; set; }
-        public double FechaPago { get; set; }
+        public DateTime FechaPago { get; set; }
         public string TipoPago { get; set; }
         private string EstadoPago { get; set; }
+        public int? IdSesion { get; set; }
 
         public void RegistrarPago(double monto, string tipoPago)
 

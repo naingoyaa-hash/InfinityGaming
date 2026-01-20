@@ -8,10 +8,11 @@ namespace InfinityGaming
 {
     internal class Factura
     {
-        private int IdFactura { get; set; }
-        public string NumeroFactura { get; set; }
-        public double FechaEmision { get; set; }
-        public double Total { get; set; }
+        public int IdFactura { get; set; }
+        public string NumeroFactura { get; set; } 
+        public DateTime FechaEmision { get; set; }
+        public decimal Total { get; set; }  
+        public int IdPago { get; set; }
 
         public void GenerarFactura(Pago pago)
 

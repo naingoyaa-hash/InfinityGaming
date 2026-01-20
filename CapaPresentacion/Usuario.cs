@@ -8,12 +8,14 @@ namespace InfinityGaming
 {
     internal class Usuario
     {
-        private int IdUsuario { get; set; }
-        protected string Nombre { get; set; }
-        protected string Cedula { get; set; }
-        protected string Correo { get; set; }
-        protected string Direccion { get; set; }
-        protected bool Admin { get; set; }
+        private int idUsuario { get; set; }
+        protected string nombre { get; set; }
+        protected string cedula { get; set; }
+        protected string correo { get; set; }
+        protected string direccion { get; set; }
+        protected string user { get; set; }
+        protected string password { get; set; }
+        protected bool admin { get; set; }
 
         public void Login(string usuario, string contrasena)
         {

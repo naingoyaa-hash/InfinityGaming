@@ -8,8 +8,8 @@ namespace InfinityGaming
 {
     internal class Empleado : Usuario
     {
-        private bool Estado { get; set; }
-        private int Venta { get; set; }
+        private bool idEmpleado { get; set; }
+        private bool estado { get; set; }
 
         public void RegistrarReserva(Reserva reserva)
         {

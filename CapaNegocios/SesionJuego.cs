@@ -8,12 +8,14 @@ namespace InfinityGaming
 {
     internal class SesionJuegos
     {
-        private int IdSesion { get; set; }
-        public double Duracion { get; set; }
-        private double CostoTotal { get; set; }
+        public int IdSesion { get; set; }
+        public int IdReserva { get; set; } 
+        public DateTime InicioSesion { get; set; }
+        public DateTime? FinSesion { get; set; }
+        public int? DuracionSegundos { get; set; }
+        public decimal? CostoTotal { get; set; }
 
         public void IniciarSesion(double horaInicio)
-
         {
 
         }

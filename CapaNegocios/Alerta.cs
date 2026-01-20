@@ -9,11 +9,14 @@ namespace InfinityGaming
 {
     internal class Alerta
     {
-        private int IdAlerta { get; set; }
+        public int IdAlerta { get; set; }
         public string Mensaje { get; set; }
-        public double Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public string Tipo { get; set; }
-        private bool Leida { get; set; }
+        public bool Leida { get; set; }
+
+        public int? IdComputadora { get; set; }
+        public int? IdSesion { get; set; }
 
         public void GenerarAlarma(string mensaje, string tipo)
 

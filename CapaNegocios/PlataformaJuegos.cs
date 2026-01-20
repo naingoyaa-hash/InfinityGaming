@@ -8,10 +8,10 @@ namespace InfinityGaming
 {
     internal class PlataformaJuegos
     {
-        private int IdPlataformaJuegos { get; set; }
-        private string Version { get; set; }
-        public string JuegosDisponibles { get; set; }
-        private bool ConexionActiva { get; set; }
+        public int IdPlataformaJuegos { get; set; } 
+        public string Nombre { get; set; }
+        public string Version { get; set; }    
+        public List<string> JuegosDisponibles { get; set; }
 
         public void ActualizarVersion(string nuevaVersion)
 

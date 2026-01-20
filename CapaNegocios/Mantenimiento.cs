@@ -8,11 +8,13 @@ namespace InfinityGaming
 {
     internal class Mantenimiento
     {
-        private int IdMantenimiento { get; set; }
-        public double Fecha { get; set; }
-        public string Descripcion { get; set; }
-        private string Tipo { get; set; }
-        public double Costo { get; set; }
+        public int IdMantenimiento { get; set; } 
+        public int IdComputadora { get; set; }    
+        public DateTime Fecha { get; set; }  
+        public string Descripcion { get; set; }  
+        public string Tipo { get; set; }   
+        public decimal Costo { get; set; }  
+        public bool Finalizado { get; set; }
 
         public void RegistrarMantenimiento(double fecha, string descripcion, string tipo)
 

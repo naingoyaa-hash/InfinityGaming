@@ -8,11 +8,11 @@ namespace InfinityGaming
 {
     internal class Reserva
     {
-        private int IdReserva { get; set; }
-        public double Fecha { get; set; }
-        protected double HoraInicio { get; set; }
-        protected double HoraFin { get; set; }
-        private bool Estado { get; set; }
+        public int IdReserva { get; set; }
+        public int IdComputadora { get; set; } 
+        public DateTime InicioReserva { get; set; }
+        public DateTime FinReserva { get; set; }
+        public bool Estado { get; set; } 
 
         public void CrearReserva(double fecha, double horaInicio, double horaFin)
 
