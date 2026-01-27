@@ -41,11 +41,11 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Black;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Violet;
             this.label1.Location = new System.Drawing.Point(2, 109);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 21);
+            this.label1.Size = new System.Drawing.Size(164, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "JUEGOS DISPONIBLES:";
             // 
@@ -55,7 +55,7 @@
             this.label2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Violet;
-            this.label2.Location = new System.Drawing.Point(181, 109);
+            this.label2.Location = new System.Drawing.Point(172, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(19, 21);
             this.label2.TabIndex = 1;
@@ -73,11 +73,11 @@
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.MenuText;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.Plum;
             this.textBox1.Location = new System.Drawing.Point(440, 109);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(348, 29);
+            this.textBox1.Size = new System.Drawing.Size(348, 30);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "Buscar juegos:";
             // 

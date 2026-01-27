@@ -32,7 +32,9 @@
             this.dtFecha = new System.Windows.Forms.DateTimePicker();
             this.dgvHorarios = new System.Windows.Forms.DataGridView();
             this.btnReservar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorarios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbEstacion
@@ -56,7 +58,7 @@
             // 
             // dgvHorarios
             // 
-            this.dgvHorarios.BackgroundColor = System.Drawing.Color.Silver;
+            this.dgvHorarios.BackgroundColor = System.Drawing.Color.DarkOrchid;
             this.dgvHorarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHorarios.Location = new System.Drawing.Point(432, 104);
             this.dgvHorarios.Name = "dgvHorarios";
@@ -76,6 +78,18 @@
             this.btnReservar.UseVisualStyleBackColor = true;
             this.btnReservar.Click += new System.EventHandler(this.btnReservar_Click_1);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pictureBox1.BackgroundImage = global::InfinityGaming.Properties.Resources.reserva;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(26, 382);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(46, 38);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
             // fmReservas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -83,6 +97,7 @@
             this.BackgroundImage = global::InfinityGaming.Properties.Resources.reservas1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnReservar);
             this.Controls.Add(this.dgvHorarios);
             this.Controls.Add(this.dtFecha);
@@ -90,6 +105,7 @@
             this.Name = "fmReservas";
             this.Text = "fmReservas";
             ((System.ComponentModel.ISupportInitialize)(this.dgvHorarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -100,5 +116,6 @@
         private System.Windows.Forms.DateTimePicker dtFecha;
         private System.Windows.Forms.DataGridView dgvHorarios;
         private System.Windows.Forms.Button btnReservar;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

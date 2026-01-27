@@ -52,7 +52,7 @@
             this.groupBox1.Controls.Add(this.btnHistorial);
             this.groupBox1.Controls.Add(this.btnRegistroM);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Plum;
             this.groupBox1.Location = new System.Drawing.Point(30, 133);
             this.groupBox1.Name = "groupBox1";

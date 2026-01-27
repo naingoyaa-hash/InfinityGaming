@@ -41,48 +41,48 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Plum;
             this.label1.Image = global::InfinityGaming.Properties.Resources.fondo_1;
-            this.label1.Location = new System.Drawing.Point(124, 131);
+            this.label1.Location = new System.Drawing.Point(167, 131);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 21);
+            this.label1.Size = new System.Drawing.Size(160, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "NOMBRE DEL EQUIPO";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Plum;
             this.label2.Image = global::InfinityGaming.Properties.Resources.fondo_1;
-            this.label2.Location = new System.Drawing.Point(124, 192);
+            this.label2.Location = new System.Drawing.Point(285, 188);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 21);
+            this.label2.Size = new System.Drawing.Size(42, 23);
             this.label2.TabIndex = 2;
             this.label2.Text = "TIPO";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Plum;
             this.label3.Image = global::InfinityGaming.Properties.Resources.fondo_1;
-            this.label3.Location = new System.Drawing.Point(124, 247);
+            this.label3.Location = new System.Drawing.Point(185, 243);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(149, 21);
+            this.label3.Size = new System.Drawing.Size(139, 23);
             this.label3.TabIndex = 3;
             this.label3.Text = "ESPECIFICACIONES";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Plum;
             this.label4.Image = global::InfinityGaming.Properties.Resources.fondo_1;
-            this.label4.Location = new System.Drawing.Point(124, 290);
+            this.label4.Location = new System.Drawing.Point(204, 292);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(129, 21);
+            this.label4.Size = new System.Drawing.Size(120, 23);
             this.label4.TabIndex = 4;
             this.label4.Text = "ESTADO INICIAL";
             // 

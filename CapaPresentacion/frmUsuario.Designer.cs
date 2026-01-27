@@ -97,7 +97,7 @@
             this.groupBox1.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.lbUsuarios);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Plum;
             this.groupBox1.Location = new System.Drawing.Point(55, 111);
             this.groupBox1.Name = "groupBox1";
@@ -124,7 +124,7 @@
             this.lbUsuarios.ForeColor = System.Drawing.Color.Plum;
             this.lbUsuarios.Location = new System.Drawing.Point(97, 54);
             this.lbUsuarios.Name = "lbUsuarios";
-            this.lbUsuarios.Size = new System.Drawing.Size(19, 21);
+            this.lbUsuarios.Size = new System.Drawing.Size(19, 23);
             this.lbUsuarios.TabIndex = 0;
             this.lbUsuarios.Text = "0";
             this.lbUsuarios.Click += new System.EventHandler(this.lbUsuarios_Click);
@@ -135,7 +135,7 @@
             this.groupBox2.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
             this.groupBox2.Controls.Add(this.lbDisponibles);
             this.groupBox2.Controls.Add(this.pictureBox2);
-            this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Plum;
             this.groupBox2.Location = new System.Drawing.Point(321, 111);
             this.groupBox2.Name = "groupBox2";
@@ -150,7 +150,7 @@
             this.lbDisponibles.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbDisponibles.Location = new System.Drawing.Point(92, 54);
             this.lbDisponibles.Name = "lbDisponibles";
-            this.lbDisponibles.Size = new System.Drawing.Size(19, 21);
+            this.lbDisponibles.Size = new System.Drawing.Size(19, 23);
             this.lbDisponibles.TabIndex = 1;
             this.lbDisponibles.Text = "0";
             // 
@@ -171,7 +171,7 @@
             this.groupBox3.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
             this.groupBox3.Controls.Add(this.lbVentas);
             this.groupBox3.Controls.Add(this.pictureBox3);
-            this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.Plum;
             this.groupBox3.Location = new System.Drawing.Point(590, 111);
             this.groupBox3.Name = "groupBox3";
@@ -185,7 +185,7 @@
             this.lbVentas.AutoSize = true;
             this.lbVentas.Location = new System.Drawing.Point(83, 54);
             this.lbVentas.Name = "lbVentas";
-            this.lbVentas.Size = new System.Drawing.Size(19, 21);
+            this.lbVentas.Size = new System.Drawing.Size(19, 23);
             this.lbVentas.TabIndex = 1;
             this.lbVentas.Text = "0";
             // 

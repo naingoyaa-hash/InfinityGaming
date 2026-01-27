@@ -41,8 +41,8 @@
             this.lbTtEquipos = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -60,7 +60,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Violet;
             this.groupBox1.Location = new System.Drawing.Point(12, 106);
             this.groupBox1.Name = "groupBox1";
@@ -97,7 +97,7 @@
             this.label3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Location = new System.Drawing.Point(10, 174);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 21);
+            this.label3.Size = new System.Drawing.Size(75, 28);
             this.label3.TabIndex = 2;
             this.label3.Text = "HASTA:";
             // 
@@ -107,7 +107,7 @@
             this.label2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(6, 112);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 21);
+            this.label2.Size = new System.Drawing.Size(75, 28);
             this.label2.TabIndex = 1;
             this.label2.Text = "DESDE:";
             // 
@@ -117,7 +117,7 @@
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(6, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(163, 21);
+            this.label1.Size = new System.Drawing.Size(199, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "FILTROS DE REPORTE";
             // 
@@ -126,7 +126,7 @@
             this.groupBox2.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
             this.groupBox2.Controls.Add(this.lbTtEquipos);
             this.groupBox2.Controls.Add(this.pictureBox1);
-            this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Violet;
             this.groupBox2.Location = new System.Drawing.Point(349, 106);
             this.groupBox2.Name = "groupBox2";
@@ -141,7 +141,7 @@
             this.lbTtEquipos.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lbTtEquipos.Location = new System.Drawing.Point(107, 59);
             this.lbTtEquipos.Name = "lbTtEquipos";
-            this.lbTtEquipos.Size = new System.Drawing.Size(22, 21);
+            this.lbTtEquipos.Size = new System.Drawing.Size(20, 23);
             this.lbTtEquipos.TabIndex = 1;
             this.lbTtEquipos.Text = "O";
             // 
@@ -160,7 +160,7 @@
             this.groupBox3.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.pictureBox2);
-            this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.Violet;
             this.groupBox3.Location = new System.Drawing.Point(583, 106);
             this.groupBox3.Name = "groupBox3";
@@ -168,6 +168,16 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "INGRESOS TOTALES";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Location = new System.Drawing.Point(106, 59);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(19, 23);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "0";
             // 
             // pictureBox2
             // 
@@ -178,16 +188,6 @@
             this.pictureBox2.Size = new System.Drawing.Size(100, 77);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(106, 59);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(19, 21);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "0";
             // 
             // chart1
             // 

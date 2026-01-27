@@ -327,5 +327,38 @@
   <ItemGroup>
     <Folder Include="CapaDatos\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Contrseña.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eqqipos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\estado mante.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reserva.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ventas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\juego.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\admin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sesion de juegos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inventario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reporte.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
