@@ -142,7 +142,7 @@
             this.groupBox2.Size = new System.Drawing.Size(200, 100);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "EQUIPOS DISPONOBLES";
+            this.groupBox2.Text = "EQUIPOS DISPONIBLES";
             // 
             // lbDisponibles
             // 

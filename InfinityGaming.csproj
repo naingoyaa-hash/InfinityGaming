@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CapaDatos\csConexionBD.cs" />
+    <Compile Include="CapaDatos\csCRUD.cs" />
     <Compile Include="CapaPresentacion\Administrador.cs" />
     <Compile Include="CapaNegocios\Alerta.cs" />
     <Compile Include="CapaPresentacion\Computadora.cs" />
@@ -324,9 +326,7 @@
   <ItemGroup>
     <None Include="Resources\Captura de pantalla 2026-01-14 220255.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CapaDatos\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\usuario.png" />
   </ItemGroup>

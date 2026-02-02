@@ -12,10 +12,15 @@ namespace InfinityGaming
 {
     public partial class fmMenu : Form
     {
+        bool Admin;
         public fmMenu()
         {
             InitializeComponent();
-
+        }
+        public fmMenu(bool admin) 
+        {
+            InitializeComponent();
+            Admin = admin;
         }
 
         private void btnReservas_Click(object sender, EventArgs e)
@@ -27,6 +32,17 @@ namespace InfinityGaming
         private void btnEquipos_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAdministrador_Click(object sender, EventArgs e)
+        {
+            if (Admin)
+            {
+                frmAdministrador frm = new frmAdministrador();
+                frm.Show();
+            }
+            else
+                MessageBox.Show("Solo el administrador tiene acceso");
         }
     }
 }
