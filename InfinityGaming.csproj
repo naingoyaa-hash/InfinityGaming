@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
@@ -50,28 +53,24 @@
   <ItemGroup>
     <Compile Include="CapaDatos\csConexionBD.cs" />
     <Compile Include="CapaDatos\csCRUD.cs" />
-    <Compile Include="CapaPresentacion\Administrador.cs" />
+    <Compile Include="CapaNegocios\csJuego.cs" />
+    <Compile Include="CapaPresentacion\csAdministrador.cs" />
     <Compile Include="CapaNegocios\Alerta.cs" />
-    <Compile Include="CapaPresentacion\Computadora.cs" />
-    <Compile Include="CapaPresentacion\Empleado.cs" />
+    <Compile Include="CapaPresentacion\csComputadora.cs" />
+    <Compile Include="CapaPresentacion\csEmpleado.cs" />
     <Compile Include="CapaNegocios\Factura.cs" />
-    <Compile Include="CapaPresentacion\fmLogin.cs">
+    <Compile Include="CapaPresentacion\csUsuario.cs" />
+    <Compile Include="CapaPresentacion\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CapaPresentacion\fmLogin.Designer.cs">
-      <DependentUpon>fmLogin.cs</DependentUpon>
+    <Compile Include="CapaPresentacion\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="CapaPresentacion\fmMenu.cs">
+    <Compile Include="CapaPresentacion\frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CapaPresentacion\fmMenu.Designer.cs">
-      <DependentUpon>fmMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CapaPresentacion\fmReservas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CapaPresentacion\fmReservas.Designer.cs">
-      <DependentUpon>fmReservas.cs</DependentUpon>
+    <Compile Include="CapaPresentacion\frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="CapaPresentacion\frmAdministrador.cs">
       <SubType>Form</SubType>
@@ -79,11 +78,11 @@
     <Compile Include="CapaPresentacion\frmAdministrador.Designer.cs">
       <DependentUpon>frmAdministrador.cs</DependentUpon>
     </Compile>
-    <Compile Include="CapaPresentacion\frmEquiposRegistrados.cs">
+    <Compile Include="CapaPresentacion\frmEquipos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CapaPresentacion\frmEquiposRegistrados.Designer.cs">
-      <DependentUpon>frmEquiposRegistrados.cs</DependentUpon>
+    <Compile Include="CapaPresentacion\frmEquipos.Designer.cs">
+      <DependentUpon>frmEquipos.cs</DependentUpon>
     </Compile>
     <Compile Include="CapaPresentacion\frmFacturas.cs">
       <SubType>Form</SubType>
@@ -133,6 +132,12 @@
     <Compile Include="CapaPresentacion\frmReportes.Designer.cs">
       <DependentUpon>frmReportes.cs</DependentUpon>
     </Compile>
+    <Compile Include="CapaPresentacion\frmReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapaPresentacion\frmReserva.Designer.cs">
+      <DependentUpon>frmReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="CapaPresentacion\frmUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,25 +147,22 @@
     <Compile Include="CapaNegocios\Mantenimiento.cs" />
     <Compile Include="CapaNegocios\Pago.cs" />
     <Compile Include="CapaNegocios\PlataformaJuegos.cs" />
+    <Compile Include="CapaPresentacion\csMoverFormulario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CapaNegocios\Reserva.cs" />
     <Compile Include="CapaNegocios\SesionJuego.cs" />
-    <Compile Include="CapaPresentacion\Usuario.cs" />
-    <EmbeddedResource Include="CapaPresentacion\fmLogin.resx">
-      <DependentUpon>fmLogin.cs</DependentUpon>
+    <EmbeddedResource Include="CapaPresentacion\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CapaPresentacion\fmMenu.resx">
-      <DependentUpon>fmMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CapaPresentacion\fmReservas.resx">
-      <DependentUpon>fmReservas.cs</DependentUpon>
+    <EmbeddedResource Include="CapaPresentacion\frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmAdministrador.resx">
       <DependentUpon>frmAdministrador.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CapaPresentacion\frmEquiposRegistrados.resx">
-      <DependentUpon>frmEquiposRegistrados.cs</DependentUpon>
+    <EmbeddedResource Include="CapaPresentacion\frmEquipos.resx">
+      <DependentUpon>frmEquipos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmFacturas.resx">
       <DependentUpon>frmFacturas.cs</DependentUpon>
@@ -186,6 +188,9 @@
     <EmbeddedResource Include="CapaPresentacion\frmReportes.resx">
       <DependentUpon>frmReportes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CapaPresentacion\frmReserva.resx">
+      <DependentUpon>frmReserva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmUsuario.resx">
       <DependentUpon>frmUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +204,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -326,7 +332,9 @@
   <ItemGroup>
     <None Include="Resources\Captura de pantalla 2026-01-14 220255.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Cerrar.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\usuario.png" />
   </ItemGroup>
@@ -359,6 +367,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\reporte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Minimizar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

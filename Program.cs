@@ -16,7 +16,7 @@ namespace InfinityGaming
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fmLogin());
+            Application.Run(new frmLogin());
         }
     }
 }

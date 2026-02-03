@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InfinityGaming
 {
-    internal class Usuario
+    internal class csUsuario
     {
         private int idUsuario { get; set; }
         protected string nombre { get; set; }

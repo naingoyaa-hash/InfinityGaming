@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InfinityGaming
 {
-    internal class Empleado : Usuario
+    internal class csEmpleado : csUsuario
     {
         private bool idEmpleado { get; set; }
         private bool estado { get; set; }

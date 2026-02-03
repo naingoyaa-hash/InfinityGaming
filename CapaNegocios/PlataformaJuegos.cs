@@ -18,7 +18,7 @@ namespace InfinityGaming
         {
 
         }
-        public bool VerificarCompatibilidad(Computadora computadora)
+        public bool VerificarCompatibilidad(csComputadora computadora)
 
         {
             return false;

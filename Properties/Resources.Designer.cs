@@ -233,6 +233,16 @@ namespace InfinityGaming.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cerrar {
+            get {
+                object obj = ResourceManager.GetObject("Cerrar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ChatGPT_Image_13_ene_2026__05_09_46_p_m_ {
             get {
                 object obj = ResourceManager.GetObject("ChatGPT Image 13 ene 2026, 05_09_46 p.m.", resourceCulture);
@@ -436,6 +446,16 @@ namespace InfinityGaming.Properties {
         internal static System.Drawing.Bitmap juegos {
             get {
                 object obj = ResourceManager.GetObject("juegos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Minimizar {
+            get {
+                object obj = ResourceManager.GetObject("Minimizar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

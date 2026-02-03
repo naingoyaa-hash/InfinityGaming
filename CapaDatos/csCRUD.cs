@@ -19,29 +19,33 @@ namespace InfinityGaming.CapaDatos
 
         public csCRUD() { }
 
-        public DataTable cargarBDData(string sentencia, params SqlParameter[] parametros)
+        public DataTable cargarBDData(string sp, params SqlParameter[] parametros)
         {
             try
             {
                 conexion = new csConexionBD();
                 conexion.abrirConexion();
-                oCom = new SqlCommand(sentencia, conexion.obtenerConexion());
+
+                oCom = new SqlCommand(sp, conexion.obtenerConexion());
+                oCom.CommandType = CommandType.StoredProcedure;
+
                 if (parametros != null)
-                {
-                    foreach (var p in parametros)
-                        oCom.Parameters.Add(p);
-                }
+                    oCom.Parameters.AddRange(parametros);
+
                 oDA = new SqlDataAdapter(oCom);
                 oDT = new DataTable();
                 oDA.Fill(oDT);
+
                 conexion.cerrarConexion();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:" + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
+
             return oDT;
         }
+
 
         public bool agregarBD(string sentencia, params SqlParameter[] parametros)
         {
@@ -141,7 +145,6 @@ namespace InfinityGaming.CapaDatos
                 MessageBox.Show("Error: " + ex.Message);
                 return 0;
             }
-            return 0;
         }
     }
 }

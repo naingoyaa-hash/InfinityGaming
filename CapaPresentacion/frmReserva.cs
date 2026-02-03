@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InfinityGaming
+namespace InfinityGaming.CapaPresentacion
 {
-    public partial class frmEquiposRegistrados : Form
+    public partial class frmReserva : Form
     {
-        public frmEquiposRegistrados()
+        public frmReserva()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

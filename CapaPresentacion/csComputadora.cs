@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InfinityGaming
 {
-    internal class Computadora
+    internal class csComputadora
     {
         private int IdComputadora { get; set; }
         private string nombreComputadora { get; set; }

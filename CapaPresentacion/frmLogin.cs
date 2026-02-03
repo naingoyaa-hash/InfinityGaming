@@ -1,4 +1,5 @@
 ﻿using InfinityGaming.CapaDatos;
+using InfinityGaming.CapaPresentacion;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,16 +7,18 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InfinityGaming
 {
-    public partial class fmLogin : Form
+    public partial class frmLogin : Form
     {
         csCRUD crud = new csCRUD();
-        public fmLogin()
+
+        public frmLogin()
         {
             InitializeComponent();
         }
@@ -26,15 +29,17 @@ namespace InfinityGaming
             int resultado = crud.login(txtUsuario.Text, txtPass.Text);
             if (resultado == 1)
             {
-                fmMenu menu = new fmMenu(true);
+                frmMenu menu = new frmMenu(true);
                 menu.Show();
                 this.Hide();
             }
             else if (resultado == 0) 
             {
-                fmMenu menu = new fmMenu(false);
+                frmMenu menu = new frmMenu(false);
                 menu.Show();
                 this.Hide();
+                txtUsuario.Text = "";
+                txtPass.Text = "";
             }
             else
             {
@@ -42,6 +47,22 @@ namespace InfinityGaming
             }
         }
 
+        private void frmLogin_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                csMoverFormulario.Mover(this);
+            }
+        }
 
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }  

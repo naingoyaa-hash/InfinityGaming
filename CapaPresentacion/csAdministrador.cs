@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InfinityGaming
 {
-    internal class Administrador : Usuario
+    internal class csAdministrador : csUsuario
     {
         private int CodigoAcceso { get; set; }
 
