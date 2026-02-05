@@ -69,7 +69,6 @@
             this.dgvJuegos.Name = "dgvJuegos";
             this.dgvJuegos.Size = new System.Drawing.Size(782, 304);
             this.dgvJuegos.TabIndex = 2;
-            this.dgvJuegos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJuegos_CellClick);
             // 
             // txtBuscar
             // 

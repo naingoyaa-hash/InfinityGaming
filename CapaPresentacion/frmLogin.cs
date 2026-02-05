@@ -38,13 +38,13 @@ namespace InfinityGaming
                 frmMenu menu = new frmMenu(false);
                 menu.Show();
                 this.Hide();
-                txtUsuario.Text = "";
-                txtPass.Text = "";
             }
             else
             {
                 MessageBox.Show("Credenciales incorrectas.");
             }
+            txtUsuario.Text = "";
+            txtPass.Text = "";
         }
 
         private void frmLogin_MouseDown(object sender, MouseEventArgs e)
