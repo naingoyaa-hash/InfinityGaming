@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InfinityGaming.CapaDatos
 {
     internal class csCRUD
     {
-        public csConexionBD conexion;
-        SqlCommand oCom;
-        SqlDataAdapter oDA;
-        DataTable oDT;
-        SqlDataReader oDTR;
+        private csConexionBD conexion;
+        private SqlCommand oCom;
+        private SqlDataAdapter oDA;
+        private DataTable oDT;
 
-        public csCRUD() { }
-
-        public DataTable cargarBDData(string sp, params SqlParameter[] parametros)
+        public DataTable EjecutarSP_DataTable(string sp, params SqlParameter[] parametros)
         {
             try
             {
@@ -29,7 +22,7 @@ namespace InfinityGaming.CapaDatos
                 oCom = new SqlCommand(sp, conexion.obtenerConexion());
                 oCom.CommandType = CommandType.StoredProcedure;
 
-                if (parametros != null)
+                if (parametros != null && parametros.Length > 0)
                     oCom.Parameters.AddRange(parametros);
 
                 oDA = new SqlDataAdapter(oCom);
@@ -37,114 +30,63 @@ namespace InfinityGaming.CapaDatos
                 oDA.Fill(oDT);
 
                 conexion.cerrarConexion();
+                return oDT;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error SP_DataTable: " + ex.Message);
+                return null;
             }
-
-            return oDT;
         }
 
-
-        public bool agregarBD(string sentencia, params SqlParameter[] parametros)
+        public bool ejecutarSP(string sp, params SqlParameter[] parametros)
         {
             try
             {
                 conexion = new csConexionBD();
                 conexion.abrirConexion();
-                oCom = new SqlCommand(sentencia, conexion.obtenerConexion());
-                foreach (var parametro in parametros)
-                    oCom.Parameters.Add(parametro);
+
+                oCom = new SqlCommand(sp, conexion.obtenerConexion());
+                oCom.CommandType = CommandType.StoredProcedure;
+
+                if (parametros != null && parametros.Length > 0)
+                    oCom.Parameters.AddRange(parametros);
+
                 oCom.ExecuteNonQuery();
                 conexion.cerrarConexion();
+
                 return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error EjecutarSP: " + ex.Message);
                 return false;
             }
         }
 
-        public bool eliminarBD(string sentencia, int id)
+        public DataRow EjecutarSP_UnRegistro(string sp, params SqlParameter[] parametros)
         {
-            try
-            {
-                conexion = new csConexionBD();
-                conexion.abrirConexion();
-                oCom = new SqlCommand(sentencia, conexion.obtenerConexion());
-                oCom.Parameters.AddWithValue("@id", id);
-                oCom.ExecuteNonQuery();
-                conexion.cerrarConexion();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-                return false;
-            }
+            var tabla = EjecutarSP_DataTable(sp, parametros);
+
+            if (tabla != null && tabla.Rows.Count > 0)
+                return tabla.Rows[0];
+
+            return null;
         }
 
-        public bool editarBD(string sentencia, params SqlParameter[] parametros)
-        {
-            try
-            {
-                conexion = new csConexionBD();
-                conexion.abrirConexion();
-                oCom = new SqlCommand(sentencia, conexion.obtenerConexion());
-                foreach (var parametro in parametros)
-                    oCom.Parameters.Add(parametro);
-                oCom.ExecuteNonQuery();
-                conexion.cerrarConexion();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-                return false;
-            }
-        }
 
-        public SqlDataReader EjecutarQuery(string sentencia)
+        public int login(string usuario, string password)
         {
-            SqlDataReader reader = null;
-            try
-            {
-                conexion = new csConexionBD();
-                conexion.abrirConexion();
-                oCom = new SqlCommand(sentencia, conexion.obtenerConexion());
-                reader = oCom.ExecuteReader();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al ejecutar consulta: " + ex.Message);
-            }
-            return reader;
-        }
+            DataRow row = EjecutarSP_UnRegistro(
+                "LoginUsuario",
+                new SqlParameter("@Usuario", usuario),
+                new SqlParameter("@Password", password)
+            );
 
-        public int login(string usuario, string contraseña)
-        {
-            try
-            {
-                conexion = new csConexionBD();
-                conexion.abrirConexion();
-                oCom = new SqlCommand("EXECUTE SUsuario ''", conexion.obtenerConexion());
-                oDTR = oCom.ExecuteReader();
-                while (oDTR.Read())
-                    if (oDTR["Usuario"].ToString() == usuario && oDTR["Contraseña"].ToString() == contraseña)
-                        if (oDTR["Rol"].ToString() == "Admin")
-                            return 1;
-                        else 
-                            return 0;
-                conexion.cerrarConexion();
+            if (row == null)
                 return -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-                return 0;
-            }
+
+            return Convert.ToInt32(row["EsAdmin"]); 
         }
     }
 }

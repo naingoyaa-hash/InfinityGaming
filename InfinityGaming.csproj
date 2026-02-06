@@ -114,6 +114,18 @@
     <Compile Include="CapaPresentacion\frmMantenimiento.Designer.cs">
       <DependentUpon>frmMantenimiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="CapaPresentacion\frmNuevaContraseña.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapaPresentacion\frmNuevaContraseña.Designer.cs">
+      <DependentUpon>frmNuevaContraseña.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CapaPresentacion\frmRecuperarContraseña.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapaPresentacion\frmRecuperarContraseña.Designer.cs">
+      <DependentUpon>frmRecuperarContraseña.cs</DependentUpon>
+    </Compile>
     <Compile Include="CapaPresentacion\frmRegistrarEquipo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +190,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmMantenimiento.resx">
       <DependentUpon>frmMantenimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CapaPresentacion\frmNuevaContraseña.resx">
+      <DependentUpon>frmNuevaContraseña.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CapaPresentacion\frmRecuperarContraseña.resx">
+      <DependentUpon>frmRecuperarContraseña.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmRegistrarEquipo.resx">
       <DependentUpon>frmRegistrarEquipo.cs</DependentUpon>

@@ -64,5 +64,12 @@ namespace InfinityGaming
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            frmRecuperarContraseña recuperar = new frmRecuperarContraseña();
+            recuperar.Show();
+            this.Hide();
+        }
     }
 }  
