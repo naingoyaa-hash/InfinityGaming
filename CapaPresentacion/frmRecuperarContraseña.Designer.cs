@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRecuperarContraseña));
             this.btnCerrar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -172,9 +173,11 @@
             this.btnReenviar.TabIndex = 30;
             this.btnReenviar.Text = "REENVIAR";
             this.btnReenviar.UseVisualStyleBackColor = false;
+            this.btnReenviar.Click += new System.EventHandler(this.btnReenviar_Click_1);
             // 
             // frmRecuperarContraseña
             // 
+            this.AcceptButton = this.btnRecuperar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
@@ -192,7 +195,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCerrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmRecuperarContraseña";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRecuperarContraseña";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmRecuperarContraseña_FormClosed);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmRecuperarContraseña_MouseDown);

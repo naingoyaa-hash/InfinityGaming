@@ -169,7 +169,7 @@ namespace InfinityGaming.CapaPresentacion
             }
         }
 
-        private void btnReenviar_Click(object sender, EventArgs e)
+        private void btnReenviar_Click_1(object sender, EventArgs e)
         {
             GenerarCodigo();
         }

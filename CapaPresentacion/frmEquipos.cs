@@ -3,6 +3,7 @@ using InfinityGaming.CapaPresentacion;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace InfinityGaming
@@ -38,6 +39,8 @@ namespace InfinityGaming
             dgvEquipos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvEquipos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvEquipos.ClearSelection();
+
+            EstiloDGV();
         }
 
         private void txtBuscarEquipos_TextChanged(object sender, EventArgs e)
@@ -126,6 +129,37 @@ namespace InfinityGaming
                     MessageBoxIcon.Error
                 );
             }
+        }
+        private void EstiloDGV()
+        {
+            dgvEquipos.EnableHeadersVisualStyles = false;
+
+            dgvEquipos.BackgroundColor = Color.FromArgb(30, 30, 46);
+            dgvEquipos.GridColor = Color.FromArgb(106, 13, 173);
+            dgvEquipos.BorderStyle = BorderStyle.None;
+
+            dgvEquipos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 3, 59);
+            dgvEquipos.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvEquipos.ColumnHeadersDefaultCellStyle.Font =
+                new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvEquipos.ColumnHeadersHeight = 35;
+
+            dgvEquipos.DefaultCellStyle.BackColor = Color.FromArgb(30, 30, 46);
+            dgvEquipos.DefaultCellStyle.ForeColor = Color.WhiteSmoke;
+            dgvEquipos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(106, 13, 173);
+            dgvEquipos.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgvEquipos.DefaultCellStyle.Font =
+                new Font("Segoe UI", 9, FontStyle.Regular);
+
+            dgvEquipos.AlternatingRowsDefaultCellStyle.BackColor =
+                Color.FromArgb(37, 37, 64);
+
+            dgvEquipos.RowHeadersDefaultCellStyle.SelectionBackColor =
+                dgvEquipos.RowHeadersDefaultCellStyle.BackColor;
+
+            dgvEquipos.RowHeadersVisible = false;
+            dgvEquipos.MultiSelect = false;
+            dgvEquipos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
     }

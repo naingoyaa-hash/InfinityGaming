@@ -138,6 +138,12 @@
     <Compile Include="CapaPresentacion\frmRegistrarMantenimiento.Designer.cs">
       <DependentUpon>frmRegistrarMantenimiento.cs</DependentUpon>
     </Compile>
+    <Compile Include="CapaPresentacion\frmRegistrarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapaPresentacion\frmRegistrarReserva.Designer.cs">
+      <DependentUpon>frmRegistrarReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="CapaPresentacion\frmReportes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmRegistrarMantenimiento.resx">
       <DependentUpon>frmRegistrarMantenimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CapaPresentacion\frmRegistrarReserva.resx">
+      <DependentUpon>frmRegistrarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmReportes.resx">
       <DependentUpon>frmReportes.cs</DependentUpon>
