@@ -105,31 +105,38 @@ namespace InfinityGaming
                 dgvEquipos.CurrentRow.Cells["IdEquipo"].Value
             );
 
-            bool eliminado = crud.ejecutarSP(
+            DataTable dt = crud.ejecutarSP(
                 "DEquipo",
                 new SqlParameter("@IdEquipo", idEquipo)
             );
 
-            if (eliminado)
+            if (dt.Rows.Count > 0)
             {
-                MessageBox.Show(
-                    "Equipo eliminado correctamente.",
-                    "Éxito",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-                cargarData();
-            }
-            else
-            {
-                MessageBox.Show(
-                    "Ocurrió un error al eliminar el equipo.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                int resultado = Convert.ToInt32(dt.Rows[0]["Resultado"]);
+                string mensaje = dt.Rows[0]["Mensaje"].ToString();
+
+                if (resultado == 1)
+                {
+                    MessageBox.Show(
+                        mensaje,
+                        "Éxito",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                    cargarData();
+                }
+                else
+                {
+                    MessageBox.Show(
+                        mensaje,
+                        "Atención",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
             }
         }
+
         private void EstiloDGV()
         {
             dgvEquipos.EnableHeadersVisualStyles = false;

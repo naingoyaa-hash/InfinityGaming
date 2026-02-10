@@ -39,30 +39,23 @@ namespace InfinityGaming.CapaDatos
             }
         }
 
-        public bool ejecutarSP(string sp, params SqlParameter[] parametros)
+        public DataTable ejecutarSP(string nombreSP, params SqlParameter[] parametros)
         {
-            try
+            DataTable dt = new DataTable();
+
+            using (SqlCommand cmd = new SqlCommand(nombreSP, conexion.obtenerConexion()))
             {
-                conexion = new csConexionBD();
-                conexion.abrirConexion();
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                oCom = new SqlCommand(sp, conexion.obtenerConexion());
-                oCom.CommandType = CommandType.StoredProcedure;
+                if (parametros != null)
+                    cmd.Parameters.AddRange(parametros);
 
-                if (parametros != null && parametros.Length > 0)
-                    oCom.Parameters.AddRange(parametros);
-
-                oCom.ExecuteNonQuery();
-                conexion.cerrarConexion();
-
-                return true;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error EjecutarSP: " + ex.Message);
-                return false;
-            }
+            return dt;
         }
+
 
         public DataRow EjecutarSP_UnRegistro(string sp, params SqlParameter[] parametros)
         {

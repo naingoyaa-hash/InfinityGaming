@@ -12,7 +12,6 @@ namespace InfinityGaming
         bool edit;
         int id;
         csCRUD crud = new csCRUD();
-        DataTable oDT = null;
 
         public frmRegistrarEquipo()
         {
@@ -27,21 +26,37 @@ namespace InfinityGaming
             this.edit = edit;
             this.id = id;
 
-            oDT = crud.EjecutarSP_DataTable(
+            if (edit)
+                cargarEquipo();
+        }
+
+        private void cargarEquipo()
+        {
+            DataTable dt = crud.EjecutarSP_DataTable(
                 "SEquipo",
-                new SqlParameter("@IdEquipo", this.id),
+                new SqlParameter("@IdEquipo", id),
                 new SqlParameter("@Buscar", "")
             );
 
-            if (edit && oDT != null && oDT.Rows.Count > 0)
+            if (dt.Rows.Count == 0)
             {
-                DataRow row = oDT.Rows[0];
-                btnRegistrar.Text = "EDITAR";
-                txtNombre.Text = row["NombreEquipo"].ToString();
-                cmbTipo.Text = row["Tipo"].ToString();
-                txtEspecificaciones.Text = row["Especificaciones"].ToString();
-                cmbEstado.Text = row["Estado"].ToString();
+                MessageBox.Show(
+                    "Equipo no encontrado.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                this.Close();
+                return;
             }
+
+            DataRow row = dt.Rows[0];
+
+            btnRegistrar.Text = "EDITAR";
+            txtNombre.Text = row["NombreEquipo"].ToString();
+            cmbTipo.Text = row["Tipo"].ToString();
+            txtEspecificaciones.Text = row["Especificaciones"].ToString();
+            cmbEstado.Text = row["Estado"].ToString();
         }
 
         private void cargarCmb()
@@ -68,15 +83,20 @@ namespace InfinityGaming
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
-                MessageBox.Show("El nombre del equipo es obligatorio.");
+                MessageBox.Show(
+                    "El nombre del equipo es obligatorio.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
-            bool resultado;
+            DataTable dtResultado;
 
             if (!edit)
             {
-                resultado = crud.ejecutarSP(
+                dtResultado = crud.ejecutarSP(
                     "IEquipo",
                     new SqlParameter("@NombreEquipo", txtNombre.Text.Trim()),
                     new SqlParameter("@Tipo", cmbTipo.Text),
@@ -86,7 +106,7 @@ namespace InfinityGaming
             }
             else
             {
-                resultado = crud.ejecutarSP(
+                dtResultado = crud.ejecutarSP(
                     "UEquipo",
                     new SqlParameter("@IdEquipo", id),
                     new SqlParameter("@NombreEquipo", txtNombre.Text.Trim()),
@@ -96,12 +116,21 @@ namespace InfinityGaming
                 );
             }
 
-            if (resultado)
-                MessageBox.Show("Operación realizada correctamente.");
-            else
-                MessageBox.Show("Ocurrió un error al guardar.");
+            if (dtResultado.Rows.Count > 0)
+            {
+                int resultado = Convert.ToInt32(dtResultado.Rows[0]["Resultado"]);
+                string mensaje = dtResultado.Rows[0]["Mensaje"].ToString();
 
-            this.Close();
+                MessageBox.Show(
+                    mensaje,
+                    resultado == 1 ? "Correcto" : "Aviso",
+                    MessageBoxButtons.OK,
+                    resultado == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Warning
+                );
+
+                if (resultado == 1)
+                    this.Close();
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

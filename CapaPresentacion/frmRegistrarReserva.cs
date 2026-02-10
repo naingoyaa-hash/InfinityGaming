@@ -9,7 +9,8 @@ namespace InfinityGaming.CapaPresentacion
     public partial class frmRegistrarReserva : Form
     {
         csCRUD crud = new csCRUD();
-        int idReserva = 0; 
+        int idReserva = 0;
+        int idPersona = 0;
 
         public frmRegistrarReserva()
         {
@@ -76,6 +77,9 @@ namespace InfinityGaming.CapaPresentacion
             cmbEquipo.SelectedValue = dt.Rows[0]["IdEquipo"];
             dtpInicioReserva.Value = Convert.ToDateTime(dt.Rows[0]["InicioReserva"]);
             dtpFinReserva.Value = Convert.ToDateTime(dt.Rows[0]["FinReserva"]);
+            idPersona = Convert.ToInt32(dt.Rows[0]["IdPersona"]);
+            txtPersona.Text = dt.Rows[0]["NombrePersona"].ToString();
+
 
             groupBox1.Text = "EDITAR RESERVA";
             btnGuardar.Text = "ACTUALIZAR";
@@ -88,6 +92,12 @@ namespace InfinityGaming.CapaPresentacion
 
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
+            if (idPersona == 0)
+            {
+                MessageBox.Show("Seleccione un cliente",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (cmbEquipo.SelectedIndex == -1)
             {
                 MessageBox.Show("Seleccione un equipo", "Aviso",
@@ -104,33 +114,47 @@ namespace InfinityGaming.CapaPresentacion
 
             try
             {
+                DataTable dt;
+
                 if (idReserva == 0)
                 {
-                    crud.ejecutarSP(
-                        "IReserva",
+                    dt = crud.ejecutarSP("IReserva",
+                        new SqlParameter("@IdPersona", idPersona),
                         new SqlParameter("@IdEquipo", cmbEquipo.SelectedValue),
                         new SqlParameter("@InicioReserva", dtpInicioReserva.Value),
                         new SqlParameter("@FinReserva", dtpFinReserva.Value),
                         new SqlParameter("@Estado", "Reservada")
                     );
-
-                    MessageBox.Show("Reserva registrada correctamente",
-                        "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    crud.ejecutarSP(
-                        "UReserva",
+                    dt = crud.ejecutarSP("UReserva",
                         new SqlParameter("@IdReserva", idReserva),
+                        new SqlParameter("@IdPersona", idPersona),
                         new SqlParameter("@IdEquipo", cmbEquipo.SelectedValue),
                         new SqlParameter("@InicioReserva", dtpInicioReserva.Value),
                         new SqlParameter("@FinReserva", dtpFinReserva.Value),
                         new SqlParameter("@Estado", "Reservada")
                     );
-
-                    MessageBox.Show("Reserva actualizada correctamente",
-                        "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                if (dt.Rows.Count > 0)
+                {
+                    int resultado = Convert.ToInt32(dt.Rows[0]["Resultado"]);
+                    string mensaje = dt.Rows[0]["Mensaje"].ToString();
+
+                    if (resultado == 1)
+                    {
+                        MessageBox.Show(mensaje, "Correcto",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Atención",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+
 
                 Close();
             }
@@ -151,6 +175,16 @@ namespace InfinityGaming.CapaPresentacion
             if (e.Button == MouseButtons.Left)
             {
                 csMoverFormulario.Mover(this);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            frmBuscarPersona frm = new frmBuscarPersona();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                idPersona = frm.IdPersonaSeleccionada;
+                txtPersona.Text = frm.NombrePersonaSeleccionada;
             }
         }
     }

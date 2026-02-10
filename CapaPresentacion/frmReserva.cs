@@ -25,9 +25,7 @@ namespace InfinityGaming.CapaPresentacion
         }
         public void InicializarFormulario()
         {
-            dt = crud.EjecutarSP_DataTable("SReserva");
-            if (dt != null)
-                dgvReservas.DataSource = dt;
+            dgvReservas.DataSource = crud.EjecutarSP_DataTable("SReserva");
             EstiloDGV();
         }
         private void EstiloDGV()
@@ -67,6 +65,9 @@ namespace InfinityGaming.CapaPresentacion
             dgvReservas.AllowUserToResizeRows = false;
 
             dgvReservas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvReservas.Columns["IdReserva"].Visible = false;
+            dgvReservas.Columns["IdPersona"].Visible = false;
+            dgvReservas.Columns["IdEquipo"].Visible = false;
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -108,7 +109,7 @@ namespace InfinityGaming.CapaPresentacion
             }
 
             DialogResult respuesta = MessageBox.Show(
-                $"¿Estás seguro de que deseas {mensaje} esta Reserva?",
+                $"¿Estás seguro de que deseas {mensaje} esta reserva?",
                 "Confirmar",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
@@ -117,16 +118,38 @@ namespace InfinityGaming.CapaPresentacion
             if (respuesta != DialogResult.Yes)
                 return;
 
-            if (crud.ejecutarSP("UReserva",
-                new SqlParameter("@IdReserva", Convert.ToInt32(dgvReservas.CurrentRow.Cells["IdReserva"].Value)),
-                new SqlParameter("@IdEquipo", Convert.ToInt32(dgvReservas.CurrentRow.Cells["IdEquipo"].Value)),
-                new SqlParameter("@InicioReserva", dgvReservas.CurrentRow.Cells["InicioReserva"].Value),
-                new SqlParameter("@FinReserva", dgvReservas.CurrentRow.Cells["FinReserva"].Value),
-                new SqlParameter("@Estado", opcion)))
-                MessageBox.Show($"Reserva {opcion}.");
-            else
-                MessageBox.Show($"Error al {mensaje} la reserva.");
+            DataTable dtResultado = crud.ejecutarSP(
+                "UReserva",
+                new SqlParameter("@IdReserva",
+                    Convert.ToInt32(dgvReservas.CurrentRow.Cells["IdReserva"].Value)),
+                new SqlParameter("@IdEquipo",
+                    Convert.ToInt32(dgvReservas.CurrentRow.Cells["IdEquipo"].Value)),
+                new SqlParameter("@IdPersona",
+                    Convert.ToInt32(dgvReservas.CurrentRow.Cells["IdPersona"].Value)),
+                new SqlParameter("@InicioReserva",
+                    dgvReservas.CurrentRow.Cells["InicioReserva"].Value),
+                new SqlParameter("@FinReserva",
+                    dgvReservas.CurrentRow.Cells["FinReserva"].Value),
+                new SqlParameter("@Estado", opcion)
+            );
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                int resultado = Convert.ToInt32(dtResultado.Rows[0]["Resultado"]);
+                string mensajeSql = dtResultado.Rows[0]["Mensaje"].ToString();
+
+                MessageBox.Show(
+                    mensajeSql,
+                    resultado == 1 ? "Correcto" : "Aviso",
+                    MessageBoxButtons.OK,
+                    resultado == 1 ? MessageBoxIcon.Information : MessageBoxIcon.Warning
+                );
+
+                if (resultado == 1)
+                    InicializarFormulario();
+            }
         }
+
 
         private void dgvReservas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {

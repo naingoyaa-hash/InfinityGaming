@@ -34,26 +34,68 @@ namespace InfinityGaming.CapaPresentacion
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtContraseña.Text == txtRepite.Text)
+            if (txtContraseña.Text != txtRepite.Text)
             {
-                dt = crud.EjecutarSP_DataTable("SBuscarUsuario", new SqlParameter("@IdUsuario", IdUsuario));
-                if (crud.ejecutarSP("UUsuario",
-                    new SqlParameter("@IdUsuario", Convert.ToInt32(dt.Rows[0]["IdUsuario"])),
-                    new SqlParameter("@Usuario", dt.Rows[0]["Usuario"].ToString()),
-                    new SqlParameter("@Contraseña", txtContraseña.Text),
-                    new SqlParameter("@Admin", dt.Rows[0]["Admin"])))
+                MessageBox.Show(
+                    "Las contraseñas no coinciden.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            DataTable dtUsuario = crud.EjecutarSP_DataTable(
+                "SBuscarUsuario",
+                new SqlParameter("@IdUsuario", IdUsuario)
+            );
+
+            if (dtUsuario.Rows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Usuario no encontrado.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
+            DataTable dtResultado = crud.ejecutarSP(
+                "UUsuario",
+                new SqlParameter("@IdUsuario", Convert.ToInt32(dtUsuario.Rows[0]["IdUsuario"])),
+                new SqlParameter("@Usuario", dtUsuario.Rows[0]["Usuario"].ToString()),
+                new SqlParameter("@Contraseña", txtContraseña.Text),
+                new SqlParameter("@Admin", dtUsuario.Rows[0]["Admin"])
+            );
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                int resultado = Convert.ToInt32(dtResultado.Rows[0]["Resultado"]);
+                string mensaje = dtResultado.Rows[0]["Mensaje"].ToString();
+
+                if (resultado == 1)
                 {
-                    MessageBox.Show("Contraseña Actualizada Correctamente.");
+                    MessageBox.Show(
+                        mensaje,
+                        "Correcto",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
                     this.Close();
                 }
                 else
-                    MessageBox.Show("Error al guardar la contraseña.");
-            }
-            else
-            {
-                MessageBox.Show("Las contraseñas no coinciden.");
+                {
+                    MessageBox.Show(
+                        mensaje,
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
             }
         }
+
 
         private void frmNuevaContraseña_MouseDown(object sender, MouseEventArgs e)
         {
