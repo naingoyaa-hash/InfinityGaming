@@ -373,6 +373,36 @@ namespace InfinityGaming.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap frmInventario {
+            get {
+                object obj = ResourceManager.GetObject("frmInventario", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap frmsesion {
+            get {
+                object obj = ResourceManager.GetObject("frmsesion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap frmVentas {
+            get {
+                object obj = ResourceManager.GetObject("frmVentas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Gemini_Generated_Image_bn5ltvbn5ltvbn5l {
             get {
                 object obj = ResourceManager.GetObject("Gemini_Generated_Image_bn5ltvbn5ltvbn5l", resourceCulture);
