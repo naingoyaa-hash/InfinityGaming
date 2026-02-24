@@ -71,7 +71,7 @@ namespace InfinityGaming
             return CostoTotal;
         }
         public bool IniciarDesdeReserva(long idReserva, long idPersona, long idEquipo,
-            DateTime inicioReserva, DateTime finReserva, decimal precioHora, out string mensaje)
+    DateTime inicioReserva, DateTime finReserva, decimal precioHora, out string mensaje)
         {
             DateTime ahora = DateTime.Now;
 
@@ -81,12 +81,13 @@ namespace InfinityGaming
                 return false;
             }
 
-            DateTime inicioSesionReal = ahora > inicioReserva ? ahora : inicioReserva;
+            DateTime inicioSesionReal = ahora;
 
             IdReserva = idReserva;
             IdPersona = idPersona;
             IdEquipo = idEquipo;
             InicioSesion = inicioSesionReal;
+
             FinSesion = finReserva;
 
             CalcularCostoTotal(precioHora);
