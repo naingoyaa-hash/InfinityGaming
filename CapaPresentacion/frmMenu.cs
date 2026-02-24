@@ -57,7 +57,8 @@ namespace InfinityGaming
 
         private void btnSesionJuego_Click(object sender, EventArgs e)
         {
-            
+            frmSesion sesion = new frmSesion();
+            sesion.ShowDialog();
         }
 
         private void btnInventario_Click(object sender, EventArgs e)

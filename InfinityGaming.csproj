@@ -55,10 +55,10 @@
     <Compile Include="CapaDatos\csCRUD.cs" />
     <Compile Include="CapaNegocios\csJuego.cs" />
     <Compile Include="CapaPresentacion\csAdministrador.cs" />
-    <Compile Include="CapaNegocios\Alerta.cs" />
-    <Compile Include="CapaPresentacion\csComputadora.cs" />
+    <Compile Include="CapaNegocios\csAlerta.cs" />
+    <Compile Include="CapaNegocios\csEquipo.cs" />
     <Compile Include="CapaPresentacion\csEmpleado.cs" />
-    <Compile Include="CapaNegocios\Factura.cs" />
+    <Compile Include="CapaNegocios\csFactura.cs" />
     <Compile Include="CapaPresentacion\csUsuario.cs" />
     <Compile Include="CapaPresentacion\frmBuscarPersona.cs">
       <SubType>Form</SubType>
@@ -180,9 +180,8 @@
     <Compile Include="CapaPresentacion\frmUsuario.Designer.cs">
       <DependentUpon>frmUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="CapaNegocios\Mantenimiento.cs" />
-    <Compile Include="CapaNegocios\Pago.cs" />
-    <Compile Include="CapaNegocios\PlataformaJuegos.cs" />
+    <Compile Include="CapaNegocios\csMantenimiento.cs" />
+    <Compile Include="CapaNegocios\csPago.cs" />
     <Compile Include="CapaPresentacion\csMoverFormulario.cs" />
     <Compile Include="CapaPresentacion\frmVentas.cs">
       <SubType>Form</SubType>
@@ -192,8 +191,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CapaNegocios\Reserva.cs" />
-    <Compile Include="CapaNegocios\SesionJuego.cs" />
+    <Compile Include="CapaNegocios\csReserva.cs" />
+    <Compile Include="CapaNegocios\csSesionJuego.cs" />
     <EmbeddedResource Include="CapaPresentacion\frmBuscarPersona.resx">
       <DependentUpon>frmBuscarPersona.cs</DependentUpon>
     </EmbeddedResource>

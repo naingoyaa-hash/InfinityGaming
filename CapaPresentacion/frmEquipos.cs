@@ -101,39 +101,34 @@ namespace InfinityGaming
             if (respuesta != DialogResult.Yes)
                 return;
 
-            int idEquipo = Convert.ToInt32(
-                dgvEquipos.CurrentRow.Cells["IdEquipo"].Value
-            );
-
-            DataTable dt = crud.ejecutarSP(
-                "DEquipo",
-                new SqlParameter("@IdEquipo", idEquipo)
-            );
-
-            if (dt.Rows.Count > 0)
+            try
             {
-                int resultado = Convert.ToInt32(dt.Rows[0]["Resultado"]);
-                string mensaje = dt.Rows[0]["Mensaje"].ToString();
+                long idEquipo = Convert.ToInt64(
+                    dgvEquipos.CurrentRow.Cells["IdEquipo"].Value
+                );
 
-                if (resultado == 1)
-                {
-                    MessageBox.Show(
-                        mensaje,
-                        "Éxito",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
-                    cargarData();
-                }
-                else
-                {
-                    MessageBox.Show(
-                        mensaje,
-                        "Atención",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-                }
+                // ✅ USAR CLASE csEquipo
+                csEquipo equipo = new csEquipo();
+                equipo.IdEquipo = idEquipo;
+                equipo.Eliminar();
+
+                MessageBox.Show(
+                    "Equipo eliminado correctamente.",
+                    "Éxito",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                cargarData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error al eliminar:\n" + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 

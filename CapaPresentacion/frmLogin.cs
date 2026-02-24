@@ -1,41 +1,36 @@
 ﻿using InfinityGaming.CapaDatos;
 using InfinityGaming.CapaPresentacion;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InfinityGaming
 {
     public partial class frmLogin : Form
     {
-        csCRUD crud = new csCRUD();
+        csUsuario usuario = new csUsuario();
 
         public frmLogin()
         {
             InitializeComponent();
         }
 
-
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
-            int resultado = crud.login(txtUsuario.Text, txtPass.Text);
-            if (resultado == 1)
+            if (string.IsNullOrWhiteSpace(txtUsuario.Text) ||
+                string.IsNullOrWhiteSpace(txtPass.Text))
             {
-                frmMenu menu = new frmMenu(true);
-                menu.Show();
-                this.Hide();
+                MessageBox.Show("Ingrese usuario y contraseña");
+                return;
             }
-            else if (resultado == 0) 
+
+            bool loginCorrecto = usuario.Login(
+                txtUsuario.Text.Trim(),
+                txtPass.Text.Trim()
+            );
+
+            if (loginCorrecto)
             {
-                frmMenu menu = new frmMenu(false);
+                frmMenu menu = new frmMenu(usuario.VerificarRol());
                 menu.Show();
                 this.Hide();
             }
@@ -43,21 +38,20 @@ namespace InfinityGaming
             {
                 MessageBox.Show("Credenciales incorrectas.");
             }
-            txtUsuario.Text = "";
-            txtPass.Text = "";
+
+            txtUsuario.Clear();
+            txtPass.Clear();
         }
 
         private void frmLogin_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-            {
                 csMoverFormulario.Mover(this);
-            }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)
@@ -72,4 +66,4 @@ namespace InfinityGaming
             this.Hide();
         }
     }
-}  
+}

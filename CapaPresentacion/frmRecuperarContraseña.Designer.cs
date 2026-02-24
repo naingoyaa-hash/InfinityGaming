@@ -173,7 +173,7 @@
             this.btnReenviar.TabIndex = 30;
             this.btnReenviar.Text = "REENVIAR";
             this.btnReenviar.UseVisualStyleBackColor = false;
-            this.btnReenviar.Click += new System.EventHandler(this.btnReenviar_Click_1);
+            this.btnReenviar.Click += new System.EventHandler(this.btnReenviar_Click);
             // 
             // frmRecuperarContraseña
             // 

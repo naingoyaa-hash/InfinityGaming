@@ -81,7 +81,7 @@
             this.txtBuscar.Size = new System.Drawing.Size(348, 30);
             this.txtBuscar.TabIndex = 3;
             this.txtBuscar.Text = "Buscar juegos:";
-            this.txtBuscar.Click += new System.EventHandler(this.txtBuscar_Click);
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged_1);
             // 
             // btnCerrar
             // 

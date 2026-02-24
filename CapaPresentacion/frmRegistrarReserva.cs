@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 using InfinityGaming.CapaDatos;
 
@@ -8,9 +8,10 @@ namespace InfinityGaming.CapaPresentacion
 {
     public partial class frmRegistrarReserva : Form
     {
-        csCRUD crud = new csCRUD();
-        int idReserva = 0;
-        int idPersona = 0;
+        csReserva reserva = new csReserva();
+
+        long idReserva = 0;
+        long idPersona = 0;
 
         public frmRegistrarReserva()
         {
@@ -18,7 +19,7 @@ namespace InfinityGaming.CapaPresentacion
             InicializarFormulario();
         }
 
-        public frmRegistrarReserva(int _idReserva)
+        public frmRegistrarReserva(long _idReserva)
         {
             InitializeComponent();
             idReserva = _idReserva;
@@ -38,19 +39,18 @@ namespace InfinityGaming.CapaPresentacion
             dtpFinReserva.CustomFormat = "dd/MM/yyyy HH:mm";
             dtpFinReserva.ShowUpDown = true;
 
-            dtpInicioReserva.MinDate = DateTime.Now;
-            dtpFinReserva.MinDate = DateTime.Now;
-
             dtpInicioReserva.Value = DateTime.Now;
             dtpFinReserva.Value = DateTime.Now.AddHours(1);
         }
 
         private void CargarEquipos()
         {
+            csCRUD crud = new csCRUD();
+
             DataTable dt = crud.EjecutarSP_DataTable(
                 "SEquipo",
-                new SqlParameter("@IdEquipo", 0),
-                new SqlParameter("@Buscar", "")
+                new System.Data.SqlClient.SqlParameter("@IdEquipo", 0),
+                new System.Data.SqlClient.SqlParameter("@Buscar", "")
             );
 
             cmbEquipo.DataSource = dt;
@@ -61,131 +61,104 @@ namespace InfinityGaming.CapaPresentacion
 
         private void CargarReserva()
         {
-            DataTable dt = crud.EjecutarSP_DataTable(
-                "SReserva",
-                new SqlParameter("@IdReserva", idReserva)
-            );
+            DataTable dt = reserva.Listar(idReserva);
 
             if (dt.Rows.Count == 0)
             {
-                MessageBox.Show("No se encontró la reserva", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se encontró la reserva");
                 Close();
                 return;
             }
 
-            cmbEquipo.SelectedValue = dt.Rows[0]["IdEquipo"];
-            dtpInicioReserva.Value = Convert.ToDateTime(dt.Rows[0]["InicioReserva"]);
-            dtpFinReserva.Value = Convert.ToDateTime(dt.Rows[0]["FinReserva"]);
-            idPersona = Convert.ToInt32(dt.Rows[0]["IdPersona"]);
-            txtPersona.Text = dt.Rows[0]["NombrePersona"].ToString();
+            DataRow row = dt.Rows[0];
 
+            cmbEquipo.SelectedValue = row["IdEquipo"];
+            dtpInicioReserva.Value =
+                Convert.ToDateTime(row["InicioReserva"]);
+            dtpFinReserva.Value =
+                Convert.ToDateTime(row["FinReserva"]);
+
+            idPersona = Convert.ToInt64(row["IdPersona"]);
+            txtPersona.Text = row["NombrePersona"].ToString();
 
             groupBox1.Text = "EDITAR RESERVA";
             btnGuardar.Text = "ACTUALIZAR";
-        }
-
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
             if (idPersona == 0)
             {
-                MessageBox.Show("Seleccione un cliente",
-                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Seleccione un cliente");
                 return;
             }
+
             if (cmbEquipo.SelectedIndex == -1)
             {
-                MessageBox.Show("Seleccione un equipo", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Seleccione un equipo");
                 return;
             }
 
             if (dtpInicioReserva.Value >= dtpFinReserva.Value)
             {
-                MessageBox.Show("La fecha inicio debe ser menor a la fecha fin", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("La fecha inicio debe ser menor a la fecha fin");
                 return;
             }
 
             try
             {
-                DataTable dt;
+                reserva.IdReserva = idReserva;
+                reserva.IdPersona = idPersona;
+                reserva.IdEquipo =
+                    Convert.ToInt64(cmbEquipo.SelectedValue);
+                reserva.InicioReserva = dtpInicioReserva.Value;
+                reserva.FinReserva = dtpFinReserva.Value;
+                reserva.Estado = "Reservada";
 
                 if (idReserva == 0)
-                {
-                    dt = crud.ejecutarSP("IReserva",
-                        new SqlParameter("@IdPersona", idPersona),
-                        new SqlParameter("@IdEquipo", cmbEquipo.SelectedValue),
-                        new SqlParameter("@InicioReserva", dtpInicioReserva.Value),
-                        new SqlParameter("@FinReserva", dtpFinReserva.Value),
-                        new SqlParameter("@Estado", "Reservada")
-                    );
-                }
+                    reserva.Crear();
                 else
-                {
-                    dt = crud.ejecutarSP("UReserva",
-                        new SqlParameter("@IdReserva", idReserva),
-                        new SqlParameter("@IdPersona", idPersona),
-                        new SqlParameter("@IdEquipo", cmbEquipo.SelectedValue),
-                        new SqlParameter("@InicioReserva", dtpInicioReserva.Value),
-                        new SqlParameter("@FinReserva", dtpFinReserva.Value),
-                        new SqlParameter("@Estado", "Reservada")
-                    );
-                }
+                    reserva.Actualizar();
 
-                if (dt.Rows.Count > 0)
-                {
-                    int resultado = Convert.ToInt32(dt.Rows[0]["Resultado"]);
-                    string mensaje = dt.Rows[0]["Mensaje"].ToString();
-
-                    if (resultado == 1)
-                    {
-                        MessageBox.Show(mensaje, "Correcto",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show(mensaje, "Atención",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-
+                MessageBox.Show(
+                    "Reserva guardada correctamente",
+                    "Correcto",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
-        private void frmRegistrarReserva_MouseDown(object sender, MouseEventArgs e)
+        private void btnCerrar_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                csMoverFormulario.Mover(this);
-            }
+            Close();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             frmBuscarPersona frm = new frmBuscarPersona();
+
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 idPersona = frm.IdPersonaSeleccionada;
                 txtPersona.Text = frm.NombrePersonaSeleccionada;
             }
+        }
+
+        private void frmRegistrarReserva_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                csMoverFormulario.Mover(this);
         }
     }
 }
