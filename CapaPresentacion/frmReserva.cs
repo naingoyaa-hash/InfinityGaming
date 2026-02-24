@@ -193,8 +193,7 @@ namespace InfinityGaming.CapaPresentacion
                 return;
             }
 
-            string estado =
-                dgvReservas.CurrentRow.Cells["Estado"].Value.ToString();
+            string estado = dgvReservas.CurrentRow.Cells["Estado"].Value.ToString();
 
             if (estado != "Reservada")
             {
@@ -202,40 +201,31 @@ namespace InfinityGaming.CapaPresentacion
                 return;
             }
 
-            long idReserva =
-                Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdReserva"].Value);
-
-            long idPersona =
-                Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdPersona"].Value);
-
-            long idEquipo =
-                Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdEquipo"].Value);
-
-            DateTime inicio =
-                Convert.ToDateTime(dgvReservas.CurrentRow.Cells["InicioReserva"].Value);
-
-            DateTime fin =
-                Convert.ToDateTime(dgvReservas.CurrentRow.Cells["FinReserva"].Value);
+            long idReserva = Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdReserva"].Value);
+            long idPersona = Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdPersona"].Value);
+            long idEquipo = Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdEquipo"].Value);
+            DateTime inicioReserva = Convert.ToDateTime(dgvReservas.CurrentRow.Cells["InicioReserva"].Value);
+            DateTime finReserva = Convert.ToDateTime(dgvReservas.CurrentRow.Cells["FinReserva"].Value);
 
             csSesionJuegos sesion = new csSesionJuegos();
-
             string mensaje;
 
-            bool ok = sesion.IniciarDesdeReserva(
+            bool iniciado = sesion.IniciarDesdeReserva(
                 idReserva,
                 idPersona,
                 idEquipo,
-                inicio,
-                fin,
-                2m,
-                out mensaje);
+                inicioReserva,
+                finReserva,
+                2m,      
+                out mensaje
+            );
 
             MessageBox.Show(mensaje);
 
-            if (!ok) return;
+            if (!iniciado) return;
 
-            frmSesion frm = new frmSesion();
-            frm.Show();
+            frmSesion frmSesion = new frmSesion();
+            frmSesion.Show();
 
             this.Close();
         }

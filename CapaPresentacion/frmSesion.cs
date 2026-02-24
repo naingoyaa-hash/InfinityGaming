@@ -43,21 +43,17 @@ namespace InfinityGaming.CapaPresentacion
             dgvSesion.BackgroundColor = Color.FromArgb(25, 25, 35);
             dgvSesion.EnableHeadersVisualStyles = false;
 
-            dgvSesion.ColumnHeadersDefaultCellStyle.BackColor =
-                Color.FromArgb(90, 24, 154);
+            dgvSesion.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(90, 24, 154);
             dgvSesion.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgvSesion.ColumnHeadersHeight = 40;
 
-            dgvSesion.DefaultCellStyle.BackColor =
-                Color.FromArgb(35, 35, 55);
+            dgvSesion.DefaultCellStyle.BackColor = Color.FromArgb(35, 35, 55);
             dgvSesion.DefaultCellStyle.ForeColor = Color.White;
 
             dgvSesion.RowHeadersVisible = false;
-            dgvSesion.SelectionMode =
-                DataGridViewSelectionMode.FullRowSelect;
+            dgvSesion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            dgvSesion.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSesion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dgvSesion.ReadOnly = true;
             dgvSesion.AllowUserToAddRows = false;
@@ -81,8 +77,12 @@ namespace InfinityGaming.CapaPresentacion
 
         private void CargarSesiones()
         {
-            dgvSesion.DataSource =
-                crud.EjecutarSP_DataTable("SSesionJuego");
+            dgvSesion.DataSource = crud.EjecutarSP_DataTable("SSesionJuego");
+            dgvSesion.Columns["IdSesion"].Visible = false;
+            dgvSesion.Columns["IdReserva"].Visible = false;
+            dgvSesion.Columns["IdPersona"].Visible = false;
+            dgvSesion.Columns["IdEquipo"].Visible = false;
+            dgvSesion.Columns["DuracionSegundos"].Visible = false;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -110,17 +110,16 @@ namespace InfinityGaming.CapaPresentacion
                 return;
             }
 
+            // Asignar datos a la sesión
             sesion.IdPersona = IdPersonaSeleccionada;
             sesion.IdEquipo = Convert.ToInt64(cmbEquipo.SelectedValue);
             sesion.IdReserva = null;
             sesion.InicioSesion = dtpInicioReserva.Value;
             sesion.FinSesion = dtpFinReserva.Value;
 
-            sesion.CalcularCostoTotal(2m);
-
             sesion.Iniciar();
 
-            MessageBox.Show("Sesión iniciada correctamente");
+            MessageBox.Show($"Sesión iniciada correctamente.\nDuración: {sesion.DuracionSegundos} seg\nCosto: ${sesion.CostoTotal}");
 
             Limpiar();
             CargarSesiones();
@@ -136,13 +135,13 @@ namespace InfinityGaming.CapaPresentacion
 
             sesion.IdSesion = IdSesionSeleccionada;
             sesion.IdPersona = IdPersonaSeleccionada;
+            sesion.IdEquipo = Convert.ToInt64(cmbEquipo.SelectedValue);
             sesion.InicioSesion = dtpInicioReserva.Value;
             sesion.FinSesion = dtpFinReserva.Value;
-            sesion.CostoTotal = 0;
 
             sesion.Actualizar();
 
-            MessageBox.Show("Sesión actualizada");
+            MessageBox.Show($"Sesión actualizada.\nDuración: {sesion.DuracionSegundos} seg\nCosto: ${sesion.CostoTotal}");
 
             Limpiar();
             CargarSesiones();
@@ -165,30 +164,18 @@ namespace InfinityGaming.CapaPresentacion
             CargarSesiones();
         }
 
-        private void dgvSesion_CellDoubleClick(object sender,
-            DataGridViewCellEventArgs e)
+        private void dgvSesion_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvSesion.CurrentRow == null) return;
 
-            IdSesionSeleccionada =
-                Convert.ToInt64(dgvSesion.CurrentRow.Cells["IdSesion"].Value);
+            IdSesionSeleccionada = Convert.ToInt64(dgvSesion.CurrentRow.Cells["IdSesion"].Value);
+            IdPersonaSeleccionada = Convert.ToInt64(dgvSesion.CurrentRow.Cells["IdPersona"].Value);
 
-            IdPersonaSeleccionada =
-                Convert.ToInt64(dgvSesion.CurrentRow.Cells["IdPersona"].Value);
+            txtPersona.Text = dgvSesion.CurrentRow.Cells["Nombre"].Value.ToString();
+            cmbEquipo.SelectedValue = dgvSesion.CurrentRow.Cells["IdEquipo"].Value;
 
-            txtPersona.Text =
-                dgvSesion.CurrentRow.Cells["Nombre"].Value.ToString();
-
-            cmbEquipo.SelectedValue =
-                dgvSesion.CurrentRow.Cells["IdEquipo"].Value;
-
-            dtpInicioReserva.Value =
-                Convert.ToDateTime(
-                    dgvSesion.CurrentRow.Cells["InicioSesion"].Value);
-
-            dtpFinReserva.Value =
-                Convert.ToDateTime(
-                    dgvSesion.CurrentRow.Cells["FinSesion"].Value);
+            dtpInicioReserva.Value = Convert.ToDateTime(dgvSesion.CurrentRow.Cells["InicioSesion"].Value);
+            dtpFinReserva.Value = Convert.ToDateTime(dgvSesion.CurrentRow.Cells["FinSesion"].Value);
         }
 
         private void Limpiar()
@@ -211,49 +198,6 @@ namespace InfinityGaming.CapaPresentacion
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
-        }
-        private void RefrescarGrid()
-        {
-            if (InvokeRequired)
-            {
-                Invoke(new Action(RefrescarGrid));
-                return;
-            }
-
-            ActualizarVistaSesiones();
-        }
-        private void ActualizarVistaSesiones()
-        {
-            foreach (DataGridViewRow row in dgvSesion.Rows)
-            {
-                long idEquipo =
-                    Convert.ToInt64(row.Cells["IdEquipo"].Value);
-
-                if (csSesionManager.SesionesActivas.ContainsKey(idEquipo))
-                {
-                    var sesion =
-                        csSesionManager.SesionesActivas[idEquipo];
-
-                    TimeSpan tiempo =
-                        DateTime.Now - sesion.InicioSesion;
-
-                    row.Cells["Tiempo"].Value =
-                        tiempo.ToString(@"hh\:mm\:ss");
-
-                    row.Cells["Costo"].Value =
-                        sesion.CostoTotal.ToString("0.00");
-                }
-            }
-        }
-
-        private void frmSesion_Load(object sender, EventArgs e)
-        {
-            csSesionManager.OnActualizar += RefrescarGrid;
-        }
-
-        private void frmSesion_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            csSesionManager.OnActualizar -= RefrescarGrid;
         }
     }
 }

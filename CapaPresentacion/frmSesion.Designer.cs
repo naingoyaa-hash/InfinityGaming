@@ -280,8 +280,6 @@
             this.Name = "frmSesion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSesion";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSesion_FormClosed);
-            this.Load += new System.EventHandler(this.frmSesion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSesion)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

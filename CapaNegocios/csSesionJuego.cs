@@ -1,10 +1,6 @@
 ﻿using InfinityGaming.CapaDatos;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfinityGaming
 {
@@ -16,12 +12,24 @@ namespace InfinityGaming
         public long? IdReserva { get; set; }
         public DateTime InicioSesion { get; set; }
         public DateTime FinSesion { get; set; }
-        public decimal CostoTotal { get; set; }
-        public int MinutosContratados { get; set; }
-        public DateTime HoraFinProgramada
+        public int DuracionSegundos
         {
-            get { return InicioSesion.AddMinutes(MinutosContratados); }
+            get
+            {
+                DateTime hasta = (FinSesion == DateTime.MinValue || FinSesion > DateTime.Now) ? DateTime.Now : FinSesion;
+                int segundos = (int)(hasta - InicioSesion).TotalSeconds;
+                return Math.Max(0, segundos);
+            }
         }
+        public decimal CostoTotal
+        {
+            get
+            {
+                return Math.Round((DuracionSegundos / 3600m) * PrecioPorHora, 2);
+            }
+        }
+
+        public decimal PrecioPorHora { get; set; } = 2m; 
 
         csCRUD crud = new csCRUD();
 
@@ -54,24 +62,9 @@ namespace InfinityGaming
             crud.EjecutarSP_NonQuery("DSesionJuego",
                 new SqlParameter("@IdSesion", IdSesion));
         }
-        public decimal CalcularCostoTotal(decimal precioPorHora)
-        {
-            if (FinSesion <= InicioSesion)
-            {
-                CostoTotal = 0;
-                return CostoTotal;
-            }
 
-            TimeSpan tiempo = FinSesion - InicioSesion;
-
-            decimal minutos = Math.Max(1, Math.Ceiling((decimal)tiempo.TotalMinutes));
-
-            CostoTotal = Math.Round((minutos * precioPorHora) / 60m, 2);
-
-            return CostoTotal;
-        }
         public bool IniciarDesdeReserva(long idReserva, long idPersona, long idEquipo,
-    DateTime inicioReserva, DateTime finReserva, decimal precioHora, out string mensaje)
+            DateTime inicioReserva, DateTime finReserva, decimal precioHora, out string mensaje)
         {
             DateTime ahora = DateTime.Now;
 
@@ -81,42 +74,17 @@ namespace InfinityGaming
                 return false;
             }
 
-            DateTime inicioSesionReal = ahora;
-
+            InicioSesion = ahora;  
+            FinSesion = finReserva;  
             IdReserva = idReserva;
             IdPersona = idPersona;
             IdEquipo = idEquipo;
-            InicioSesion = inicioSesionReal;
-
-            FinSesion = finReserva;
-
-            CalcularCostoTotal(precioHora);
+            PrecioPorHora = precioHora;
 
             Iniciar();
 
             mensaje = "Sesión iniciada correctamente desde la reserva.";
             return true;
         }
-        public void FinalizarAutomaticamente(decimal precioPorMinuto)
-        {
-            FinSesion = HoraFinProgramada;
-
-            TimeSpan tiempo = FinSesion - InicioSesion;
-
-            decimal minutos = (decimal)tiempo.TotalMinutes;
-
-            CostoTotal = Math.Round(minutos * precioPorMinuto, 2);
-
-            Actualizar();
-        }
-        public bool TiempoFinalizado()
-        {
-            return TiempoFinalizado(DateTime.Now);
-        }
-        public bool TiempoFinalizado(DateTime ahora)
-        {
-            return ahora >= HoraFinProgramada;
-        }
     }
 }
-
