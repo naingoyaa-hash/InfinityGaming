@@ -184,5 +184,60 @@ namespace InfinityGaming.CapaPresentacion
 
             InicializarFormulario();
         }
+
+        private void bntIniciar_Click(object sender, EventArgs e)
+        {
+            if (dgvReservas.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione una reserva.");
+                return;
+            }
+
+            string estado =
+                dgvReservas.CurrentRow.Cells["Estado"].Value.ToString();
+
+            if (estado != "Reservada")
+            {
+                MessageBox.Show("Solo se pueden iniciar reservas activas.");
+                return;
+            }
+
+            long idReserva =
+                Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdReserva"].Value);
+
+            long idPersona =
+                Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdPersona"].Value);
+
+            long idEquipo =
+                Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdEquipo"].Value);
+
+            DateTime inicio =
+                Convert.ToDateTime(dgvReservas.CurrentRow.Cells["InicioReserva"].Value);
+
+            DateTime fin =
+                Convert.ToDateTime(dgvReservas.CurrentRow.Cells["FinReserva"].Value);
+
+            csSesionJuegos sesion = new csSesionJuegos();
+
+            string mensaje;
+
+            bool ok = sesion.IniciarDesdeReserva(
+                idReserva,
+                idPersona,
+                idEquipo,
+                inicio,
+                fin,
+                2m,
+                out mensaje);
+
+            MessageBox.Show(mensaje);
+
+            if (!ok) return;
+
+            frmSesion frm = new frmSesion();
+            frm.Show();
+
+            this.Close();
+        }
     }
 }

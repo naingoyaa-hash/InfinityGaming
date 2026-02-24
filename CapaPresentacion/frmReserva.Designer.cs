@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvReservas = new System.Windows.Forms.DataGridView();
             this.btnFinalizarReserva = new System.Windows.Forms.Button();
+            this.bntIniciar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.Purple;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(17, 309);
+            this.btnCancelar.Location = new System.Drawing.Point(17, 352);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 36);
             this.btnCancelar.TabIndex = 37;
@@ -145,13 +146,29 @@
             this.btnFinalizarReserva.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinalizarReserva.ForeColor = System.Drawing.Color.Purple;
             this.btnFinalizarReserva.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFinalizarReserva.Location = new System.Drawing.Point(17, 257);
+            this.btnFinalizarReserva.Location = new System.Drawing.Point(17, 300);
             this.btnFinalizarReserva.Name = "btnFinalizarReserva";
             this.btnFinalizarReserva.Size = new System.Drawing.Size(169, 36);
             this.btnFinalizarReserva.TabIndex = 38;
             this.btnFinalizarReserva.Text = "FINALIZAR RESERVA";
             this.btnFinalizarReserva.UseVisualStyleBackColor = false;
             this.btnFinalizarReserva.Click += new System.EventHandler(this.btnFinalizarReserva_Click);
+            // 
+            // bntIniciar
+            // 
+            this.bntIniciar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.bntIniciar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bntIniciar.BackgroundImage")));
+            this.bntIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.bntIniciar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bntIniciar.ForeColor = System.Drawing.Color.Purple;
+            this.bntIniciar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bntIniciar.Location = new System.Drawing.Point(17, 253);
+            this.bntIniciar.Name = "bntIniciar";
+            this.bntIniciar.Size = new System.Drawing.Size(169, 36);
+            this.bntIniciar.TabIndex = 39;
+            this.bntIniciar.Text = "INICIAR RESERVA";
+            this.bntIniciar.UseVisualStyleBackColor = false;
+            this.bntIniciar.Click += new System.EventHandler(this.bntIniciar_Click);
             // 
             // frmReserva
             // 
@@ -160,6 +177,7 @@
             this.BackgroundImage = global::InfinityGaming.Properties.Resources.reservas1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(868, 525);
+            this.Controls.Add(this.bntIniciar);
             this.Controls.Add(this.btnFinalizarReserva);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEditar);
@@ -192,5 +210,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvReservas;
         private System.Windows.Forms.Button btnFinalizarReserva;
+        private System.Windows.Forms.Button bntIniciar;
     }
 }

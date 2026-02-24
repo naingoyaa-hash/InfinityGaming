@@ -54,6 +54,7 @@
     <Compile Include="CapaDatos\csConexionBD.cs" />
     <Compile Include="CapaDatos\csCRUD.cs" />
     <Compile Include="CapaNegocios\csJuego.cs" />
+    <Compile Include="CapaNegocios\csSesionManager.cs" />
     <Compile Include="CapaPresentacion\csAdministrador.cs" />
     <Compile Include="CapaNegocios\csAlerta.cs" />
     <Compile Include="CapaNegocios\csEquipo.cs" />
