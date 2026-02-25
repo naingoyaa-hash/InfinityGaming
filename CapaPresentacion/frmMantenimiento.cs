@@ -36,15 +36,23 @@ namespace InfinityGaming
         private void DiseñarGrid()
         {
             dgvMantenimiento.BorderStyle = BorderStyle.None;
-            dgvMantenimiento.AlternatingRowsDefaultCellStyle.BackColor = Color.Black;
+            dgvMantenimiento.BackgroundColor = Color.FromArgb(20, 20, 20);
 
             dgvMantenimiento.DefaultCellStyle.BackColor = Color.FromArgb(20, 20, 20);
             dgvMantenimiento.DefaultCellStyle.ForeColor = Color.Plum;
+
+            dgvMantenimiento.AlternatingRowsDefaultCellStyle.BackColor =
+                Color.FromArgb(30, 30, 30);
 
             dgvMantenimiento.ColumnHeadersDefaultCellStyle.BackColor = Color.Purple;
             dgvMantenimiento.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             dgvMantenimiento.EnableHeadersVisualStyles = false;
+
+            dgvMantenimiento.AllowUserToAddRows = false;
+
+            dgvMantenimiento.RowHeadersVisible = false;
+
             dgvMantenimiento.AutoSizeColumnsMode =
                 DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -52,6 +60,10 @@ namespace InfinityGaming
                 DataGridViewSelectionMode.FullRowSelect;
 
             dgvMantenimiento.MultiSelect = false;
+
+            dgvMantenimiento.ReadOnly = true;
+
+            dgvMantenimiento.AllowUserToResizeRows = false;
         }
 
         private void dgvMantenimiento_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -111,6 +123,11 @@ namespace InfinityGaming
         {
             if (e.Button == MouseButtons.Left)
                 csMoverFormulario.Mover(this);
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

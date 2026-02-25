@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMantenimiento));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnCerrar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.btnRegistrar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.dgvMantenimiento = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMantenimiento)).BeginInit();
@@ -55,17 +55,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MENÚ DE MANTENIMIENTO ";
             // 
-            // btnCerrar
-            // 
-            this.btnCerrar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCerrar.Image = global::InfinityGaming.Properties.Resources.Cerrar;
-            this.btnCerrar.Location = new System.Drawing.Point(757, 12);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(31, 32);
-            this.btnCerrar.TabIndex = 19;
-            this.btnCerrar.UseVisualStyleBackColor = false;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -81,6 +70,22 @@
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnRegistrar
+            // 
+            this.btnRegistrar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRegistrar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.BackgroundImage")));
+            this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRegistrar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrar.ForeColor = System.Drawing.Color.Purple;
+            this.btnRegistrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegistrar.Location = new System.Drawing.Point(20, 60);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(169, 36);
+            this.btnRegistrar.TabIndex = 40;
+            this.btnRegistrar.Text = "REGISTRAR";
+            this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // btnEditar
             // 
@@ -98,21 +103,17 @@
             this.btnEditar.UseVisualStyleBackColor = false;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // btnRegistrar
+            // btnCerrar
             // 
-            this.btnRegistrar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRegistrar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRegistrar.BackgroundImage")));
-            this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRegistrar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrar.ForeColor = System.Drawing.Color.Purple;
-            this.btnRegistrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistrar.Location = new System.Drawing.Point(20, 60);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(169, 36);
-            this.btnRegistrar.TabIndex = 40;
-            this.btnRegistrar.Text = "REGISTRAR";
-            this.btnRegistrar.UseVisualStyleBackColor = false;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            this.btnCerrar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCerrar.Image = global::InfinityGaming.Properties.Resources.Cerrar;
+            this.btnCerrar.Location = new System.Drawing.Point(757, 12);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(31, 32);
+            this.btnCerrar.TabIndex = 19;
+            this.btnCerrar.UseVisualStyleBackColor = false;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // dgvMantenimiento
             // 

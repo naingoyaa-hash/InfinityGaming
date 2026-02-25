@@ -69,6 +69,8 @@
             this.dgvJuegos.Name = "dgvJuegos";
             this.dgvJuegos.Size = new System.Drawing.Size(782, 304);
             this.dgvJuegos.TabIndex = 2;
+            this.dgvJuegos.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJuegos_CellMouseEnter);
+            this.dgvJuegos.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJuegos_CellMouseLeave);
             // 
             // txtBuscar
             // 
@@ -112,6 +114,7 @@
             this.Name = "frmJuegos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmJuegos";
+            this.Load += new System.EventHandler(this.frmJuegos_Load_1);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmJuegos_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvJuegos)).EndInit();
             this.ResumeLayout(false);

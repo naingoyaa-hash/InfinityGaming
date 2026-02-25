@@ -43,7 +43,7 @@ namespace InfinityGaming
             {
                 Name = "Icono",
                 Width = 60,
-                ImageLayout = DataGridViewImageCellLayout.Zoom
+                ImageLayout = DataGridViewImageCellLayout.Stretch
             });
 
             dgvJuegos.Columns.Add(new DataGridViewTextBoxColumn()
@@ -92,6 +92,53 @@ namespace InfinityGaming
 
                 dgvJuegos.Rows.Add(icono, juego.Nombre, accion, extra, estado);
             }
+        }
+        private void DiseñoGamingGrid()
+        {
+            dgvJuegos.BorderStyle = BorderStyle.None;
+            dgvJuegos.BackgroundColor = Color.FromArgb(18, 18, 18);
+            dgvJuegos.GridColor = Color.FromArgb(40, 40, 40);
+
+            dgvJuegos.EnableHeadersVisualStyles = false;
+
+            dgvJuegos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvJuegos.ColumnHeadersDefaultCellStyle.BackColor =
+                Color.FromArgb(32, 32, 32);
+            dgvJuegos.ColumnHeadersDefaultCellStyle.ForeColor =
+                Color.FromArgb(180, 120, 255);
+            dgvJuegos.ColumnHeadersDefaultCellStyle.Font =
+                new Font("Segoe UI", 11, FontStyle.Bold);
+            dgvJuegos.ColumnHeadersHeight = 40;
+
+            dgvJuegos.DefaultCellStyle.BackColor =
+                Color.FromArgb(22, 22, 22);
+
+            dgvJuegos.DefaultCellStyle.ForeColor = Color.Gainsboro;
+
+            dgvJuegos.DefaultCellStyle.SelectionBackColor =
+                Color.FromArgb(90, 45, 160);
+
+            dgvJuegos.DefaultCellStyle.SelectionForeColor =
+                Color.White;
+
+            dgvJuegos.DefaultCellStyle.Font =
+                new Font("Segoe UI", 10, FontStyle.Regular);
+
+            dgvJuegos.AlternatingRowsDefaultCellStyle.BackColor =
+                Color.FromArgb(26, 26, 26);
+
+            dgvJuegos.RowHeadersVisible = false;
+            dgvJuegos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvJuegos.RowTemplate.Height = 70;
+
+            dgvJuegos.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvJuegos.SelectionMode =
+                DataGridViewSelectionMode.FullRowSelect;
+
+            dgvJuegos.DefaultCellStyle.Padding =
+                new Padding(5, 0, 5, 0);
         }
 
         private async void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -143,26 +190,37 @@ namespace InfinityGaming
         {
             if (e.RowIndex < 0) return;
 
-            if (dgvJuegos.Columns[e.ColumnIndex].Name == "Accion" ||
-                dgvJuegos.Columns[e.ColumnIndex].Name == "Extra")
+            string col = dgvJuegos.Columns[e.ColumnIndex].Name;
+
+            if (col == "Accion" || col == "Extra")
             {
                 e.PaintBackground(e.CellBounds, true);
 
-                string texto = e.FormattedValue?.ToString();
+                string texto = e.FormattedValue?.ToString() ?? "";
 
-                Color fondo =
-                    texto.Contains("Instalar")
-                    ? Color.FromArgb(45, 140, 90)
-                    : Color.FromArgb(90, 45, 160);
+                Color fondo;
 
-                using (Brush b = new SolidBrush(fondo))
-                    e.Graphics.FillRectangle(b, e.CellBounds);
+                if (texto.Contains("Instalar"))
+                    fondo = Color.FromArgb(46, 204, 113); 
+                else if (texto.Contains("Jugar"))
+                    fondo = Color.FromArgb(111, 66, 193); 
+                else
+                    fondo = Color.FromArgb(200, 60, 60); 
+
+                Rectangle rect = new Rectangle(
+                    e.CellBounds.X + 8,
+                    e.CellBounds.Y + 10,
+                    e.CellBounds.Width - 16,
+                    e.CellBounds.Height - 20);
+
+                using (SolidBrush b = new SolidBrush(fondo))
+                    e.Graphics.FillRectangle(b, rect);
 
                 TextRenderer.DrawText(
                     e.Graphics,
                     texto,
                     new Font("Segoe UI", 9, FontStyle.Bold),
-                    e.CellBounds,
+                    rect,
                     Color.White,
                     TextFormatFlags.HorizontalCenter |
                     TextFormatFlags.VerticalCenter);
@@ -185,6 +243,32 @@ namespace InfinityGaming
         private void txtBuscar_TextChanged_1(object sender, EventArgs e)
         {
             txtBuscar.Clear();
+        }
+
+        private async void frmJuegos_Load_1(object sender, EventArgs e)
+        {
+            ConfigurarGrid();
+            DiseñoGamingGrid();
+
+            juegosSteam = await csJuego.ObtenerJuegosSteam();
+
+            await CargarFilas(juegosSteam);
+
+            lblCantidadJuegos.Text = juegosSteam.Count.ToString();
+        }
+
+        private void dgvJuegos_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+                dgvJuegos.Rows[e.RowIndex].DefaultCellStyle.BackColor =
+                    Color.FromArgb(35, 35, 35);
+        }
+
+        private void dgvJuegos_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+                dgvJuegos.Rows[e.RowIndex].DefaultCellStyle.BackColor =
+                    Color.FromArgb(22, 22, 22);
         }
     }
 }
