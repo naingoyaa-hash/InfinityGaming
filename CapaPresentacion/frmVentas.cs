@@ -16,5 +16,11 @@ namespace InfinityGaming.CapaPresentacion
         {
             InitializeComponent();
         }
+
+        private void frmVentas_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                csMoverFormulario.Mover(this);
+        }
     }
 }

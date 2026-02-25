@@ -1,6 +1,7 @@
 ﻿using InfinityGaming.CapaDatos;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -47,6 +48,10 @@ namespace InfinityGaming
         {
             crud.EjecutarSP_NonQuery("DMantenimiento",
                 new SqlParameter("@IdMantenimiento", IdMantenimiento));
+        }
+        public DataTable Listar()
+        {
+            return crud.EjecutarSP_DataTable("SMantenimiento");
         }
     }
 }

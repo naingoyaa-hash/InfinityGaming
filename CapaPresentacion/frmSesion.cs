@@ -110,7 +110,6 @@ namespace InfinityGaming.CapaPresentacion
                 return;
             }
 
-            // Asignar datos a la sesión
             sesion.IdPersona = IdPersonaSeleccionada;
             sesion.IdEquipo = Convert.ToInt64(cmbEquipo.SelectedValue);
             sesion.IdReserva = null;
@@ -198,6 +197,12 @@ namespace InfinityGaming.CapaPresentacion
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void frmSesion_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                csMoverFormulario.Mover(this);
         }
     }
 }
