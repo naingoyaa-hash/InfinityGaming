@@ -63,7 +63,8 @@ namespace InfinityGaming
 
         private void btnInventario_Click(object sender, EventArgs e)
         {
-
+            frmInventario inventario = new frmInventario();
+            inventario.ShowDialog();
         }
 
         private void btnMantenimiento_Click(object sender, EventArgs e)

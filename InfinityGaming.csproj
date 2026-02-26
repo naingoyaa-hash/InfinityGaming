@@ -54,23 +54,30 @@
     <Compile Include="CapaDatos\csConexionBD.cs" />
     <Compile Include="CapaDatos\csCRUD.cs" />
     <Compile Include="CapaNegocios\csJuego.cs" />
+    <Compile Include="CapaNegocios\csProducto.cs" />
     <Compile Include="CapaPresentacion\csAdministrador.cs" />
     <Compile Include="CapaNegocios\csAlerta.cs" />
     <Compile Include="CapaNegocios\csEquipo.cs" />
     <Compile Include="CapaPresentacion\csEmpleado.cs" />
     <Compile Include="CapaNegocios\csFactura.cs" />
     <Compile Include="CapaPresentacion\csUsuario.cs" />
+    <Compile Include="CapaPresentacion\frmAñadirStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapaPresentacion\frmAñadirStock.Designer.cs">
+      <DependentUpon>frmAñadirStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="CapaPresentacion\frmBuscarPersona.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CapaPresentacion\frmBuscarPersona.Designer.cs">
       <DependentUpon>frmBuscarPersona.cs</DependentUpon>
     </Compile>
-    <Compile Include="CapaPresentacion\FrmInventario.cs">
+    <Compile Include="CapaPresentacion\frmInventario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CapaPresentacion\FrmInventario.Designer.cs">
-      <DependentUpon>FrmInventario.cs</DependentUpon>
+    <Compile Include="CapaPresentacion\frmInventario.Designer.cs">
+      <DependentUpon>frmInventario.cs</DependentUpon>
     </Compile>
     <Compile Include="CapaPresentacion\frmLogin.cs">
       <SubType>Form</SubType>
@@ -193,11 +200,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CapaNegocios\csReserva.cs" />
     <Compile Include="CapaNegocios\csSesionJuego.cs" />
+    <EmbeddedResource Include="CapaPresentacion\frmAñadirStock.resx">
+      <DependentUpon>frmAñadirStock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmBuscarPersona.resx">
       <DependentUpon>frmBuscarPersona.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CapaPresentacion\FrmInventario.resx">
-      <DependentUpon>FrmInventario.cs</DependentUpon>
+    <EmbeddedResource Include="CapaPresentacion\frmInventario.resx">
+      <DependentUpon>frmInventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
