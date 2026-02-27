@@ -31,6 +31,7 @@ namespace InfinityGaming
             dgvMantenimiento.DataSource = mantenimiento.Listar();
 
             dgvMantenimiento.Columns["IdEquipo"].Visible = false;
+            dgvMantenimiento.Columns["IdMantenimiento"].Visible = false;
         }
 
         private void DiseñarGrid()
@@ -128,6 +129,43 @@ namespace InfinityGaming
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+            if (IdSeleccionado == 0)
+            {
+                MessageBox.Show("Seleccione un mantenimiento.");
+                return;
+            }
+
+            bool finalizado = Convert.ToBoolean(
+                dgvMantenimiento.CurrentRow.Cells["Finalizado"].Value);
+
+            if (finalizado)
+            {
+                MessageBox.Show(
+                    "El mantenimiento ya está finalizado.",
+                    "Información",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
+            DialogResult r = MessageBox.Show(
+                "¿Finalizar mantenimiento?",
+                "Confirmar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (r != DialogResult.Yes) return;
+
+            mantenimiento.IdMantenimiento = IdSeleccionado;
+            mantenimiento.Finalizar();
+
+            MessageBox.Show("Mantenimiento finalizado correctamente.");
+
+            CargarDatos();
         }
     }
 }

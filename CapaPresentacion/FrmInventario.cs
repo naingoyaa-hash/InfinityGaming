@@ -86,8 +86,14 @@ namespace InfinityGaming.CapaPresentacion
         {
             if (idSeleccionado == 0) return;
 
-            producto.IdProducto = idSeleccionado;
-            producto.Eliminar();
+            DialogResult resultado = MessageBox.Show("¿Desea eliminar este producto?",
+                "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+            if (resultado == DialogResult.Yes)
+            {
+                producto.IdProducto = idSeleccionado;
+                producto.Eliminar();
+            }
 
             Limpiar();
             CargarProductos();

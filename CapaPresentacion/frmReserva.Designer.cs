@@ -36,7 +36,6 @@
             this.txtBuscarReserva = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvReservas = new System.Windows.Forms.DataGridView();
-            this.btnFinalizarReserva = new System.Windows.Forms.Button();
             this.bntIniciar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +60,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.Purple;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(17, 352);
+            this.btnCancelar.Location = new System.Drawing.Point(17, 303);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 36);
             this.btnCancelar.TabIndex = 37;
@@ -138,22 +137,6 @@
             this.dgvReservas.TabIndex = 33;
             this.dgvReservas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvReservas_CellFormatting);
             // 
-            // btnFinalizarReserva
-            // 
-            this.btnFinalizarReserva.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnFinalizarReserva.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFinalizarReserva.BackgroundImage")));
-            this.btnFinalizarReserva.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFinalizarReserva.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinalizarReserva.ForeColor = System.Drawing.Color.Purple;
-            this.btnFinalizarReserva.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFinalizarReserva.Location = new System.Drawing.Point(17, 300);
-            this.btnFinalizarReserva.Name = "btnFinalizarReserva";
-            this.btnFinalizarReserva.Size = new System.Drawing.Size(169, 36);
-            this.btnFinalizarReserva.TabIndex = 38;
-            this.btnFinalizarReserva.Text = "FINALIZAR RESERVA";
-            this.btnFinalizarReserva.UseVisualStyleBackColor = false;
-            this.btnFinalizarReserva.Click += new System.EventHandler(this.btnFinalizarReserva_Click);
-            // 
             // bntIniciar
             // 
             this.bntIniciar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -178,7 +161,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(868, 525);
             this.Controls.Add(this.bntIniciar);
-            this.Controls.Add(this.btnFinalizarReserva);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnRegistrar);
@@ -209,7 +191,6 @@
         private System.Windows.Forms.TextBox txtBuscarReserva;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvReservas;
-        private System.Windows.Forms.Button btnFinalizarReserva;
         private System.Windows.Forms.Button bntIniciar;
     }
 }

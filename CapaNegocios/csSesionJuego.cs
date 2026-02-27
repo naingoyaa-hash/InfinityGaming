@@ -16,11 +16,11 @@ namespace InfinityGaming
         {
             get
             {
-                DateTime hasta = (FinSesion == DateTime.MinValue || FinSesion > DateTime.Now) ? DateTime.Now : FinSesion;
-                int segundos = (int)(hasta - InicioSesion).TotalSeconds;
+                int segundos = (int)(FinSesion - InicioSesion).TotalSeconds;
                 return Math.Max(0, segundos);
             }
         }
+
         public decimal CostoTotal
         {
             get
@@ -35,8 +35,6 @@ namespace InfinityGaming
 
         public void Iniciar()
         {
-            if (FinSesion == DateTime.MinValue)
-                FinSesion = InicioSesion;
 
             crud.EjecutarSP_NonQuery("ISesionJuego",
                 new SqlParameter("@IdPersona", IdPersona),
@@ -64,7 +62,7 @@ namespace InfinityGaming
         }
 
         public bool IniciarDesdeReserva(long idReserva, long idPersona, long idEquipo,
-            DateTime inicioReserva, DateTime finReserva, decimal precioHora, out string mensaje)
+    DateTime inicioReserva, DateTime finReserva, decimal precioHora, out string mensaje)
         {
             DateTime ahora = DateTime.Now;
 
@@ -74,8 +72,8 @@ namespace InfinityGaming
                 return false;
             }
 
-            InicioSesion = ahora;  
-            FinSesion = finReserva;  
+            InicioSesion = ahora;
+            FinSesion = finReserva;
             IdReserva = idReserva;
             IdPersona = idPersona;
             IdEquipo = idEquipo;
@@ -83,7 +81,18 @@ namespace InfinityGaming
 
             Iniciar();
 
-            mensaje = "Sesión iniciada correctamente desde la reserva.";
+            csReserva reserva = new csReserva()
+            {
+                IdReserva = idReserva,
+                IdPersona = idPersona,
+                IdEquipo = idEquipo,
+                InicioReserva = inicioReserva,
+                FinReserva = finReserva
+            };
+
+            reserva.Finalizar();
+
+            mensaje = "Sesión iniciada correctamente.";
             return true;
         }
     }

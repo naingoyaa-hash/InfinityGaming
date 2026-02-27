@@ -53,9 +53,11 @@ namespace InfinityGaming
 
             comboBox2.Text = fila["Tipo"].ToString();
 
-            dateTimePicker1.Value = Convert.ToDateTime(fila["Fecha"]);
+            dtpFecha.Value = Convert.ToDateTime(fila["Fecha"]);
 
             richTextBox1.Text = fila["Descripcion"].ToString();
+
+            txtCosto.Text = fila["Costo"].ToString();
         }
 
         private void CargarEquipos()
@@ -77,13 +79,22 @@ namespace InfinityGaming
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            decimal costo = 0;
+
+            if (!decimal.TryParse(txtCosto.Text, out costo))
+            {
+                MessageBox.Show("Ingrese un costo válido");
+                return;
+            }
+
             mantenimiento.IdEquipo =
-        Convert.ToInt64(comboBox1.SelectedValue);
+                Convert.ToInt64(comboBox1.SelectedValue);
 
             mantenimiento.Tipo = comboBox2.Text;
-            mantenimiento.Fecha = dateTimePicker1.Value;
+            mantenimiento.Fecha = dtpFecha.Value;
             mantenimiento.Descripcion = richTextBox1.Text;
-            mantenimiento.Costo = 0;
+            mantenimiento.Costo = costo;
+
             mantenimiento.Finalizado = false;
 
             if (IdEditar == 0)

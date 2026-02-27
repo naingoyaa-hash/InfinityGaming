@@ -175,6 +175,8 @@ namespace InfinityGaming.CapaPresentacion
 
             dtpInicioReserva.Value = Convert.ToDateTime(dgvSesion.CurrentRow.Cells["InicioSesion"].Value);
             dtpFinReserva.Value = Convert.ToDateTime(dgvSesion.CurrentRow.Cells["FinSesion"].Value);
+
+            dtpInicioReserva.Enabled = false;
         }
 
         private void Limpiar()
@@ -185,6 +187,7 @@ namespace InfinityGaming.CapaPresentacion
             txtPersona.Clear();
             cmbEquipo.SelectedIndex = -1;
 
+            dtpInicioReserva.Enabled = true;
             dtpInicioReserva.Value = DateTime.Now;
             dtpFinReserva.Value = DateTime.Now;
         }
@@ -203,6 +206,48 @@ namespace InfinityGaming.CapaPresentacion
         {
             if (e.Button == MouseButtons.Left)
                 csMoverFormulario.Mover(this);
+        }
+
+        private void btnFinSesion_Click_1(object sender, EventArgs e)
+        {
+            if (IdSesionSeleccionada == 0)
+            {
+                MessageBox.Show("Seleccione una sesión");
+                return;
+            }
+
+            // ===== FINALIZAR SESIÓN =====
+            sesion.IdSesion = IdSesionSeleccionada;
+
+            DateTime inicio =
+                Convert.ToDateTime(dgvSesion.CurrentRow.Cells["InicioSesion"].Value);
+
+            string nombreCliente =
+                dgvSesion.CurrentRow.Cells["Nombre"].Value.ToString();
+
+            sesion.InicioSesion = inicio;
+            sesion.FinSesion = DateTime.Now;
+
+            sesion.Actualizar();
+
+            decimal costoFinal = sesion.CostoTotal;
+
+            MessageBox.Show(
+                $"Sesión finalizada\n" +
+                $"Costo total: ${costoFinal}"
+            );
+
+            frmVentas venta = new frmVentas(
+                IdSesionSeleccionada,
+                IdPersonaSeleccionada,
+                costoFinal,
+                nombreCliente
+            );
+
+            venta.Show(); 
+
+            Limpiar();
+            CargarSesiones();
         }
     }
 }

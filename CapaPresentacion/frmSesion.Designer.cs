@@ -180,6 +180,7 @@
             this.txtPersona.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPersona.Location = new System.Drawing.Point(25, 107);
             this.txtPersona.Name = "txtPersona";
+            this.txtPersona.ReadOnly = true;
             this.txtPersona.Size = new System.Drawing.Size(246, 27);
             this.txtPersona.TabIndex = 9;
             // 
@@ -212,6 +213,7 @@
             this.btnFinSesion.TabIndex = 8;
             this.btnFinSesion.Text = "FINALIZAR SESIÓN";
             this.btnFinSesion.UseVisualStyleBackColor = false;
+            this.btnFinSesion.Click += new System.EventHandler(this.btnFinSesion_Click_1);
             // 
             // btnSalir
             // 

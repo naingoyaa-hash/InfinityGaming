@@ -13,6 +13,9 @@ namespace InfinityGaming.CapaPresentacion
         public frmReserva()
         {
             InitializeComponent();
+
+            reserva.AutoCancelarVencidas();
+
             InicializarFormulario();
             dgvReservas.CellFormatting += dgvReservas_CellFormatting;
         }
@@ -21,6 +24,7 @@ namespace InfinityGaming.CapaPresentacion
         {
             dgvReservas.DataSource = reserva.Listar();
             EstiloDGV();
+            
         }
 
         private void EstiloDGV()
@@ -54,6 +58,10 @@ namespace InfinityGaming.CapaPresentacion
 
             if (dgvReservas.Columns.Contains("IdReserva"))
                 dgvReservas.Columns["IdReserva"].Visible = false;
+            if (dgvReservas.Columns.Contains("IdPersona"))
+                dgvReservas.Columns["IdPersona"].Visible = false;
+            if (dgvReservas.Columns.Contains("IdEquipo"))
+                dgvReservas.Columns["IdEquipo"].Visible = false;
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -65,7 +73,20 @@ namespace InfinityGaming.CapaPresentacion
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (dgvReservas.CurrentRow == null) return;
+            if (dgvReservas.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione una reserva.");
+                return;
+            }
+
+            string estado =
+                dgvReservas.CurrentRow.Cells["Estado"].Value.ToString();
+
+            if (!ReservaEditable(estado))
+            {
+                MessageBox.Show("Solo se pueden editar reservas activas.");
+                return;
+            }
 
             long idReserva =
                 Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdReserva"].Value);
@@ -77,11 +98,39 @@ namespace InfinityGaming.CapaPresentacion
             InicializarFormulario();
         }
 
+        private bool ReservaEditable(string estado)
+        {
+            return estado == "Reservada";
+        }
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvReservas.CurrentRow == null)
             {
                 MessageBox.Show("Seleccione una reserva.");
+                return;
+            }
+
+            string estado =
+                dgvReservas.CurrentRow.Cells["Estado"].Value.ToString();
+
+            if (estado == "Finalizada")
+            {
+                MessageBox.Show(
+                    "La reserva ya está finalizada. No se puede cancelar.",
+                    "Operación no permitida",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (estado == "Cancelada")
+            {
+                MessageBox.Show(
+                    "La reserva ya está cancelada.",
+                    "Información",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 return;
             }
 
@@ -94,12 +143,14 @@ namespace InfinityGaming.CapaPresentacion
             if (r != DialogResult.Yes) return;
 
             csReserva rsv = new csReserva();
+
             rsv.IdReserva =
                 Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdReserva"].Value);
 
             rsv.Cancelar();
 
             MessageBox.Show("Reserva cancelada correctamente.");
+
             InicializarFormulario();
         }
 
@@ -128,61 +179,6 @@ namespace InfinityGaming.CapaPresentacion
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void btnFinalizarReserva_Click(object sender, EventArgs e)
-        {
-            if (dgvReservas.CurrentRow == null)
-            {
-                MessageBox.Show("Seleccione una reserva.");
-                return;
-            }
-
-            string estado =
-                dgvReservas.CurrentRow.Cells["Estado"].Value.ToString();
-
-            if (estado == "Finalizada")
-            {
-                MessageBox.Show("La reserva ya está finalizada.");
-                return;
-            }
-
-            if (estado == "Cancelada")
-            {
-                MessageBox.Show("No se puede finalizar una reserva cancelada.");
-                return;
-            }
-
-            DialogResult r = MessageBox.Show(
-                "¿Finalizar esta reserva?",
-                "Confirmar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (r != DialogResult.Yes) return;
-
-            csReserva rsv = new csReserva();
-
-            rsv.IdReserva =
-                Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdReserva"].Value);
-
-            rsv.IdPersona =
-                Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdPersona"].Value);
-
-            rsv.IdEquipo =
-                Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdEquipo"].Value);
-
-            rsv.InicioReserva =
-                Convert.ToDateTime(dgvReservas.CurrentRow.Cells["InicioReserva"].Value);
-
-            rsv.FinReserva =
-                Convert.ToDateTime(dgvReservas.CurrentRow.Cells["FinReserva"].Value);
-
-            rsv.Finalizar();
-
-            MessageBox.Show("Reserva finalizada correctamente.");
-
-            InicializarFormulario();
         }
 
         private void bntIniciar_Click(object sender, EventArgs e)

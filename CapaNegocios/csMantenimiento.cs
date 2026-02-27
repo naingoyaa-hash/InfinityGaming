@@ -49,6 +49,14 @@ namespace InfinityGaming
             crud.EjecutarSP_NonQuery("DMantenimiento",
                 new SqlParameter("@IdMantenimiento", IdMantenimiento));
         }
+
+        public void Finalizar()
+        {
+            crud.EjecutarSP_NonQuery(
+                "FinalizarMantenimiento",
+                new SqlParameter("@IdMantenimiento", IdMantenimiento)
+            );
+        }
         public DataTable Listar()
         {
             return crud.EjecutarSP_DataTable("SMantenimiento");

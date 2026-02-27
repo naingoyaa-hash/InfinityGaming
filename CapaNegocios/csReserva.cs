@@ -62,5 +62,10 @@ namespace InfinityGaming
             return crud.EjecutarSP_DataTable("SReserva",
                 new SqlParameter("@IdReserva", (object)id ?? DBNull.Value));
         }
+
+        public void AutoCancelarVencidas()
+        {
+            crud.EjecutarSP_NonQuery("AutoCancelarReservasVencidas");
+        }
     }
 }
