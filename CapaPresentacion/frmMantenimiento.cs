@@ -111,13 +111,22 @@ namespace InfinityGaming
 
             if (MessageBox.Show("¿Cancelar mantenimiento?",
                 "Confirmar",
-                MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                mantenimiento.IdMantenimiento = IdSeleccionado;
-                mantenimiento.Eliminar();
+                MessageBoxButtons.YesNo) != DialogResult.Yes)
+                return;
 
+            mantenimiento.IdMantenimiento = IdSeleccionado;
+
+            var resp = mantenimiento.Eliminar();
+
+            MessageBox.Show(
+                resp.mensaje,
+                resp.ok ? "Correcto" : "Aviso",
+                MessageBoxButtons.OK,
+                resp.ok ? MessageBoxIcon.Information : MessageBoxIcon.Warning
+            );
+
+            if (resp.ok)
                 CargarDatos();
-            }
         }
 
         private void frmMantenimiento_MouseDown(object sender, MouseEventArgs e)
@@ -161,11 +170,18 @@ namespace InfinityGaming
             if (r != DialogResult.Yes) return;
 
             mantenimiento.IdMantenimiento = IdSeleccionado;
-            mantenimiento.Finalizar();
 
-            MessageBox.Show("Mantenimiento finalizado correctamente.");
+            var resp = mantenimiento.Finalizar();
 
-            CargarDatos();
+            MessageBox.Show(
+                resp.mensaje,
+                resp.ok ? "Correcto" : "Aviso",
+                MessageBoxButtons.OK,
+                resp.ok ? MessageBoxIcon.Information : MessageBoxIcon.Warning
+            );
+
+            if (resp.ok)
+                CargarDatos();
         }
     }
 }

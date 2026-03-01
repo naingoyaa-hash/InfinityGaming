@@ -1,12 +1,7 @@
 ﻿using InfinityGaming.CapaDatos;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace InfinityGaming
 {
@@ -24,22 +19,22 @@ namespace InfinityGaming
 
         private csCRUD crud = new csCRUD();
 
-        public bool Login(string usuario, string contrasena)
+        public (bool ok, string mensaje) Login(string usuario, string contrasena)
         {
-            DataRow row = crud.EjecutarSP_UnRegistro(
+            var row = crud.EjecutarSP_UnRegistro(
                 "LoginUsuario",
                 new SqlParameter("@Usuario", usuario),
                 new SqlParameter("@Contraseña", contrasena)
             );
 
             if (row == null)
-                return false;
+                return (false, "Usuario o contraseña incorrectos.");
 
             IdUsuario = Convert.ToInt64(row["IdUsuario"]);
             Usuario = usuario;
             Admin = Convert.ToBoolean(row["EsAdmin"]);
 
-            return true;
+            return (true, "Login correcto.");
         }
 
         public void CerrarSesion()
@@ -49,9 +44,9 @@ namespace InfinityGaming
             Admin = false;
         }
 
-        public void Insertar()
+        public (bool ok, string mensaje) Insertar()
         {
-            DataRow persona = crud.EjecutarSP_UnRegistro(
+            var persona = crud.EjecutarSP_UnRegistro(
                 "IPersona",
                 new SqlParameter("@Nombre", Nombre),
                 new SqlParameter("@Cedula", Cedula),
@@ -60,29 +55,34 @@ namespace InfinityGaming
             );
 
             if (persona == null)
-            {
-                MessageBox.Show("No se pudo crear la persona");
-                return;
-            }
+                return (false, "No se pudo crear la persona.");
 
             IdPersona = Convert.ToInt64(persona["IdPersona"]);
 
-            crud.EjecutarSP_NonQuery(
+            var usuario = crud.EjecutarSP_UnRegistro(
                 "IUsuario",
                 new SqlParameter("@IdPersona", IdPersona),
                 new SqlParameter("@Usuario", Usuario),
                 new SqlParameter("@Contraseña", Contraseña),
                 new SqlParameter("@Admin", Admin)
             );
+
+            if (usuario == null)
+                return (false, "No se pudo crear el usuario.");
+
+            return (
+                Convert.ToInt32(usuario["Resultado"]) == 1,
+                usuario["Mensaje"].ToString()
+            );
         }
 
-        public void EditarPerfil(string nombre, string correo, string direccion)
+        public (bool ok, string mensaje) EditarPerfil(string nombre, string correo, string direccion)
         {
             Nombre = nombre;
             Correo = correo;
             Direccion = direccion;
 
-            crud.EjecutarSP_NonQuery(
+            var row = crud.EjecutarSP_UnRegistro(
                 "UPersona",
                 new SqlParameter("@IdPersona", IdPersona),
                 new SqlParameter("@Nombre", Nombre),
@@ -90,30 +90,43 @@ namespace InfinityGaming
                 new SqlParameter("@Correo", Correo),
                 new SqlParameter("@Direccion", Direccion)
             );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public void CambiarContrasena(string conActual, string conNuevo)
+        public (bool ok, string mensaje) CambiarContrasena(string conActual, string conNuevo)
         {
             if (Contraseña != conActual)
-            {
-                MessageBox.Show("La contraseña actual no coincide");
-                return;
-            }
+                return (false, "La contraseña actual no coincide.");
 
             Contraseña = conNuevo;
 
-            crud.EjecutarSP_NonQuery(
+            var row = crud.EjecutarSP_UnRegistro(
                 "UUsuario",
                 new SqlParameter("@IdUsuario", IdUsuario),
                 new SqlParameter("@Usuario", Usuario),
                 new SqlParameter("@Contraseña", Contraseña),
                 new SqlParameter("@Admin", Admin)
             );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public void ActualizarUsuario()
+        public (bool ok, string mensaje) ActualizarUsuario()
         {
-            crud.EjecutarSP_NonQuery(
+            var persona = crud.EjecutarSP_UnRegistro(
                 "UPersona",
                 new SqlParameter("@IdPersona", IdPersona),
                 new SqlParameter("@Nombre", Nombre),
@@ -122,20 +135,39 @@ namespace InfinityGaming
                 new SqlParameter("@Direccion", Direccion)
             );
 
-            crud.EjecutarSP_NonQuery(
+            if (persona == null)
+                return (false, "Error actualizando persona.");
+
+            var usuario = crud.EjecutarSP_UnRegistro(
                 "UUsuario",
                 new SqlParameter("@IdUsuario", IdUsuario),
                 new SqlParameter("@Usuario", Usuario),
                 new SqlParameter("@Contraseña", Contraseña),
                 new SqlParameter("@Admin", Admin)
             );
+
+            if (usuario == null)
+                return (false, "Error actualizando usuario.");
+
+            return (
+                Convert.ToInt32(usuario["Resultado"]) == 1,
+                usuario["Mensaje"].ToString()
+            );
         }
 
-        public void Eliminar()
+        public (bool ok, string mensaje) Eliminar()
         {
-            crud.EjecutarSP_NonQuery(
+            var row = crud.EjecutarSP_UnRegistro(
                 "DUsuario",
                 new SqlParameter("@IdUsuario", IdUsuario)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
             );
         }
 
@@ -143,7 +175,7 @@ namespace InfinityGaming
         {
             return crud.EjecutarSP_DataTable(
                 "SUsuario",
-                new SqlParameter("@Buscar", buscar)
+                new SqlParameter("@Buscar", buscar ?? "")
             );
         }
 

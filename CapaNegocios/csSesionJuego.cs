@@ -1,6 +1,7 @@
 ﻿using InfinityGaming.CapaDatos;
 using System;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace InfinityGaming
 {
@@ -12,6 +13,7 @@ namespace InfinityGaming
         public long? IdReserva { get; set; }
         public DateTime InicioSesion { get; set; }
         public DateTime FinSesion { get; set; }
+
         public int DuracionSegundos
         {
             get
@@ -21,6 +23,8 @@ namespace InfinityGaming
             }
         }
 
+        public decimal PrecioPorHora { get; set; } = 2m;
+
         public decimal CostoTotal
         {
             get
@@ -29,40 +33,73 @@ namespace InfinityGaming
             }
         }
 
-        public decimal PrecioPorHora { get; set; } = 2m; 
-
         csCRUD crud = new csCRUD();
 
-        public void Iniciar()
+        public (bool ok, string mensaje) Iniciar()
         {
-
-            crud.EjecutarSP_NonQuery("ISesionJuego",
+            var row = crud.EjecutarSP_UnRegistro(
+                "ISesionJuego",
                 new SqlParameter("@IdPersona", IdPersona),
                 new SqlParameter("@IdEquipo", IdEquipo),
                 new SqlParameter("@IdReserva", (object)IdReserva ?? DBNull.Value),
                 new SqlParameter("@InicioSesion", InicioSesion),
                 new SqlParameter("@FinSesion", FinSesion),
-                new SqlParameter("@CostoTotal", CostoTotal));
+                new SqlParameter("@CostoTotal", CostoTotal)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public void Actualizar()
+        public (bool ok, string mensaje) Actualizar()
         {
-            crud.EjecutarSP_NonQuery("USesionJuego",
+            var row = crud.EjecutarSP_UnRegistro(
+                "USesionJuego",
                 new SqlParameter("@IdSesion", IdSesion),
                 new SqlParameter("@IdPersona", IdPersona),
                 new SqlParameter("@InicioSesion", InicioSesion),
                 new SqlParameter("@FinSesion", FinSesion),
-                new SqlParameter("@CostoTotal", CostoTotal));
+                new SqlParameter("@CostoTotal", CostoTotal)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public void Eliminar()
+        public (bool ok, string mensaje) Eliminar()
         {
-            crud.EjecutarSP_NonQuery("DSesionJuego",
-                new SqlParameter("@IdSesion", IdSesion));
+            var row = crud.EjecutarSP_UnRegistro(
+                "DSesionJuego",
+                new SqlParameter("@IdSesion", IdSesion)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public bool IniciarDesdeReserva(long idReserva, long idPersona, long idEquipo,
-    DateTime inicioReserva, DateTime finReserva, decimal precioHora, out string mensaje)
+        public bool IniciarDesdeReserva(
+            long idReserva,
+            long idPersona,
+            long idEquipo,
+            DateTime inicioReserva,
+            DateTime finReserva,
+            decimal precioHora,
+            out string mensaje)
         {
             DateTime ahora = DateTime.Now;
 
@@ -79,7 +116,13 @@ namespace InfinityGaming
             IdEquipo = idEquipo;
             PrecioPorHora = precioHora;
 
-            Iniciar();
+            var resultadoSesion = Iniciar();
+
+            if (!resultadoSesion.ok)
+            {
+                mensaje = resultadoSesion.mensaje;
+                return false;
+            }
 
             csReserva reserva = new csReserva()
             {
@@ -90,9 +133,15 @@ namespace InfinityGaming
                 FinReserva = finReserva
             };
 
-            reserva.Finalizar();
+            var resultadoReserva = reserva.Finalizar();
 
-            mensaje = "Sesión iniciada correctamente.";
+            if (!resultadoReserva.ok)
+            {
+                mensaje = resultadoReserva.mensaje;
+                return false;
+            }
+
+            mensaje = resultadoSesion.mensaje;
             return true;
         }
     }

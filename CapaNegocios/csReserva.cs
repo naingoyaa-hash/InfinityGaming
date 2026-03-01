@@ -1,11 +1,7 @@
 ﻿using InfinityGaming.CapaDatos;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfinityGaming
 {
@@ -20,41 +16,74 @@ namespace InfinityGaming
 
         csCRUD crud = new csCRUD();
 
-        public void Crear()
+        public (bool ok, string mensaje) Crear()
         {
-            crud.EjecutarSP_NonQuery("IReserva",
+            var row = crud.EjecutarSP_UnRegistro("IReserva",
                 new SqlParameter("@IdPersona", IdPersona),
                 new SqlParameter("@IdEquipo", IdEquipo),
                 new SqlParameter("@InicioReserva", InicioReserva),
                 new SqlParameter("@FinReserva", FinReserva),
                 new SqlParameter("@Estado", Estado));
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public void Actualizar()
+        public (bool ok, string mensaje) Actualizar()
         {
-            crud.EjecutarSP_NonQuery("UReserva",
+            var row = crud.EjecutarSP_UnRegistro("UReserva",
                 new SqlParameter("@IdReserva", IdReserva),
                 new SqlParameter("@IdPersona", IdPersona),
                 new SqlParameter("@IdEquipo", IdEquipo),
                 new SqlParameter("@InicioReserva", InicioReserva),
                 new SqlParameter("@FinReserva", FinReserva),
                 new SqlParameter("@Estado", Estado));
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
-        public void Finalizar()
+
+        public (bool ok, string mensaje) Finalizar()
         {
-            crud.EjecutarSP_NonQuery("UReserva",
+            var row = crud.EjecutarSP_UnRegistro("UReserva",
                 new SqlParameter("@IdReserva", IdReserva),
                 new SqlParameter("@IdPersona", IdPersona),
                 new SqlParameter("@IdEquipo", IdEquipo),
                 new SqlParameter("@InicioReserva", InicioReserva),
                 new SqlParameter("@FinReserva", FinReserva),
                 new SqlParameter("@Estado", "Finalizada"));
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public void Cancelar()
+        public (bool ok, string mensaje) Cancelar()
         {
-            crud.EjecutarSP_NonQuery("DReserva",
+            var row = crud.EjecutarSP_UnRegistro("DReserva",
                 new SqlParameter("@IdReserva", IdReserva));
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
         public DataTable Listar(long? id = null)
@@ -63,9 +92,17 @@ namespace InfinityGaming
                 new SqlParameter("@IdReserva", (object)id ?? DBNull.Value));
         }
 
-        public void AutoCancelarVencidas()
+        public (bool ok, string mensaje) AutoCancelarVencidas()
         {
-            crud.EjecutarSP_NonQuery("AutoCancelarReservasVencidas");
+            var row = crud.EjecutarSP_UnRegistro("AutoCancelarReservasVencidas");
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
     }
 }

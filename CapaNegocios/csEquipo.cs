@@ -19,29 +19,50 @@ namespace InfinityGaming
 
         csCRUD crud = new csCRUD();
 
-        public void Insertar()
+        public (bool ok, string mensaje) Insertar()
         {
-            crud.EjecutarSP_NonQuery("IEquipo",
+            var row = crud.EjecutarSP_UnRegistro("IEquipo",
                 new SqlParameter("@NombreEquipo", NombreEquipo),
                 new SqlParameter("@Tipo", Tipo),
                 new SqlParameter("@Especificaciones", Especificaciones),
                 new SqlParameter("@Estado", Estado));
+
+            if (row == null) return (false, "No hubo respuesta de la BD.");
+
+            return (
+                row.Table.Columns.Contains("Resultado") ? Convert.ToInt32(row["Resultado"]) == 1 : true,
+                row.Table.Columns.Contains("Mensaje") ? row["Mensaje"].ToString() : ""
+            );
         }
 
-        public void Actualizar()
+        public (bool ok, string mensaje) Actualizar()
         {
-            crud.EjecutarSP_NonQuery("UEquipo",
+            var row = crud.EjecutarSP_UnRegistro("UEquipo",
                 new SqlParameter("@IdEquipo", IdEquipo),
                 new SqlParameter("@NombreEquipo", NombreEquipo),
                 new SqlParameter("@Tipo", Tipo),
                 new SqlParameter("@Especificaciones", Especificaciones),
                 new SqlParameter("@Estado", Estado));
+
+            if (row == null) return (false, "No hubo respuesta de la BD.");
+
+            return (
+                row.Table.Columns.Contains("Resultado") ? Convert.ToInt32(row["Resultado"]) == 1 : true,
+                row.Table.Columns.Contains("Mensaje") ? row["Mensaje"].ToString() : ""
+            );
         }
 
-        public void Eliminar()
+        public (bool ok, string mensaje) Eliminar()
         {
-            crud.EjecutarSP_NonQuery("DEquipo",
+            var row = crud.EjecutarSP_UnRegistro("DEquipo",
                 new SqlParameter("@IdEquipo", IdEquipo));
+
+            if (row == null) return (false, "No hubo respuesta de la BD.");
+
+            return (
+                row.Table.Columns.Contains("Resultado") ? Convert.ToInt32(row["Resultado"]) == 1 : true,
+                row.Table.Columns.Contains("Mensaje") ? row["Mensaje"].ToString() : ""
+            );
         }
     }
 }

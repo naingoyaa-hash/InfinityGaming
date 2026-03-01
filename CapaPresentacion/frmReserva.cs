@@ -14,7 +14,10 @@ namespace InfinityGaming.CapaPresentacion
         {
             InitializeComponent();
 
-            reserva.AutoCancelarVencidas();
+            var resp = reserva.AutoCancelarVencidas();
+
+            if (!resp.ok)
+                MessageBox.Show(resp.mensaje);
 
             InicializarFormulario();
             dgvReservas.CellFormatting += dgvReservas_CellFormatting;
@@ -117,20 +120,13 @@ namespace InfinityGaming.CapaPresentacion
             if (estado == "Finalizada")
             {
                 MessageBox.Show(
-                    "La reserva ya está finalizada. No se puede cancelar.",
-                    "Operación no permitida",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                    "La reserva ya está finalizada. No se puede cancelar.");
                 return;
             }
 
             if (estado == "Cancelada")
             {
-                MessageBox.Show(
-                    "La reserva ya está cancelada.",
-                    "Información",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                MessageBox.Show("La reserva ya está cancelada.");
                 return;
             }
 
@@ -147,11 +143,12 @@ namespace InfinityGaming.CapaPresentacion
             rsv.IdReserva =
                 Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdReserva"].Value);
 
-            rsv.Cancelar();
+            var resp = rsv.Cancelar();
 
-            MessageBox.Show("Reserva cancelada correctamente.");
+            MessageBox.Show(resp.mensaje);
 
-            InicializarFormulario();
+            if (resp.ok)
+                InicializarFormulario();
         }
 
         private void dgvReservas_CellFormatting(object sender,

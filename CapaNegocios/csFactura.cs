@@ -1,11 +1,7 @@
 ﻿using InfinityGaming.CapaDatos;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Data;
 
 namespace InfinityGaming
 {
@@ -20,31 +16,61 @@ namespace InfinityGaming
 
         csCRUD crud = new csCRUD();
 
-        public void Generar()
+        public (bool ok, string mensaje) Generar()
         {
-            crud.EjecutarSP_NonQuery("IFactura",
+            var row = crud.EjecutarSP_UnRegistro(
+                "IFactura",
                 new SqlParameter("@IdPersona", IdPersona),
                 new SqlParameter("@IdPago", IdPago),
                 new SqlParameter("@NumeroFactura", NumeroFactura),
                 new SqlParameter("@FechaEmision", FechaEmision),
-                new SqlParameter("@Total", Total));
+                new SqlParameter("@Total", Total)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public void Actualizar()
+        public (bool ok, string mensaje) Actualizar()
         {
-            crud.EjecutarSP_NonQuery("UFactura",
+            var row = crud.EjecutarSP_UnRegistro(
+                "UFactura",
                 new SqlParameter("@IdFactura", IdFactura),
                 new SqlParameter("@IdPersona", IdPersona),
                 new SqlParameter("@IdPago", IdPago),
                 new SqlParameter("@NumeroFactura", NumeroFactura),
                 new SqlParameter("@FechaEmision", FechaEmision),
-                new SqlParameter("@Total", Total));
+                new SqlParameter("@Total", Total)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public void Eliminar()
+        public (bool ok, string mensaje) Eliminar()
         {
-            crud.EjecutarSP_NonQuery("DFactura",
-                new SqlParameter("@IdFactura", IdFactura));
+            var row = crud.EjecutarSP_UnRegistro(
+                "DFactura",
+                new SqlParameter("@IdFactura", IdFactura)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
     }
 }

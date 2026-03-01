@@ -107,19 +107,21 @@ namespace InfinityGaming
                     dgvEquipos.CurrentRow.Cells["IdEquipo"].Value
                 );
 
-                // ✅ USAR CLASE csEquipo
                 csEquipo equipo = new csEquipo();
                 equipo.IdEquipo = idEquipo;
-                equipo.Eliminar();
+
+                // ✅ RESPUESTA DEL SP
+                var resp = equipo.Eliminar();
 
                 MessageBox.Show(
-                    "Equipo eliminado correctamente.",
-                    "Éxito",
+                    resp.mensaje,
+                    resp.ok ? "Éxito" : "Aviso",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
+                    resp.ok ? MessageBoxIcon.Information : MessageBoxIcon.Warning
                 );
 
-                cargarData();
+                if (resp.ok)
+                    cargarData();
             }
             catch (Exception ex)
             {

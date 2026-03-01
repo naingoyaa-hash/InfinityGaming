@@ -33,9 +33,6 @@ namespace InfinityGaming
                 cargarEquipo();
         }
 
-        // =============================
-        // CARGAR EQUIPO
-        // =============================
         private void cargarEquipo()
         {
             DataTable dt = crud.EjecutarSP_DataTable(
@@ -61,7 +58,6 @@ namespace InfinityGaming
             cmbEstado.Text = row["Estado"].ToString();
         }
 
-        // =============================
         private void cargarCmb()
         {
             cmbTipo.Items.Clear();
@@ -82,9 +78,6 @@ namespace InfinityGaming
             });
         }
 
-        // =============================
-        // GUARDAR
-        // =============================
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
@@ -100,19 +93,27 @@ namespace InfinityGaming
                 equipo.Especificaciones = txtEspecificaciones.Text.Trim();
                 equipo.Estado = cmbEstado.Text;
 
+                (bool ok, string mensaje) resp;
+
                 if (!edit)
                 {
-                    equipo.Insertar();
-                    MessageBox.Show("Equipo registrado correctamente.");
+                    resp = equipo.Insertar();
                 }
                 else
                 {
                     equipo.IdEquipo = id;
-                    equipo.Actualizar();
-                    MessageBox.Show("Equipo actualizado correctamente.");
+                    resp = equipo.Actualizar();
                 }
 
-                Close();
+                MessageBox.Show(
+                    resp.mensaje,
+                    resp.ok ? "Correcto" : "Aviso",
+                    MessageBoxButtons.OK,
+                    resp.ok ? MessageBoxIcon.Information : MessageBoxIcon.Warning
+                );
+
+                if (resp.ok)
+                    Close();
             }
             catch (Exception ex)
             {
@@ -120,7 +121,6 @@ namespace InfinityGaming
             }
         }
 
-        // =============================
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();

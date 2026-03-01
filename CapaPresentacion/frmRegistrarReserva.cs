@@ -115,18 +115,17 @@ namespace InfinityGaming.CapaPresentacion
                 reserva.FinReserva = dtpFinReserva.Value;
                 reserva.Estado = "Reservada";
 
+                (bool ok, string mensaje) resp;
+
                 if (idReserva == 0)
-                    reserva.Crear();
+                    resp = reserva.Crear();
                 else
-                    reserva.Actualizar();
+                    resp = reserva.Actualizar();
 
-                MessageBox.Show(
-                    "Reserva guardada correctamente",
-                    "Correcto",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                MessageBox.Show(resp.mensaje);
 
-                Close();
+                if (resp.ok)
+                    Close();
             }
             catch (Exception ex)
             {

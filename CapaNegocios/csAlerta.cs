@@ -1,19 +1,10 @@
-﻿
-using InfinityGaming.CapaDatos;
+﻿using InfinityGaming.CapaDatos;
 using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace InfinityGaming
 {
-    using System;
-    using System.Data;
-    using System.Data.SqlClient;
-
     internal class csAlerta
     {
         public long IdAlerta { get; set; }
@@ -26,27 +17,49 @@ namespace InfinityGaming
 
         csCRUD crud = new csCRUD();
 
-        public void GenerarAlarma()
+        public (bool ok, string mensaje) GenerarAlarma()
         {
-            crud.EjecutarSP_NonQuery("IAlerta",
+            var row = crud.EjecutarSP_UnRegistro(
+                "IAlerta",
                 new SqlParameter("@IdComputadora", (object)IdComputadora ?? DBNull.Value),
                 new SqlParameter("@IdSesion", (object)IdSesion ?? DBNull.Value),
                 new SqlParameter("@Mensaje", Mensaje),
-                new SqlParameter("@Tipo", Tipo));
+                new SqlParameter("@Tipo", Tipo)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public void MarcarComoLeida()
+        public (bool ok, string mensaje) MarcarComoLeida()
         {
-            crud.EjecutarSP_NonQuery("UAlerta",
+            var row = crud.EjecutarSP_UnRegistro(
+                "UAlerta",
                 new SqlParameter("@IdAlerta", IdAlerta),
-                new SqlParameter("@Leida", true));
+                new SqlParameter("@Leida", true)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
         public DataTable Listar(bool? leida = null, string tipo = null)
         {
-            return crud.EjecutarSP_DataTable("SAlertas",
+            return crud.EjecutarSP_DataTable(
+                "SAlertas",
                 new SqlParameter("@Leida", (object)leida ?? DBNull.Value),
-                new SqlParameter("@Tipo", (object)tipo ?? DBNull.Value));
+                new SqlParameter("@Tipo", (object)tipo ?? DBNull.Value)
+            );
         }
     }
 }

@@ -1,11 +1,7 @@
 ﻿using InfinityGaming.CapaDatos;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfinityGaming.CapaNegocios
 {
@@ -20,36 +16,58 @@ namespace InfinityGaming.CapaNegocios
         public int Stock { get; set; }
         public bool Activo { get; set; }
 
-        public DataTable Insertar()
+        public (bool ok, string mensaje) Insertar()
         {
-            return crud.EjecutarSP_DataTable(
+            var row = crud.EjecutarSP_UnRegistro(
                 "IProducto",
                 new SqlParameter("@NombreProducto", NombreProducto),
-                new SqlParameter("@Descripcion",
-                    (object)Descripcion ?? DBNull.Value),
+                new SqlParameter("@Descripcion", (object)Descripcion ?? DBNull.Value),
                 new SqlParameter("@PrecioVenta", PrecioVenta),
                 new SqlParameter("@Stock", Stock)
             );
-        }
 
-        public DataTable Actualizar()
-        {
-            return crud.EjecutarSP_DataTable(
-                "UProducto",
-                new SqlParameter("@IdProducto", IdProducto),
-                new SqlParameter("@NombreProducto", NombreProducto),
-                new SqlParameter("@Descripcion",
-                    (object)Descripcion ?? DBNull.Value),
-                new SqlParameter("@PrecioVenta", PrecioVenta),
-                new SqlParameter("@Activo", Activo)
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
             );
         }
 
-        public int Eliminar()
+        public (bool ok, string mensaje) Actualizar()
         {
-            return crud.EjecutarSP_NonQuery(
+            var row = crud.EjecutarSP_UnRegistro(
+                "UProducto",
+                new SqlParameter("@IdProducto", IdProducto),
+                new SqlParameter("@NombreProducto", NombreProducto),
+                new SqlParameter("@Descripcion", (object)Descripcion ?? DBNull.Value),
+                new SqlParameter("@PrecioVenta", PrecioVenta),
+                new SqlParameter("@Activo", Activo)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
+        }
+
+        public (bool ok, string mensaje) Eliminar()
+        {
+            var row = crud.EjecutarSP_UnRegistro(
                 "DProducto",
                 new SqlParameter("@IdProducto", IdProducto)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
             );
         }
 
@@ -61,17 +79,25 @@ namespace InfinityGaming.CapaNegocios
             );
         }
 
-        public DataTable AjustarStock(int cantidad, string motivo)
+        public (bool ok, string mensaje) AjustarStock(int cantidad, string motivo)
         {
-            return crud.EjecutarSP_DataTable(
+            var row = crud.EjecutarSP_UnRegistro(
                 "AjusteInventario",
                 new SqlParameter("@IdProducto", IdProducto),
                 new SqlParameter("@Cantidad", cantidad),
                 new SqlParameter("@Motivo", motivo)
             );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public DataRow ObtenerPorId(long id, string buscar)
+        public DataRow ObtenerPorId(long id)
         {
             return crud.EjecutarSP_UnRegistro(
                 "SProducto",

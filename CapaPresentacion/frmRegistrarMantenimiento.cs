@@ -94,19 +94,29 @@ namespace InfinityGaming
             mantenimiento.Fecha = dtpFecha.Value;
             mantenimiento.Descripcion = richTextBox1.Text;
             mantenimiento.Costo = costo;
-
             mantenimiento.Finalizado = false;
 
+            (bool ok, string mensaje) resp;
+
             if (IdEditar == 0)
-                mantenimiento.Registrar();
+            {
+                resp = mantenimiento.Registrar();
+            }
             else
             {
                 mantenimiento.IdMantenimiento = IdEditar;
-                mantenimiento.Actualizar();
+                resp = mantenimiento.Actualizar();
             }
 
-            MessageBox.Show("Guardado correctamente");
-            this.Close();
+            MessageBox.Show(
+                resp.mensaje,
+                resp.ok ? "Correcto" : "Aviso",
+                MessageBoxButtons.OK,
+                resp.ok ? MessageBoxIcon.Information : MessageBoxIcon.Warning
+            );
+
+            if (resp.ok)
+                Close();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

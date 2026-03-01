@@ -1,10 +1,7 @@
 ﻿using InfinityGaming.CapaDatos;
 using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfinityGaming
 {
@@ -19,31 +16,61 @@ namespace InfinityGaming
 
         csCRUD crud = new csCRUD();
 
-        public void RegistrarPago()
+        public (bool ok, string mensaje) RegistrarPago()
         {
-            crud.EjecutarSP_NonQuery("IPago",
+            var row = crud.EjecutarSP_UnRegistro(
+                "IPago",
                 new SqlParameter("@IdSesion", IdSesion),
                 new SqlParameter("@Monto", Monto),
                 new SqlParameter("@FechaPago", FechaPago),
                 new SqlParameter("@TipoPago", TipoPago),
-                new SqlParameter("@EstadoPago", EstadoPago));
+                new SqlParameter("@EstadoPago", EstadoPago)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public void Actualizar()
+        public (bool ok, string mensaje) Actualizar()
         {
-            crud.EjecutarSP_NonQuery("UPago",
+            var row = crud.EjecutarSP_UnRegistro(
+                "UPago",
                 new SqlParameter("@IdPago", IdPago),
                 new SqlParameter("@IdSesion", IdSesion),
                 new SqlParameter("@Monto", Monto),
                 new SqlParameter("@FechaPago", FechaPago),
                 new SqlParameter("@TipoPago", TipoPago),
-                new SqlParameter("@EstadoPago", EstadoPago));
+                new SqlParameter("@EstadoPago", EstadoPago)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
 
-        public void Eliminar()
+        public (bool ok, string mensaje) Eliminar()
         {
-            crud.EjecutarSP_NonQuery("DPago",
-                new SqlParameter("@IdPago", IdPago));
+            var row = crud.EjecutarSP_UnRegistro(
+                "DPago",
+                new SqlParameter("@IdPago", IdPago)
+            );
+
+            if (row == null)
+                return (false, "No hubo respuesta de la BD.");
+
+            return (
+                Convert.ToInt32(row["Resultado"]) == 1,
+                row["Mensaje"].ToString()
+            );
         }
     }
 }

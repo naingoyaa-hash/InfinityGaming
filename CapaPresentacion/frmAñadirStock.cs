@@ -60,11 +60,12 @@ namespace InfinityGaming.CapaPresentacion
 
             producto.IdProducto = idProducto;
 
-            DataTable r = producto.AjustarStock(cantidad, motivo);
+            var resp = producto.AjustarStock(cantidad, motivo);
 
-            MessageBox.Show(r.Rows[0]["Mensaje"].ToString());
+            MessageBox.Show(resp.mensaje);
 
-            this.Close();
+            if (resp.ok)
+                this.Close();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

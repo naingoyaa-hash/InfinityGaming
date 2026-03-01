@@ -116,12 +116,20 @@ namespace InfinityGaming.CapaPresentacion
             sesion.InicioSesion = dtpInicioReserva.Value;
             sesion.FinSesion = dtpFinReserva.Value;
 
-            sesion.Iniciar();
+            var resp = sesion.Iniciar();
 
-            MessageBox.Show($"Sesión iniciada correctamente.\nDuración: {sesion.DuracionSegundos} seg\nCosto: ${sesion.CostoTotal}");
+            MessageBox.Show(
+                resp.mensaje,
+                resp.ok ? "Correcto" : "Aviso",
+                MessageBoxButtons.OK,
+                resp.ok ? MessageBoxIcon.Information : MessageBoxIcon.Warning
+            );
 
-            Limpiar();
-            CargarSesiones();
+            if (resp.ok)
+            {
+                Limpiar();
+                CargarSesiones();
+            }
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -138,30 +146,22 @@ namespace InfinityGaming.CapaPresentacion
             sesion.InicioSesion = dtpInicioReserva.Value;
             sesion.FinSesion = dtpFinReserva.Value;
 
-            sesion.Actualizar();
+            var resp = sesion.Actualizar();
 
-            MessageBox.Show($"Sesión actualizada.\nDuración: {sesion.DuracionSegundos} seg\nCosto: ${sesion.CostoTotal}");
+            MessageBox.Show(
+                resp.mensaje,
+                resp.ok ? "Correcto" : "Aviso",
+                MessageBoxButtons.OK,
+                resp.ok ? MessageBoxIcon.Information : MessageBoxIcon.Warning
+            );
 
-            Limpiar();
-            CargarSesiones();
-        }
-
-        private void btnFinSesion_Click(object sender, EventArgs e)
-        {
-            if (IdSesionSeleccionada == 0)
+            if (resp.ok)
             {
-                MessageBox.Show("Seleccione una sesión");
-                return;
+                Limpiar();
+                CargarSesiones();
             }
-
-            sesion.IdSesion = IdSesionSeleccionada;
-            sesion.Eliminar();
-
-            MessageBox.Show("Sesión eliminada");
-
-            Limpiar();
-            CargarSesiones();
         }
+
 
         private void dgvSesion_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -216,7 +216,6 @@ namespace InfinityGaming.CapaPresentacion
                 return;
             }
 
-            // ===== FINALIZAR SESIÓN =====
             sesion.IdSesion = IdSesionSeleccionada;
 
             DateTime inicio =
@@ -225,26 +224,30 @@ namespace InfinityGaming.CapaPresentacion
             string nombreCliente =
                 dgvSesion.CurrentRow.Cells["Nombre"].Value.ToString();
 
+            sesion.IdPersona = IdPersonaSeleccionada;
             sesion.InicioSesion = inicio;
             sesion.FinSesion = DateTime.Now;
 
-            sesion.Actualizar();
-
-            decimal costoFinal = sesion.CostoTotal;
+            var resp = sesion.Actualizar();
 
             MessageBox.Show(
-                $"Sesión finalizada\n" +
-                $"Costo total: ${costoFinal}"
+                resp.mensaje +
+                $"\nCosto total: ${sesion.CostoTotal}",
+                resp.ok ? "Correcto" : "Aviso",
+                MessageBoxButtons.OK,
+                resp.ok ? MessageBoxIcon.Information : MessageBoxIcon.Warning
             );
+
+            if (!resp.ok) return;
 
             frmVentas venta = new frmVentas(
                 IdSesionSeleccionada,
                 IdPersonaSeleccionada,
-                costoFinal,
+                sesion.CostoTotal,
                 nombreCliente
             );
 
-            venta.Show(); 
+            venta.Show();
 
             Limpiar();
             CargarSesiones();

@@ -17,30 +17,28 @@ namespace InfinityGaming
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtUsuario.Text) ||
-                string.IsNullOrWhiteSpace(txtPass.Text))
+        string.IsNullOrWhiteSpace(txtPass.Text))
             {
                 MessageBox.Show("Ingrese usuario y contraseña");
                 return;
             }
 
-            bool loginCorrecto = usuario.Login(
+            var resp = usuario.Login(
                 txtUsuario.Text.Trim(),
                 txtPass.Text.Trim()
             );
 
-            if (loginCorrecto)
+            if (!resp.ok)
             {
-                frmMenu menu = new frmMenu(usuario.VerificarRol());
-                menu.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Credenciales incorrectas.");
+                MessageBox.Show(resp.mensaje);
+                txtPass.Clear();
+                txtPass.Focus();
+                return;
             }
 
-            txtUsuario.Clear();
-            txtPass.Clear();
+            frmMenu menu = new frmMenu(usuario.VerificarRol());
+            menu.Show();
+            this.Hide();
         }
 
         private void frmLogin_MouseDown(object sender, MouseEventArgs e)

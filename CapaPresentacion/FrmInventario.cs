@@ -55,12 +55,15 @@ namespace InfinityGaming.CapaPresentacion
             producto.Stock = 0;
             producto.Activo = true;
 
-            DataTable r = producto.Insertar();
+            var resp = producto.Insertar(); 
 
-            MessageBox.Show(r.Rows[0]["Mensaje"].ToString());
+            MessageBox.Show(resp.mensaje);
 
-            Limpiar();
-            CargarProductos();
+            if (resp.ok)
+            {
+                Limpiar();
+                CargarProductos();
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -72,31 +75,42 @@ namespace InfinityGaming.CapaPresentacion
             producto.Descripcion = txtDescripcion.Text;
             producto.PrecioVenta = decimal.Parse(txtPrecio.Text);
             producto.Activo = true;
-                
 
-                DataTable r = producto.Actualizar();
+            var resp = producto.Actualizar(); 
 
-            MessageBox.Show(r.Rows[0]["Mensaje"].ToString());
+            MessageBox.Show(resp.mensaje);
 
-            Limpiar();
-            CargarProductos();
+            if (resp.ok)
+            {
+                Limpiar();
+                CargarProductos();
+            }
         }
 
         private void btnEleminar_Click(object sender, EventArgs e)
         {
             if (idSeleccionado == 0) return;
 
-            DialogResult resultado = MessageBox.Show("¿Desea eliminar este producto?",
-                "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            DialogResult resultado = MessageBox.Show(
+                "¿Desea eliminar este producto?",
+                "Advertencia",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Exclamation);
 
             if (resultado == DialogResult.Yes)
             {
                 producto.IdProducto = idSeleccionado;
-                producto.Eliminar();
-            }
 
-            Limpiar();
-            CargarProductos();
+                var resp = producto.Eliminar();
+
+                MessageBox.Show(resp.mensaje);
+
+                if (resp.ok)
+                {
+                    Limpiar();
+                    CargarProductos();
+                }
+            }
         }
 
         private void Limpiar()
