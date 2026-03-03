@@ -37,7 +37,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvReservas = new System.Windows.Forms.DataGridView();
             this.bntIniciar = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.txtPersona = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dtpInicioReserva = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtpFinReserva = new System.Windows.Forms.DateTimePicker();
+            this.cmbEquipo = new System.Windows.Forms.ComboBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCerrar
@@ -45,7 +58,7 @@
             this.btnCerrar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCerrar.Image = global::InfinityGaming.Properties.Resources.Cerrar;
-            this.btnCerrar.Location = new System.Drawing.Point(825, 12);
+            this.btnCerrar.Location = new System.Drawing.Point(1046, -2);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(31, 32);
             this.btnCerrar.TabIndex = 31;
@@ -60,7 +73,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.Purple;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(17, 303);
+            this.btnCancelar.Location = new System.Drawing.Point(433, 429);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 36);
             this.btnCancelar.TabIndex = 37;
@@ -76,7 +89,7 @@
             this.btnEditar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.Color.Purple;
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(17, 205);
+            this.btnEditar.Location = new System.Drawing.Point(653, 429);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(169, 36);
             this.btnEditar.TabIndex = 36;
@@ -92,7 +105,7 @@
             this.btnRegistrar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.ForeColor = System.Drawing.Color.Purple;
             this.btnRegistrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistrar.Location = new System.Drawing.Point(17, 151);
+            this.btnRegistrar.Location = new System.Drawing.Point(898, 429);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(169, 36);
             this.btnRegistrar.TabIndex = 35;
@@ -103,7 +116,7 @@
             // txtBuscarReserva
             // 
             this.txtBuscarReserva.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarReserva.Location = new System.Drawing.Point(661, 118);
+            this.txtBuscarReserva.Location = new System.Drawing.Point(721, 118);
             this.txtBuscarReserva.Name = "txtBuscarReserva";
             this.txtBuscarReserva.Size = new System.Drawing.Size(195, 30);
             this.txtBuscarReserva.TabIndex = 34;
@@ -117,7 +130,7 @@
             this.label1.ForeColor = System.Drawing.Color.Purple;
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(217, 120);
+            this.label1.Location = new System.Drawing.Point(428, 120);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(206, 28);
             this.label1.TabIndex = 32;
@@ -128,12 +141,12 @@
             this.dgvReservas.AllowUserToAddRows = false;
             this.dgvReservas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvReservas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReservas.Location = new System.Drawing.Point(218, 151);
+            this.dgvReservas.Location = new System.Drawing.Point(433, 154);
             this.dgvReservas.MultiSelect = false;
             this.dgvReservas.Name = "dgvReservas";
             this.dgvReservas.ReadOnly = true;
             this.dgvReservas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReservas.Size = new System.Drawing.Size(638, 362);
+            this.dgvReservas.Size = new System.Drawing.Size(483, 214);
             this.dgvReservas.TabIndex = 33;
             this.dgvReservas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvReservas_CellFormatting);
             // 
@@ -145,7 +158,7 @@
             this.bntIniciar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bntIniciar.ForeColor = System.Drawing.Color.Purple;
             this.bntIniciar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bntIniciar.Location = new System.Drawing.Point(17, 253);
+            this.bntIniciar.Location = new System.Drawing.Point(177, 429);
             this.bntIniciar.Name = "bntIniciar";
             this.bntIniciar.Size = new System.Drawing.Size(169, 36);
             this.bntIniciar.TabIndex = 39;
@@ -153,13 +166,163 @@
             this.bntIniciar.UseVisualStyleBackColor = false;
             this.bntIniciar.Click += new System.EventHandler(this.bntIniciar_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
+            this.groupBox1.Controls.Add(this.btnBuscar);
+            this.groupBox1.Controls.Add(this.txtPersona);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.dtpInicioReserva);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.dtpFinReserva);
+            this.groupBox1.Controls.Add(this.cmbEquipo);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.Plum;
+            this.groupBox1.Location = new System.Drawing.Point(2, 142);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(425, 226);
+            this.groupBox1.TabIndex = 40;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "NUEVA RESERVA";
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBuscar.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.ForeColor = System.Drawing.Color.Plum;
+            this.btnBuscar.Location = new System.Drawing.Point(358, 87);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(67, 29);
+            this.btnBuscar.TabIndex = 17;
+            this.btnBuscar.Text = "BUSCAR";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // txtPersona
+            // 
+            this.txtPersona.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPersona.Location = new System.Drawing.Point(152, 88);
+            this.txtPersona.Name = "txtPersona";
+            this.txtPersona.ReadOnly = true;
+            this.txtPersona.Size = new System.Drawing.Size(192, 29);
+            this.txtPersona.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Plum;
+            this.label4.Image = global::InfinityGaming.Properties.Resources.WhatsApp_Image_2026_01_10_at_9_22_44_PM;
+            this.label4.Location = new System.Drawing.Point(29, 93);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 23);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "CLIENTES";
+            // 
+            // dtpInicioReserva
+            // 
+            this.dtpInicioReserva.CalendarFont = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpInicioReserva.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpInicioReserva.Location = new System.Drawing.Point(152, 130);
+            this.dtpInicioReserva.Name = "dtpInicioReserva";
+            this.dtpInicioReserva.Size = new System.Drawing.Size(243, 25);
+            this.dtpInicioReserva.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.label3.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Plum;
+            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
+            this.label3.Location = new System.Drawing.Point(26, 175);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(32, 23);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "FIN";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Plum;
+            this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
+            this.label2.Location = new System.Drawing.Point(26, 133);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 23);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "INICIO ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Plum;
+            this.label5.Image = global::InfinityGaming.Properties.Resources.WhatsApp_Image_2026_01_10_at_9_22_44_PM;
+            this.label5.Location = new System.Drawing.Point(29, 53);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 23);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "EQUIPO";
+            // 
+            // dtpFinReserva
+            // 
+            this.dtpFinReserva.CalendarFont = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFinReserva.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFinReserva.Location = new System.Drawing.Point(152, 175);
+            this.dtpFinReserva.Name = "dtpFinReserva";
+            this.dtpFinReserva.Size = new System.Drawing.Size(243, 25);
+            this.dtpFinReserva.TabIndex = 2;
+            // 
+            // cmbEquipo
+            // 
+            this.cmbEquipo.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbEquipo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEquipo.FormattingEnabled = true;
+            this.cmbEquipo.Location = new System.Drawing.Point(152, 52);
+            this.cmbEquipo.Name = "cmbEquipo";
+            this.cmbEquipo.Size = new System.Drawing.Size(258, 25);
+            this.cmbEquipo.TabIndex = 0;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGuardar.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.ForeColor = System.Drawing.Color.Plum;
+            this.btnGuardar.Location = new System.Drawing.Point(922, 154);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(155, 58);
+            this.btnGuardar.TabIndex = 41;
+            this.btnGuardar.Text = "GUARDAR";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Plum;
+            this.button1.Location = new System.Drawing.Point(922, 258);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(155, 58);
+            this.button1.TabIndex = 42;
+            this.button1.Text = "CANCELAR";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // frmReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::InfinityGaming.Properties.Resources.reservas1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(868, 525);
+            this.ClientSize = new System.Drawing.Size(1079, 477);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.bntIniciar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEditar);
@@ -177,6 +340,8 @@
             this.Text = "frmReserva";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmReserva_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,5 +357,17 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvReservas;
         private System.Windows.Forms.Button bntIniciar;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.TextBox txtPersona;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dtpInicioReserva;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dtpFinReserva;
+        private System.Windows.Forms.ComboBox cmbEquipo;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button button1;
     }
 }

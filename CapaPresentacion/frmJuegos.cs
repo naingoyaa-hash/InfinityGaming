@@ -26,7 +26,7 @@ namespace InfinityGaming
         private async void frmJuegos_Load(object sender, EventArgs e)
         {
             ConfigurarGrid();
-
+            DiseñoGamingGrid();
             juegosSteam = await csJuego.ObtenerJuegosSteam();
 
             await CargarFilas(juegosSteam);
@@ -243,18 +243,6 @@ namespace InfinityGaming
         private void txtBuscar_TextChanged_1(object sender, EventArgs e)
         {
             txtBuscar.Clear();
-        }
-
-        private async void frmJuegos_Load_1(object sender, EventArgs e)
-        {
-            ConfigurarGrid();
-            DiseñoGamingGrid();
-
-            juegosSteam = await csJuego.ObtenerJuegosSteam();
-
-            await CargarFilas(juegosSteam);
-
-            lblCantidadJuegos.Text = juegosSteam.Count.ToString();
         }
 
         private void dgvJuegos_CellMouseEnter(object sender, DataGridViewCellEventArgs e)

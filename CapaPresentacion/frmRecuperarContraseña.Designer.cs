@@ -152,7 +152,7 @@
             this.btnValidar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnValidar.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnValidar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnValidar.Location = new System.Drawing.Point(241, 355);
+            this.btnValidar.Location = new System.Drawing.Point(234, 355);
             this.btnValidar.Name = "btnValidar";
             this.btnValidar.Size = new System.Drawing.Size(129, 40);
             this.btnValidar.TabIndex = 29;

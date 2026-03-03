@@ -222,5 +222,10 @@ namespace InfinityGaming.CapaPresentacion
 
             this.Close();
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -114,7 +114,6 @@
             this.Name = "frmJuegos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmJuegos";
-            this.Load += new System.EventHandler(this.frmJuegos_Load_1);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmJuegos_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvJuegos)).EndInit();
             this.ResumeLayout(false);
