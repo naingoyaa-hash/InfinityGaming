@@ -39,6 +39,8 @@ namespace InfinityGaming
             frmMenu menu = new frmMenu(usuario.VerificarRol());
             menu.Show();
             this.Hide();
+            txtPass.Clear();
+            txtUsuario.Clear();
         }
 
         private void frmLogin_MouseDown(object sender, MouseEventArgs e)

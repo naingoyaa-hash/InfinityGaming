@@ -33,7 +33,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnRegistrar = new System.Windows.Forms.Button();
-            this.txtBuscarReserva = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvReservas = new System.Windows.Forms.DataGridView();
             this.bntIniciar = new System.Windows.Forms.Button();
@@ -47,7 +46,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dtpFinReserva = new System.Windows.Forms.DateTimePicker();
             this.cmbEquipo = new System.Windows.Forms.ComboBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -73,7 +71,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.Purple;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(433, 429);
+            this.btnCancelar.Location = new System.Drawing.Point(704, 388);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(169, 36);
             this.btnCancelar.TabIndex = 37;
@@ -89,7 +87,7 @@
             this.btnEditar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.Color.Purple;
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.Location = new System.Drawing.Point(653, 429);
+            this.btnEditar.Location = new System.Drawing.Point(243, 388);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(169, 36);
             this.btnEditar.TabIndex = 36;
@@ -105,21 +103,13 @@
             this.btnRegistrar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.ForeColor = System.Drawing.Color.Purple;
             this.btnRegistrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistrar.Location = new System.Drawing.Point(898, 429);
+            this.btnRegistrar.Location = new System.Drawing.Point(12, 388);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(169, 36);
             this.btnRegistrar.TabIndex = 35;
             this.btnRegistrar.Text = "REGISTRAR";
             this.btnRegistrar.UseVisualStyleBackColor = false;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
-            // 
-            // txtBuscarReserva
-            // 
-            this.txtBuscarReserva.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarReserva.Location = new System.Drawing.Point(721, 118);
-            this.txtBuscarReserva.Name = "txtBuscarReserva";
-            this.txtBuscarReserva.Size = new System.Drawing.Size(195, 30);
-            this.txtBuscarReserva.TabIndex = 34;
             // 
             // label1
             // 
@@ -148,6 +138,7 @@
             this.dgvReservas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReservas.Size = new System.Drawing.Size(483, 214);
             this.dgvReservas.TabIndex = 33;
+            this.dgvReservas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservas_CellClick);
             this.dgvReservas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvReservas_CellFormatting);
             // 
             // bntIniciar
@@ -158,7 +149,7 @@
             this.bntIniciar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bntIniciar.ForeColor = System.Drawing.Color.Purple;
             this.bntIniciar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bntIniciar.Location = new System.Drawing.Point(177, 429);
+            this.bntIniciar.Location = new System.Drawing.Point(465, 388);
             this.bntIniciar.Name = "bntIniciar";
             this.bntIniciar.Size = new System.Drawing.Size(169, 36);
             this.bntIniciar.TabIndex = 39;
@@ -193,7 +184,7 @@
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBuscar.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.Color.Plum;
-            this.btnBuscar.Location = new System.Drawing.Point(358, 87);
+            this.btnBuscar.Location = new System.Drawing.Point(343, 86);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(67, 29);
             this.btnBuscar.TabIndex = 17;
@@ -204,7 +195,7 @@
             // txtPersona
             // 
             this.txtPersona.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPersona.Location = new System.Drawing.Point(152, 88);
+            this.txtPersona.Location = new System.Drawing.Point(137, 87);
             this.txtPersona.Name = "txtPersona";
             this.txtPersona.ReadOnly = true;
             this.txtPersona.Size = new System.Drawing.Size(192, 29);
@@ -226,9 +217,9 @@
             // 
             this.dtpInicioReserva.CalendarFont = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpInicioReserva.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpInicioReserva.Location = new System.Drawing.Point(152, 130);
+            this.dtpInicioReserva.Location = new System.Drawing.Point(137, 129);
             this.dtpInicioReserva.Name = "dtpInicioReserva";
-            this.dtpInicioReserva.Size = new System.Drawing.Size(243, 25);
+            this.dtpInicioReserva.Size = new System.Drawing.Size(273, 25);
             this.dtpInicioReserva.TabIndex = 7;
             // 
             // label3
@@ -272,9 +263,9 @@
             // 
             this.dtpFinReserva.CalendarFont = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFinReserva.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFinReserva.Location = new System.Drawing.Point(152, 175);
+            this.dtpFinReserva.Location = new System.Drawing.Point(137, 174);
             this.dtpFinReserva.Name = "dtpFinReserva";
-            this.dtpFinReserva.Size = new System.Drawing.Size(243, 25);
+            this.dtpFinReserva.Size = new System.Drawing.Size(273, 25);
             this.dtpFinReserva.TabIndex = 2;
             // 
             // cmbEquipo
@@ -282,36 +273,22 @@
             this.cmbEquipo.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cmbEquipo.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEquipo.FormattingEnabled = true;
-            this.cmbEquipo.Location = new System.Drawing.Point(152, 52);
+            this.cmbEquipo.Location = new System.Drawing.Point(137, 51);
             this.cmbEquipo.Name = "cmbEquipo";
-            this.cmbEquipo.Size = new System.Drawing.Size(258, 25);
+            this.cmbEquipo.Size = new System.Drawing.Size(273, 25);
             this.cmbEquipo.TabIndex = 0;
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
-            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGuardar.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.ForeColor = System.Drawing.Color.Plum;
-            this.btnGuardar.Location = new System.Drawing.Point(922, 154);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(155, 58);
-            this.btnGuardar.TabIndex = 41;
-            this.btnGuardar.Text = "GUARDAR";
-            this.btnGuardar.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.BackgroundImage = global::InfinityGaming.Properties.Resources.fondo_1;
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Plum;
-            this.button1.Location = new System.Drawing.Point(922, 258);
+            this.button1.Image = global::InfinityGaming.Properties.Resources.Cerrar;
+            this.button1.Location = new System.Drawing.Point(885, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(155, 58);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "CANCELAR";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Size = new System.Drawing.Size(31, 32);
+            this.button1.TabIndex = 41;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmReserva
             // 
@@ -319,15 +296,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::InfinityGaming.Properties.Resources.reservas1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1079, 477);
+            this.ClientSize = new System.Drawing.Size(927, 443);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.bntIniciar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnRegistrar);
-            this.Controls.Add(this.txtBuscarReserva);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvReservas);
             this.Controls.Add(this.btnCerrar);
@@ -353,7 +328,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnRegistrar;
-        private System.Windows.Forms.TextBox txtBuscarReserva;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvReservas;
         private System.Windows.Forms.Button bntIniciar;
@@ -367,7 +341,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dtpFinReserva;
         private System.Windows.Forms.ComboBox cmbEquipo;
-        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button button1;
     }
 }

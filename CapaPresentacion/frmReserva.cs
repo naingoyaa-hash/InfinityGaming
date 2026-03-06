@@ -9,6 +9,8 @@ namespace InfinityGaming.CapaPresentacion
     public partial class frmReserva : Form
     {
         csReserva reserva = new csReserva();
+        long idReserva = 0;
+        long idPersona = 0;
 
         public frmReserva()
         {
@@ -23,11 +25,57 @@ namespace InfinityGaming.CapaPresentacion
             dgvReservas.CellFormatting += dgvReservas_CellFormatting;
         }
 
+        private void CargarEquipos()
+        {
+            csCRUD crud = new csCRUD();
+
+            DataTable dt = crud.EjecutarSP_DataTable(
+                "SEquipo",
+                new System.Data.SqlClient.SqlParameter("@IdEquipo", 0),
+                new System.Data.SqlClient.SqlParameter("@Buscar", "")
+            );
+
+            cmbEquipo.DataSource = dt;
+            cmbEquipo.DisplayMember = "NombreEquipo";
+            cmbEquipo.ValueMember = "IdEquipo";
+            cmbEquipo.SelectedIndex = -1;
+        }
+
+        private void LimpiarCampos()
+        {
+            cmbEquipo.SelectedIndex = -1;
+            txtPersona.Clear();
+
+            dtpInicioReserva.Value = DateTime.Now;
+            dtpFinReserva.Value = DateTime.Now.AddHours(1);
+
+            idPersona = 0;
+            idReserva = 0;
+
+            groupBox1.Text = "NUEVA RESERVA";
+            btnRegistrar.Text = "REGISTRAR";
+        }
+
         public void InicializarFormulario()
         {
             dgvReservas.DataSource = reserva.Listar();
+
+            CargarEquipos();
+
+            dtpInicioReserva.Format = DateTimePickerFormat.Custom;
+            dtpInicioReserva.CustomFormat = "dd/MM/yyyy HH:mm";
+            dtpInicioReserva.ShowUpDown = true;
+
+            dtpFinReserva.Format = DateTimePickerFormat.Custom;
+            dtpFinReserva.CustomFormat = "dd/MM/yyyy HH:mm";
+            dtpFinReserva.ShowUpDown = true;
+
+            dtpInicioReserva.Value = DateTime.Now;
+            dtpFinReserva.Value = DateTime.Now.AddHours(1);
+
+            LimpiarCampos();
+
             EstiloDGV();
-            
         }
 
         private void EstiloDGV()
@@ -69,36 +117,97 @@ namespace InfinityGaming.CapaPresentacion
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            frmRegistrarReserva frm = new frmRegistrarReserva();
-            frm.ShowDialog();
-            InicializarFormulario();
+            if (idPersona == 0)
+            {
+                MessageBox.Show("Seleccione un cliente");
+                return;
+            }
+
+            if (cmbEquipo.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione un equipo");
+                return;
+            }
+
+            if (dtpInicioReserva.Value >= dtpFinReserva.Value)
+            {
+                MessageBox.Show("La fecha inicio debe ser menor a la fecha fin");
+                return;
+            }
+
+            try
+            {
+                reserva.IdPersona = idPersona;
+                reserva.IdEquipo = Convert.ToInt64(cmbEquipo.SelectedValue);
+                reserva.InicioReserva = dtpInicioReserva.Value;
+                reserva.FinReserva = dtpFinReserva.Value;
+                reserva.Estado = "Reservada";
+
+                var resp = reserva.Crear();
+
+                MessageBox.Show(resp.mensaje);
+
+                if (resp.ok)
+                {
+                    LimpiarCampos();
+                    InicializarFormulario();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (dgvReservas.CurrentRow == null)
+            if (idReserva == 0)
             {
-                MessageBox.Show("Seleccione una reserva.");
+                MessageBox.Show("Seleccione una reserva para editar.");
                 return;
             }
 
-            string estado =
-                dgvReservas.CurrentRow.Cells["Estado"].Value.ToString();
-
-            if (!ReservaEditable(estado))
+            if (idPersona == 0)
             {
-                MessageBox.Show("Solo se pueden editar reservas activas.");
+                MessageBox.Show("Seleccione un cliente");
                 return;
             }
 
-            long idReserva =
-                Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdReserva"].Value);
+            if (cmbEquipo.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione un equipo");
+                return;
+            }
 
-            frmRegistrarReserva frm =
-                new frmRegistrarReserva(idReserva);
+            if (dtpInicioReserva.Value >= dtpFinReserva.Value)
+            {
+                MessageBox.Show("La fecha inicio debe ser menor a la fecha fin");
+                return;
+            }
 
-            frm.ShowDialog();
-            InicializarFormulario();
+            try
+            {
+                reserva.IdReserva = idReserva;
+                reserva.IdPersona = idPersona;
+                reserva.IdEquipo = Convert.ToInt64(cmbEquipo.SelectedValue);
+                reserva.InicioReserva = dtpInicioReserva.Value;
+                reserva.FinReserva = dtpFinReserva.Value;
+                reserva.Estado = "Reservada";
+
+                var resp = reserva.Actualizar();
+
+                MessageBox.Show(resp.mensaje);
+
+                if (resp.ok)
+                {
+                    LimpiarCampos();
+                    InicializarFormulario();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private bool ReservaEditable(string estado)
@@ -225,7 +334,41 @@ namespace InfinityGaming.CapaPresentacion
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            frmBuscarPersona frm = new frmBuscarPersona();
 
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                idPersona = frm.IdPersonaSeleccionada;
+                txtPersona.Text = frm.NombrePersonaSeleccionada;
+            }
+        }
+
+        private void dgvReservas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvReservas.CurrentRow == null)
+                return;
+
+            idReserva = Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdReserva"].Value);
+
+            cmbEquipo.SelectedValue =
+                dgvReservas.CurrentRow.Cells["IdEquipo"].Value;
+
+            idPersona =
+                Convert.ToInt64(dgvReservas.CurrentRow.Cells["IdPersona"].Value);
+
+            txtPersona.Text =
+                dgvReservas.CurrentRow.Cells["NombrePersona"].Value.ToString();
+
+            dtpInicioReserva.Value =
+                Convert.ToDateTime(dgvReservas.CurrentRow.Cells["InicioReserva"].Value);
+
+            dtpFinReserva.Value =
+                Convert.ToDateTime(dgvReservas.CurrentRow.Cells["FinReserva"].Value);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

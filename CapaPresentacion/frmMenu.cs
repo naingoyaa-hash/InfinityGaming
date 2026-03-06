@@ -75,7 +75,8 @@ namespace InfinityGaming
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-
+            frmVentas ventas = new frmVentas();
+            ventas.ShowDialog();
         }
 
         private void frmMenu_MouseDown(object sender, MouseEventArgs e)

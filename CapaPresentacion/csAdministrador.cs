@@ -11,17 +11,5 @@ namespace InfinityGaming
     {
         private int CodigoAcceso { get; set; }
 
-        public void GestionarUsuario()
-        {
-
-        }
-        public void GenerarReporte()
-        {
-
-        }
-        public void ConfiguracionSistema()
-        {
-
-        }
     }
 }

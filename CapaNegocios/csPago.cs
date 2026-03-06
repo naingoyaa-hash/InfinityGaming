@@ -8,7 +8,7 @@ namespace InfinityGaming
     internal class csPago
     {
         public long IdPago { get; set; }
-        public long IdSesion { get; set; }
+        public long? IdSesion { get; set; }
         public decimal Monto { get; set; }
         public DateTime FechaPago { get; set; }
         public string TipoPago { get; set; }
@@ -20,7 +20,7 @@ namespace InfinityGaming
         {
             var row = crud.EjecutarSP_UnRegistro(
                 "IPago",
-                new SqlParameter("@IdSesion", IdSesion),
+                new SqlParameter("@IdSesion", (object)IdSesion ?? DBNull.Value),
                 new SqlParameter("@Monto", Monto),
                 new SqlParameter("@FechaPago", FechaPago),
                 new SqlParameter("@TipoPago", TipoPago),
@@ -30,10 +30,15 @@ namespace InfinityGaming
             if (row == null)
                 return (false, "No hubo respuesta de la BD.");
 
-            return (
-                Convert.ToInt32(row["Resultado"]) == 1,
-                row["Mensaje"].ToString()
-            );
+            long resultado = Convert.ToInt64(row["Resultado"]);
+            string mensaje = row["Mensaje"].ToString();
+
+            if (resultado <= 0)
+                return (false, mensaje);
+
+            IdPago = resultado;
+
+            return (true, mensaje);
         }
 
         public (bool ok, string mensaje) Actualizar()

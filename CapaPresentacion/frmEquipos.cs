@@ -11,11 +11,49 @@ namespace InfinityGaming
     public partial class frmEquipos : Form
     {
         csCRUD crud = new csCRUD();
+        bool edit = false;
+        long idEquipo = 0;
 
+        csEquipo equipo = new csEquipo();
         public frmEquipos()
         {
             InitializeComponent();
+            cargarCmb();
             cargarData();
+        }
+
+        private void cargarCmb()
+        {
+            cmbTipo.Items.Clear();
+            cmbEstado.Items.Clear();
+
+            cmbTipo.Items.AddRange(new object[]
+            {
+        "Computadora",
+        "Consola"
+            });
+
+            cmbEstado.Items.AddRange(new object[]
+            {
+        "Disponible",
+        "Ocupado",
+        "Mantenimiento",
+        "No Disponible"
+            });
+        }
+
+        private void limpiarCampos()
+        {
+            txtNombre.Clear();
+            txtEspecificaciones.Clear();
+
+            cmbTipo.SelectedIndex = -1;
+            cmbEstado.SelectedIndex = -1;
+
+            edit = false;
+            idEquipo = 0;
+
+            btnRegistrar.Text = "REGISTRAR";
         }
 
         private void frmEquipos_MouseDown(object sender, MouseEventArgs e)
@@ -48,29 +86,47 @@ namespace InfinityGaming
             cargarData();
         }
 
-        private void btnRegistrar_Click(object sender, EventArgs e)
-        {
-            frmRegistrarEquipo registrar = new frmRegistrarEquipo(false, 0);
-            registrar.ShowDialog();
-            cargarData();
-        }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (dgvEquipos.CurrentRow == null)
+            if (idEquipo == 0)
             {
-                MessageBox.Show("Selecciona un equipo para editar.", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecciona un equipo primero.");
                 return;
             }
 
-            int idEquipo = Convert.ToInt32(
-                dgvEquipos.CurrentRow.Cells["IdEquipo"].Value
-            );
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                MessageBox.Show("El nombre del equipo es obligatorio.");
+                return;
+            }
 
-            frmRegistrarEquipo registrar = new frmRegistrarEquipo(true, idEquipo);
-            registrar.ShowDialog();
-            cargarData();
+            try
+            {
+                equipo.IdEquipo = idEquipo;
+                equipo.NombreEquipo = txtNombre.Text.Trim();
+                equipo.Tipo = cmbTipo.Text;
+                equipo.Especificaciones = txtEspecificaciones.Text.Trim();
+                equipo.Estado = cmbEstado.Text;
+
+                var resp = equipo.Actualizar();
+
+                MessageBox.Show(
+                    resp.mensaje,
+                    resp.ok ? "Correcto" : "Aviso",
+                    MessageBoxButtons.OK,
+                    resp.ok ? MessageBoxIcon.Information : MessageBoxIcon.Warning
+                );
+
+                if (resp.ok)
+                {
+                    limpiarCampos();
+                    cargarData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -110,7 +166,6 @@ namespace InfinityGaming
                 csEquipo equipo = new csEquipo();
                 equipo.IdEquipo = idEquipo;
 
-                // ✅ RESPUESTA DEL SP
                 var resp = equipo.Eliminar();
 
                 MessageBox.Show(
@@ -166,5 +221,57 @@ namespace InfinityGaming
             dgvEquipos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                MessageBox.Show("El nombre del equipo es obligatorio.");
+                return;
+            }
+
+            try
+            {
+                equipo.NombreEquipo = txtNombre.Text.Trim();
+                equipo.Tipo = cmbTipo.Text;
+                equipo.Especificaciones = txtEspecificaciones.Text.Trim();
+                equipo.Estado = cmbEstado.Text;
+
+                var resp = equipo.Insertar();
+
+                MessageBox.Show(
+                    resp.mensaje,
+                    resp.ok ? "Correcto" : "Aviso",
+                    MessageBoxButtons.OK,
+                    resp.ok ? MessageBoxIcon.Information : MessageBoxIcon.Warning
+                );
+
+                if (resp.ok)
+                {
+                    limpiarCampos();
+                    cargarData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dgvEquipos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvEquipos.CurrentRow == null)
+                return;
+
+            idEquipo = Convert.ToInt64(
+                dgvEquipos.CurrentRow.Cells["IdEquipo"].Value
+            );
+
+            txtNombre.Text = dgvEquipos.CurrentRow.Cells["NombreEquipo"].Value.ToString();
+            cmbTipo.Text = dgvEquipos.CurrentRow.Cells["Tipo"].Value.ToString();
+            txtEspecificaciones.Text = dgvEquipos.CurrentRow.Cells["Especificaciones"].Value.ToString();
+            cmbEstado.Text = dgvEquipos.CurrentRow.Cells["Estado"].Value.ToString();
+
+            edit = true;
+        }
     }
 }

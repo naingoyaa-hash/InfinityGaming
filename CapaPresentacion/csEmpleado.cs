@@ -11,17 +11,5 @@ namespace InfinityGaming
         private bool idEmpleado { get; set; }
         private bool estado { get; set; }
 
-        public void RegistrarReserva(csReserva reserva)
-        {
-
-        }
-        public void IniciarSesionCliente(csSesionJuegos sesion)
-        {
-
-        }
-        public void FinalizarSesionCliente(csSesionJuegos sesion)
-        {
-
-        }
     }
 }
