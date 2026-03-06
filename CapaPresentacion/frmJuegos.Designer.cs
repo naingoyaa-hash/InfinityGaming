@@ -113,7 +113,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmJuegos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmJuegos";
+            this.Text = "JUEGOS";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmJuegos_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvJuegos)).EndInit();
             this.ResumeLayout(false);
