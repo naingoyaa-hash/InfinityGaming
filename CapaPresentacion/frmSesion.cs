@@ -189,7 +189,7 @@ namespace InfinityGaming.CapaPresentacion
 
             dtpInicioReserva.Enabled = true;
             dtpInicioReserva.Value = DateTime.Now;
-            dtpFinReserva.Value = DateTime.Now;
+            dtpFinReserva.Value = DateTime.Now.AddHours(1);
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

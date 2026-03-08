@@ -77,6 +77,8 @@ namespace InfinityGaming.CapaPresentacion
             EstiloDGV(dgvProducto);
             EstiloDGV(dgvVenta);
 
+            rdbEfectivo.Checked = true;
+
             if (IdSesion > 0)
             {
                 AgregarSesionAVenta();
@@ -278,11 +280,24 @@ namespace InfinityGaming.CapaPresentacion
                     MessageBox.Show("Debe agregar al menos un producto o sesión.");
                     return;
                 }
+                string tipoPago = "";
+
+                if (rdbEfectivo.Checked)
+                    tipoPago = "Efectivo";
+                else if (rdbTransferencia.Checked)
+                    tipoPago = "Transferencia";
+                else if (rdbTarjeta.Checked)
+                    tipoPago = "Tarjeta";
+                else
+                {
+                    MessageBox.Show("Seleccione un tipo de pago.");
+                    return;
+                }
 
                 pago.IdSesion = IdSesion > 0 ? IdSesion : (long?)null;
                 pago.Monto = total;
                 pago.FechaPago = DateTime.Now;
-                pago.TipoPago = "Efectivo";
+                pago.TipoPago = tipoPago;
                 pago.EstadoPago = "Pagado";
 
                 var respPago = pago.RegistrarPago();
