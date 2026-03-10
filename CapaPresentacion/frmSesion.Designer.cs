@@ -259,7 +259,7 @@
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(169, 36);
             this.btnGuardar.TabIndex = 18;
-            this.btnGuardar.Text = "GUARDAR SESIÓN";
+            this.btnGuardar.Text = "INICIAR SESIÓN";
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 

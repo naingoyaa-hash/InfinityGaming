@@ -210,11 +210,6 @@ namespace InfinityGaming.CapaPresentacion
             }
         }
 
-        private bool ReservaEditable(string estado)
-        {
-            return estado == "Reservada";
-        }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (dgvReservas.CurrentRow == null)

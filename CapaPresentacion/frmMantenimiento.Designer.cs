@@ -46,6 +46,7 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.cmbEquipo = new System.Windows.Forms.ComboBox();
+            this.btnCerra = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMantenimiento)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -261,13 +262,26 @@
             this.cmbEquipo.Size = new System.Drawing.Size(170, 25);
             this.cmbEquipo.TabIndex = 0;
             // 
+            // btnCerra
+            // 
+            this.btnCerra.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCerra.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCerra.Image = global::InfinityGaming.Properties.Resources.Cerrar;
+            this.btnCerra.Location = new System.Drawing.Point(955, 12);
+            this.btnCerra.Name = "btnCerra";
+            this.btnCerra.Size = new System.Drawing.Size(31, 32);
+            this.btnCerra.TabIndex = 46;
+            this.btnCerra.UseVisualStyleBackColor = false;
+            this.btnCerra.Click += new System.EventHandler(this.btnCerra_Click);
+            // 
             // frmMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::InfinityGaming.Properties.Resources.ChatGPT_Image_13_ene_2026__10_00_51_a_m_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1006, 505);
+            this.ClientSize = new System.Drawing.Size(998, 489);
+            this.Controls.Add(this.btnCerra);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnFinalizar);
@@ -306,5 +320,6 @@
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.ComboBox cmbEquipo;
+        private System.Windows.Forms.Button btnCerra;
     }
 }
