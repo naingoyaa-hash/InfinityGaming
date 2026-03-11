@@ -98,6 +98,8 @@ namespace InfinityGaming
             dgvMantenimiento.ReadOnly = true;
 
             dgvMantenimiento.AllowUserToResizeRows = false;
+
+            dgvMantenimiento.Columns["Finalizado"].Visible = false;
         }
 
         private void dgvMantenimiento_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -46,7 +46,6 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.cmbEquipo = new System.Windows.Forms.ComboBox();
-            this.btnCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMantenimiento)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -75,7 +74,7 @@
             this.btnCancelar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.Purple;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(861, 445);
+            this.btnCancelar.Location = new System.Drawing.Point(853, 444);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(110, 36);
             this.btnCancelar.TabIndex = 42;
@@ -88,7 +87,7 @@
             this.btnCerrar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCerrar.Image = global::InfinityGaming.Properties.Resources.Cerrar;
-            this.btnCerrar.Location = new System.Drawing.Point(1088, 12);
+            this.btnCerrar.Location = new System.Drawing.Point(957, 12);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(31, 32);
             this.btnCerrar.TabIndex = 19;
