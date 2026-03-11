@@ -46,7 +46,7 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.cmbEquipo = new System.Windows.Forms.ComboBox();
-            this.btnCerra = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMantenimiento)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
