@@ -77,6 +77,8 @@ namespace InfinityGaming.CapaPresentacion
             EstiloDGV(dgvProducto);
             EstiloDGV(dgvVenta);
 
+            rdbEfectivo.Checked = true;
+
             if (IdSesion > 0)
             {
                 AgregarSesionAVenta();
@@ -118,7 +120,6 @@ namespace InfinityGaming.CapaPresentacion
                 dgvProducto.CurrentRow.Cells["Stock"].Value
             );
 
-            // VALIDAR STOCK
             if (cantidad > stock)
             {
                 MessageBox.Show(
@@ -146,7 +147,6 @@ namespace InfinityGaming.CapaPresentacion
                     int cantidadActual = Convert.ToInt32(row.Cells["Cantidad"].Value);
                     int nuevaCantidad = cantidadActual + cantidad;
 
-                    // VALIDAR STOCK SI YA EXISTE EN LA VENTA
                     if (nuevaCantidad > stock)
                     {
                         MessageBox.Show(
@@ -269,16 +269,35 @@ namespace InfinityGaming.CapaPresentacion
         {
             try
             {
+                if (IdPersona == 0)
+                {
+                    MessageBox.Show("Debe seleccionar un cliente antes de pagar.");
+                    return;
+                }
+
                 if (dgvVenta.Rows.Count == 0 || dgvVenta.Rows.Cast<DataGridViewRow>().All(r => r.IsNewRow))
                 {
                     MessageBox.Show("Debe agregar al menos un producto o sesión.");
+                    return;
+                }
+                string tipoPago = "";
+
+                if (rdbEfectivo.Checked)
+                    tipoPago = "Efectivo";
+                else if (rdbTransferencia.Checked)
+                    tipoPago = "Transferencia";
+                else if (rdbTarjeta.Checked)
+                    tipoPago = "Tarjeta";
+                else
+                {
+                    MessageBox.Show("Seleccione un tipo de pago.");
                     return;
                 }
 
                 pago.IdSesion = IdSesion > 0 ? IdSesion : (long?)null;
                 pago.Monto = total;
                 pago.FechaPago = DateTime.Now;
-                pago.TipoPago = "Efectivo";
+                pago.TipoPago = tipoPago;
                 pago.EstadoPago = "Pagado";
 
                 var respPago = pago.RegistrarPago();
@@ -336,6 +355,7 @@ namespace InfinityGaming.CapaPresentacion
 
                 dgvVenta.Rows.Clear();
                 CalcularTotales();
+                CargarProductos();
             }
             catch (Exception ex)
             {
@@ -394,6 +414,19 @@ namespace InfinityGaming.CapaPresentacion
             dgvVenta.Columns.Add("Subtotal", "Subtotal");
 
             dgvVenta.Columns["IdItem"].Visible = false;
+        }
+
+        private void btnBuscarCliente_Click(object sender, EventArgs e)
+        {
+            frmBuscarPersona frm = new frmBuscarPersona();
+
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                IdPersona = frm.IdPersonaSeleccionada;
+                NombreCliente = frm.NombrePersonaSeleccionada;
+
+                txtCliente.Text = NombreCliente;
+            }
         }
     }
 }

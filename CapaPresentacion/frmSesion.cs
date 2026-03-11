@@ -189,8 +189,8 @@ namespace InfinityGaming.CapaPresentacion
             cmbEquipo.SelectedIndex = -1;
 
             dtpInicioReserva.Enabled = true;
-            sesion.InicioSesion = DateTime.Now;
-            sesion.FinSesion = DateTime.Now.AddHours(1);
+            dtpInicioReserva.Value = DateTime.Now;
+            dtpFinReserva.Value = DateTime.Now.AddHours(1);
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

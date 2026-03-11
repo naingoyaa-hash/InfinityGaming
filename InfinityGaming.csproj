@@ -109,12 +109,6 @@
     <Compile Include="CapaPresentacion\frmFacturas.Designer.cs">
       <DependentUpon>frmFacturas.cs</DependentUpon>
     </Compile>
-    <Compile Include="CapaPresentacion\frmGestion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CapaPresentacion\frmGestion.Designer.cs">
-      <DependentUpon>frmGestion.cs</DependentUpon>
-    </Compile>
     <Compile Include="CapaPresentacion\frmHistorialMantenimiento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,9 +199,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmFacturas.resx">
       <DependentUpon>frmFacturas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CapaPresentacion\frmGestion.resx">
-      <DependentUpon>frmGestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CapaPresentacion\frmHistorialMantenimiento.resx">
       <DependentUpon>frmHistorialMantenimiento.cs</DependentUpon>

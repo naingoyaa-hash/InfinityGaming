@@ -46,7 +46,7 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.cmbEquipo = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCerra = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMantenimiento)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -262,18 +262,6 @@
             this.cmbEquipo.Size = new System.Drawing.Size(170, 25);
             this.cmbEquipo.TabIndex = 0;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Image = global::InfinityGaming.Properties.Resources.Cerrar;
-            this.button1.Location = new System.Drawing.Point(957, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(31, 32);
-            this.button1.TabIndex = 46;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,7 +269,6 @@
             this.BackgroundImage = global::InfinityGaming.Properties.Resources.ChatGPT_Image_13_ene_2026__10_00_51_a_m_;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1006, 505);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnFinalizar);
@@ -320,6 +307,5 @@
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.ComboBox cmbEquipo;
-        private System.Windows.Forms.Button button1;
     }
 }
