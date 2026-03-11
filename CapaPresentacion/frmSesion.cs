@@ -24,6 +24,7 @@ namespace InfinityGaming.CapaPresentacion
 
             CargarEquipos();
             CargarSesiones();
+            Limpiar();
         }
 
         private void ConfigurarDateTimePickers()
