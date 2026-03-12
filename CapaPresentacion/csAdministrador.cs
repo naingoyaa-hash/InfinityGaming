@@ -10,5 +10,10 @@ namespace InfinityGaming
     internal class csAdministrador : csUsuario
     {
         private int CodigoAcceso { get; set; }
+
+        static void GenerarReporte()
+        {
+
+        }
     }
 }

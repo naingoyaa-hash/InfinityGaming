@@ -76,22 +76,6 @@ namespace InfinityGaming
             );
         }
 
-        public (bool ok, string mensaje) Eliminar()
-        {
-            var row = crud.EjecutarSP_UnRegistro(
-                "DSesionJuego",
-                new SqlParameter("@IdSesion", IdSesion)
-            );
-
-            if (row == null)
-                return (false, "No hubo respuesta de la BD.");
-
-            return (
-                Convert.ToInt32(row["Resultado"]) == 1,
-                row["Mensaje"].ToString()
-            );
-        }
-
         public bool IniciarDesdeReserva(
             long idReserva,
             long idPersona,

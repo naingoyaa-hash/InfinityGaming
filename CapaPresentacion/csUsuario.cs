@@ -100,30 +100,6 @@ namespace InfinityGaming
             );
         }
 
-        public (bool ok, string mensaje) CambiarContrasena(string conActual, string conNuevo)
-        {
-            if (Contraseña != conActual)
-                return (false, "La contraseña actual no coincide.");
-
-            Contraseña = conNuevo;
-
-            var row = crud.EjecutarSP_UnRegistro(
-                "UUsuario",
-                new SqlParameter("@IdUsuario", IdUsuario),
-                new SqlParameter("@Usuario", Usuario),
-                new SqlParameter("@Contraseña", Contraseña),
-                new SqlParameter("@Admin", Admin)
-            );
-
-            if (row == null)
-                return (false, "No hubo respuesta de la BD.");
-
-            return (
-                Convert.ToInt32(row["Resultado"]) == 1,
-                row["Mensaje"].ToString()
-            );
-        }
-
         public (bool ok, string mensaje) ActualizarUsuario()
         {
             var persona = crud.EjecutarSP_UnRegistro(

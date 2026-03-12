@@ -44,7 +44,7 @@
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label1.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Violet;
-            this.label1.Location = new System.Drawing.Point(2, 109);
+            this.label1.Location = new System.Drawing.Point(2, 103);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 23);
             this.label1.TabIndex = 0;
@@ -56,7 +56,7 @@
             this.lblCantidadJuegos.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblCantidadJuegos.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCantidadJuegos.ForeColor = System.Drawing.Color.Violet;
-            this.lblCantidadJuegos.Location = new System.Drawing.Point(172, 111);
+            this.lblCantidadJuegos.Location = new System.Drawing.Point(172, 105);
             this.lblCantidadJuegos.Name = "lblCantidadJuegos";
             this.lblCantidadJuegos.Size = new System.Drawing.Size(19, 21);
             this.lblCantidadJuegos.TabIndex = 1;
@@ -65,7 +65,7 @@
             // dgvJuegos
             // 
             this.dgvJuegos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvJuegos.Location = new System.Drawing.Point(6, 144);
+            this.dgvJuegos.Location = new System.Drawing.Point(6, 138);
             this.dgvJuegos.Name = "dgvJuegos";
             this.dgvJuegos.Size = new System.Drawing.Size(782, 304);
             this.dgvJuegos.TabIndex = 2;
@@ -78,7 +78,7 @@
             this.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBuscar.Font = new System.Drawing.Font("Segoe Print", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscar.ForeColor = System.Drawing.Color.Plum;
-            this.txtBuscar.Location = new System.Drawing.Point(440, 109);
+            this.txtBuscar.Location = new System.Drawing.Point(440, 103);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(348, 30);
             this.txtBuscar.TabIndex = 3;
