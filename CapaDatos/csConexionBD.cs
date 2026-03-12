@@ -12,10 +12,6 @@ namespace InfinityGaming.CapaDatos
     internal class csConexionBD
     {
         SqlConnection oCon;
-        SqlCommand oCom;
-        SqlDataAdapter oDA;
-        DataTable oDT;
-        SqlDataReader oDTR;
 
         string servidor;
         string basedatos;

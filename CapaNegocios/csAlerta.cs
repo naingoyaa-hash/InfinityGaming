@@ -52,14 +52,5 @@ namespace InfinityGaming
                 row["Mensaje"].ToString()
             );
         }
-
-        public DataTable Listar(bool? leida = null, string tipo = null)
-        {
-            return crud.EjecutarSP_DataTable(
-                "SAlertas",
-                new SqlParameter("@Leida", (object)leida ?? DBNull.Value),
-                new SqlParameter("@Tipo", (object)tipo ?? DBNull.Value)
-            );
-        }
     }
 }

@@ -7,7 +7,7 @@ namespace InfinityGaming.CapaNegocios
 {
     internal class csProducto
     {
-        private csCRUD crud = new csCRUD();
+        csCRUD crud = new csCRUD();
 
         public long IdProducto { get; set; }
         public string NombreProducto { get; set; }
@@ -94,14 +94,6 @@ namespace InfinityGaming.CapaNegocios
             return (
                 Convert.ToInt32(row["Resultado"]) == 1,
                 row["Mensaje"].ToString()
-            );
-        }
-
-        public DataRow ObtenerPorId(long id)
-        {
-            return crud.EjecutarSP_UnRegistro(
-                "SProducto",
-                new SqlParameter("@IdProducto", id)
             );
         }
     }

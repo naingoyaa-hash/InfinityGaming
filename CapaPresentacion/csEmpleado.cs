@@ -11,9 +11,9 @@ namespace InfinityGaming
     {
         private long idEmpleado { get; set; }
         private bool estado { get; set; }
+        csCRUD crud = new csCRUD();
         public int ObtenerSesionesHoy()
         {
-            csCRUD crud = new csCRUD();
 
             var tabla = crud.EjecutarSP_DataTable("SSesionJuego");
 

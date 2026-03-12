@@ -40,42 +40,5 @@ namespace InfinityGaming
 
             return (true, mensaje);
         }
-
-        public (bool ok, string mensaje) Actualizar()
-        {
-            var row = crud.EjecutarSP_UnRegistro(
-                "UPago",
-                new SqlParameter("@IdPago", IdPago),
-                new SqlParameter("@IdSesion", IdSesion),
-                new SqlParameter("@Monto", Monto),
-                new SqlParameter("@FechaPago", FechaPago),
-                new SqlParameter("@TipoPago", TipoPago),
-                new SqlParameter("@EstadoPago", EstadoPago)
-            );
-
-            if (row == null)
-                return (false, "No hubo respuesta de la BD.");
-
-            return (
-                Convert.ToInt32(row["Resultado"]) == 1,
-                row["Mensaje"].ToString()
-            );
-        }
-
-        public (bool ok, string mensaje) Eliminar()
-        {
-            var row = crud.EjecutarSP_UnRegistro(
-                "DPago",
-                new SqlParameter("@IdPago", IdPago)
-            );
-
-            if (row == null)
-                return (false, "No hubo respuesta de la BD.");
-
-            return (
-                Convert.ToInt32(row["Resultado"]) == 1,
-                row["Mensaje"].ToString()
-            );
-        }
     }
 }

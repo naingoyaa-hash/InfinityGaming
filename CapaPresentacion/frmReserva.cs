@@ -313,7 +313,7 @@ namespace InfinityGaming.CapaPresentacion
                 idEquipo,
                 inicioReserva,
                 finReserva,
-                2m,      
+                4m,      
                 out mensaje
             );
 

@@ -23,7 +23,7 @@ namespace InfinityGaming
             }
         }
 
-        public decimal PrecioPorHora { get; set; } = 2m;
+        public decimal PrecioPorHora { get; set; } = 4m;
 
         public decimal CostoTotal
         {
