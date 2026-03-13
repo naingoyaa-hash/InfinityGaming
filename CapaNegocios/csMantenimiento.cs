@@ -1,11 +1,12 @@
 ﻿using InfinityGaming.CapaDatos;
+using InfinityGaming.CapaNegocios.Interfaces;
 using System;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace InfinityGaming
 {
-    internal class csMantenimiento
+    internal class csMantenimiento : IMantenimiento
     {
         public long IdMantenimiento { get; set; }
         public long IdEquipo { get; set; }

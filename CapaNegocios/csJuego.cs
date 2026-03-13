@@ -7,10 +7,11 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InfinityGaming.CapaNegocios.Interfaces;
 
 namespace InfinityGaming.CapaNegocios
 {
-    public class csJuego
+    public class csJuego : IJuego
     {
         private const string STEAM_API_KEY = "4F29C9C4E77948153BE4CC5B064FB2CD";
         private const string STEAM_ID = "76561198366845135";

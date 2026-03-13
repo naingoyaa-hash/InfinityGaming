@@ -55,6 +55,17 @@
     <Compile Include="CapaDatos\csCRUD.cs" />
     <Compile Include="CapaNegocios\csJuego.cs" />
     <Compile Include="CapaNegocios\csProducto.cs" />
+    <Compile Include="CapaNegocios\Interfaces\IAdministrador.cs" />
+    <Compile Include="CapaNegocios\Interfaces\ICRUD.cs" />
+    <Compile Include="CapaNegocios\Interfaces\IEquipo.cs" />
+    <Compile Include="CapaNegocios\Interfaces\IFactura.cs" />
+    <Compile Include="CapaNegocios\Interfaces\IJuego.cs" />
+    <Compile Include="CapaNegocios\Interfaces\IMantenimiento.cs" />
+    <Compile Include="CapaNegocios\Interfaces\IPago.cs" />
+    <Compile Include="CapaNegocios\Interfaces\IProducto.cs" />
+    <Compile Include="CapaNegocios\Interfaces\IReserva.cs" />
+    <Compile Include="CapaNegocios\Interfaces\ISesionJuego.cs" />
+    <Compile Include="CapaNegocios\Interfaces\IUsuario.cs" />
     <Compile Include="CapaPresentacion\csAdministrador.cs" />
     <Compile Include="CapaNegocios\csAlerta.cs" />
     <Compile Include="CapaNegocios\csEquipo.cs" />

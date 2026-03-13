@@ -1,5 +1,6 @@
 ﻿
 using InfinityGaming.CapaDatos;
+using InfinityGaming.CapaNegocios.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace InfinityGaming
 {
-    internal class csAdministrador : csUsuario
+    internal class csAdministrador : csUsuario, IAdministrador
     {
         private int CodigoAcceso { get; set; }
 

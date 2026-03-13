@@ -1,11 +1,12 @@
 ﻿using InfinityGaming.CapaDatos;
+using InfinityGaming.CapaNegocios.Interfaces;
 using System;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace InfinityGaming
 {
-    internal class csReserva
+    internal class csReserva : IReserva
     {
         public long IdReserva { get; set; }
         public long IdPersona { get; set; }

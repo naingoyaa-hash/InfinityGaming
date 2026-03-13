@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace InfinityGaming
 {
-    internal class csAlerta
+    internal class csAlerta 
     {
         public long IdAlerta { get; set; }
         public string Mensaje { get; set; }

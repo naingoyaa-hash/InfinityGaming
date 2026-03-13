@@ -1,11 +1,12 @@
 ﻿using InfinityGaming.CapaDatos;
+using InfinityGaming.CapaNegocios.Interfaces;
 using System;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace InfinityGaming
 {
-    internal class csUsuario
+    internal class csUsuario : IUsuario
     {
         public long IdUsuario { get; set; }
         public long IdPersona { get; set; }

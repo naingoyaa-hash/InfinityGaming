@@ -1,11 +1,12 @@
 ﻿using InfinityGaming.CapaDatos;
+using InfinityGaming.CapaNegocios.Interfaces;
 using System;
 using System.Data.SqlClient;
 using System.Data;
 
 namespace InfinityGaming
 {
-    public class csSesionJuegos
+    public class csSesionJuegos : ISesionJuego
     {
         public long IdSesion { get; set; }
         public long IdPersona { get; set; }

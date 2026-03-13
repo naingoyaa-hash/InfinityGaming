@@ -2,10 +2,11 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using InfinityGaming.CapaNegocios.Interfaces;
 
 namespace InfinityGaming.CapaDatos
 {
-    internal class csCRUD
+    internal class csCRUD : ICRUD
     {
         private csConexionBD conexion;
 

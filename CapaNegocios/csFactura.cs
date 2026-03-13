@@ -1,11 +1,12 @@
 ﻿using InfinityGaming.CapaDatos;
+using InfinityGaming.CapaNegocios.Interfaces;
 using System;
 using System.Data.SqlClient;
 using System.Data;
 
 namespace InfinityGaming
 {
-    internal class csFactura
+    internal class csFactura : IFactura
     {
         public long IdFactura { get; set; }
         public long IdPersona { get; set; }
