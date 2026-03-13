@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace InfinityGaming.CapaNegocios.Interfaces
 {
-    internal interface IFactura
+    public interface IFactura
     {
+        (bool ok, string mensaje) Generar();
+        (bool ok, string mensaje) Actualizar();
+        (bool ok, string mensaje) Eliminar();
     }
 }

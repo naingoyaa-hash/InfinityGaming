@@ -33,6 +33,7 @@ namespace InfinityGaming.CapaPresentacion
             dgvProductos.ClearSelection();
 
             dgvProductos.Columns["IdProducto"].Visible = false;
+            dgvProductos.Columns["Activo"].Visible = false;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

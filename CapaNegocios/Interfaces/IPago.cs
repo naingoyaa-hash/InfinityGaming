@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace InfinityGaming.CapaNegocios.Interfaces
 {
-    internal interface IPago
+    public interface IPago
     {
+        (bool ok, string mensaje) RegistrarPago();
+
     }
 }

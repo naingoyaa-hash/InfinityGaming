@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace InfinityGaming.CapaNegocios.Interfaces
 {
-    internal interface IEquipo
+    public interface IEquipo
     {
+        (bool ok, string mensaje) Insertar();
+        (bool ok, string mensaje) Actualizar();
+        (bool ok, string mensaje) Eliminar();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using InfinityGaming.CapaDatos;
+using InfinityGaming.CapaNegocios.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InfinityGaming
 {
-    internal class csEquipo
+    internal class csEquipo : IEquipo
     {
         public long IdEquipo { get; set; }
         public string NombreEquipo { get; set; }

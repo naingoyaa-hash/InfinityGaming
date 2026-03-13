@@ -28,7 +28,7 @@ namespace InfinityGaming.CapaDatos
 
         public csConexionBD()
         {
-            servidor = "ROONY\\SQLEXPRESS";
+            servidor = "NAIN\\SQLEXPRESS";
             basedatos = "GamingRoom";
             usuario = "sa";
             clave = "abcdef";
