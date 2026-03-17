@@ -22,7 +22,7 @@ namespace InfinityGaming
             {
                 case "Factura":
                     return crud.EjecutarSP_DataTable(
-                        "SFactura",
+                        "SPReporteFactura",
                         new SqlParameter("@IdFactura", idFactura)
                     );
 
@@ -44,6 +44,24 @@ namespace InfinityGaming
                 default:
                     return null;
             }
+        }
+        public int ObtenerEquiposDisponibles()
+        {
+            DataTable dt = crud.EjecutarSP_DataTable("sp_EquiposDisponibles");
+
+            if (dt.Rows.Count > 0)
+                return Convert.ToInt32(dt.Rows[0]["Total"]);
+
+            return 0;
+        }
+        public decimal ObtenerVentasDelDia()
+        {
+            DataTable dt = crud.EjecutarSP_DataTable("sp_VentasDelDia");
+
+            if (dt.Rows.Count > 0)
+                return Convert.ToDecimal(dt.Rows[0]["TotalVentas"]);
+
+            return 0;
         }
     }
 }

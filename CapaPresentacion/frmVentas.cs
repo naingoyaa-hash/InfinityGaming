@@ -349,9 +349,20 @@ namespace InfinityGaming.CapaPresentacion
                 factura.FechaEmision = DateTime.Now;
                 factura.Total = total;
 
-                factura.Generar();
+                var respFactura = factura.Generar();
+
+                if (!respFactura.ok)
+                {
+                    MessageBox.Show(respFactura.mensaje);
+                    return;
+                }
+
+                long idFactura = respFactura.idFactura;
 
                 MessageBox.Show("Venta registrada correctamente");
+
+                frmReportes frm = new frmReportes(true, idFactura);
+                frm.ShowDialog();
 
                 dgvVenta.Rows.Clear();
                 CalcularTotales();

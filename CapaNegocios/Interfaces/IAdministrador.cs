@@ -10,6 +10,7 @@ namespace InfinityGaming.CapaNegocios.Interfaces
     public interface IAdministrador
     {
         DataTable GenerarReporte(string tipoReporte, long idFactura = 0);
-
+        int ObtenerEquiposDisponibles();
+        decimal ObtenerVentasDelDia();
     }
 }

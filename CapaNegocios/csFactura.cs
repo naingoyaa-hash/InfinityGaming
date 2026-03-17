@@ -17,7 +17,7 @@ namespace InfinityGaming
 
         csCRUD crud = new csCRUD();
 
-        public (bool ok, string mensaje) Generar()
+        public (bool ok, string mensaje, long idFactura) Generar()
         {
             var row = crud.EjecutarSP_UnRegistro(
                 "IFactura",
@@ -29,49 +29,13 @@ namespace InfinityGaming
             );
 
             if (row == null)
-                return (false, "No hubo respuesta de la BD.");
+                return (false, "No hubo respuesta de la BD.", 0);
 
             return (
-                Convert.ToInt32(row["Resultado"]) == 1,
-                row["Mensaje"].ToString()
-            );
-        }
-
-        public (bool ok, string mensaje) Actualizar()
-        {
-            var row = crud.EjecutarSP_UnRegistro(
-                "UFactura",
-                new SqlParameter("@IdFactura", IdFactura),
-                new SqlParameter("@IdPersona", IdPersona),
-                new SqlParameter("@IdPago", IdPago),
-                new SqlParameter("@NumeroFactura", NumeroFactura),
-                new SqlParameter("@FechaEmision", FechaEmision),
-                new SqlParameter("@Total", Total)
-            );
-
-            if (row == null)
-                return (false, "No hubo respuesta de la BD.");
-
-            return (
-                Convert.ToInt32(row["Resultado"]) == 1,
-                row["Mensaje"].ToString()
-            );
-        }
-
-        public (bool ok, string mensaje) Eliminar()
-        {
-            var row = crud.EjecutarSP_UnRegistro(
-                "DFactura",
-                new SqlParameter("@IdFactura", IdFactura)
-            );
-
-            if (row == null)
-                return (false, "No hubo respuesta de la BD.");
-
-            return (
-                Convert.ToInt32(row["Resultado"]) == 1,
-                row["Mensaje"].ToString()
-            );
+        Convert.ToInt32(row["Resultado"]) == 1,
+            row["Mensaje"].ToString(),
+            row.Table.Columns.Contains("IdFactura") ? Convert.ToInt64(row["IdFactura"]) : 0
+    );
         }
     }
 }

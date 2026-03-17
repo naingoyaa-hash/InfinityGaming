@@ -56,7 +56,10 @@ namespace InfinityGaming
             );
 
             if (persona == null)
-                return (false, "No se pudo crear la persona.");
+                return (false, "No hubo respuesta de la BD.");
+
+            if (Convert.ToInt32(persona["Resultado"]) == 0)
+                return (false, persona["Mensaje"].ToString());
 
             IdPersona = Convert.ToInt64(persona["IdPersona"]);
 
@@ -104,16 +107,19 @@ namespace InfinityGaming
         public (bool ok, string mensaje) ActualizarUsuario()
         {
             var persona = crud.EjecutarSP_UnRegistro(
-                "UPersona",
-                new SqlParameter("@IdPersona", IdPersona),
-                new SqlParameter("@Nombre", Nombre),
-                new SqlParameter("@Cedula", Cedula),
-                new SqlParameter("@Correo", Correo),
-                new SqlParameter("@Direccion", Direccion)
-            );
+        "UPersona",
+        new SqlParameter("@IdPersona", IdPersona),
+        new SqlParameter("@Nombre", Nombre),
+        new SqlParameter("@Cedula", Cedula),
+        new SqlParameter("@Correo", Correo),
+        new SqlParameter("@Direccion", Direccion)
+    );
 
             if (persona == null)
                 return (false, "Error actualizando persona.");
+
+            if (Convert.ToInt32(persona["Resultado"]) == 0)
+                return (false, persona["Mensaje"].ToString());
 
             var usuario = crud.EjecutarSP_UnRegistro(
                 "UUsuario",
