@@ -12,6 +12,19 @@ namespace InfinityGaming
     public partial class frmJuegos : Form
     {
         private List<csJuego> juegosSteam = new List<csJuego>();
+        private List<string> categoriasImportantes = new List<string>
+{
+    "Multi-player",
+    "Single-player",
+    "Co-op",
+    "Online Co-op",
+    "LAN Co-op",
+    "PvP",
+    "Online PvP",
+    "Shared/Split Screen",
+    "Cross-Platform Multiplayer",
+    "MMO"
+};
 
         public frmJuegos()
         {
@@ -27,13 +40,88 @@ namespace InfinityGaming
         {
             ConfigurarGrid();
             DiseñoGamingGrid();
+
             juegosSteam = await csJuego.ObtenerJuegosSteam();
 
+            foreach (var juego in juegosSteam)
+            {
+                var detalles = await csJuego.ObtenerDetallesSeguro(juego.AppId);
+
+                juego.Generos = string.Join(", ", detalles.generos);
+                juego.Categorias = string.Join(", ", detalles.categorias);
+            }
+
             await CargarFilas(juegosSteam);
+            await CargarCategorias();
 
             lblCantidadJuegos.Text = juegosSteam.Count.ToString();
         }
+        private async Task CargarCategorias()
+        {
+            var categoriasSet = new HashSet<string>();
 
+            foreach (var juego in juegosSteam)
+            {
+                var detalles = await csJuego.ObtenerDetallesSeguro(juego.AppId);
+
+                foreach (var cat in detalles.categorias)
+                    categoriasSet.Add(cat);
+
+                juego.Categorias = string.Join(", ", detalles.categorias);
+            }
+
+            MostrarCheckboxCategorias(categoriasSet.ToList());
+        }
+        private void MostrarCheckboxCategorias(List<string> categorias)
+        {
+            gbCategorias.Controls.Clear();
+
+            int y = 20;
+
+            var filtradas = categorias
+                .Where(c => categoriasImportantes.Contains(c))
+                .Distinct()
+                .OrderBy(c => c)
+                .ToList();
+
+            foreach (var cat in filtradas)
+            {
+                CheckBox chk = new CheckBox();
+                chk.Text = cat;
+                chk.ForeColor = Color.White;
+                chk.BackColor = Color.Transparent;
+                chk.AutoSize = true;
+                chk.Location = new Point(10, y);
+
+                chk.CheckedChanged += FiltroCategorias_CheckedChanged;
+
+                gbCategorias.Controls.Add(chk);
+
+                y += 25;
+            }
+        }
+        private async void FiltroCategorias_CheckedChanged(object sender, EventArgs e)
+        {
+            var seleccionadas = gbCategorias.Controls
+                .OfType<CheckBox>()
+                .Where(c => c.Checked)
+                .Select(c => c.Text)
+                .ToList();
+
+            if (seleccionadas.Count == 0)
+            {
+                await CargarFilas(juegosSteam);
+                return;
+            }
+
+            var filtrados = juegosSteam.Where(j =>
+                seleccionadas.Any(cat =>
+                    j.Categorias != null &&
+                    j.Categorias.Contains(cat)))
+                .ToList();
+
+            await CargarFilas(filtrados);
+        }
         private void ConfigurarGrid()
         {
             dgvJuegos.Columns.Clear();
@@ -70,6 +158,19 @@ namespace InfinityGaming
                 Name = "Estado",
                 Width = 120
             });
+            dgvJuegos.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "Generos",
+                HeaderText = "Géneros",
+                Width = 150
+            });
+
+            dgvJuegos.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                Name = "Categorias",
+                HeaderText = "Categorías",
+                Width = 150
+            });
 
             dgvJuegos.RowTemplate.Height = 64;
             dgvJuegos.ReadOnly = true;
@@ -86,11 +187,24 @@ namespace InfinityGaming
             {
                 Image icono = await juego.ObtenerIconoAsync();
 
+                var detalles = await csJuego.ObtenerDetallesSeguro(juego.AppId);
+
+                juego.Generos = string.Join(", ", detalles.generos);
+                juego.Categorias = string.Join(", ", detalles.categorias);
+
                 string accion = juego.Instalado ? "▶ Jugar" : "⬇ Instalar";
                 string extra = juego.Instalado ? "🗑 Desinstalar" : "";
                 string estado = juego.Instalado ? "Instalado" : "No instalado";
 
-                dgvJuegos.Rows.Add(icono, juego.Nombre, accion, extra, estado);
+                dgvJuegos.Rows.Add(
+                    icono,
+                    juego.Nombre,
+                    accion,
+                    extra,
+                    estado,
+                    juego.Generos,   
+                    juego.Categorias  
+                );
             }
         }
         private void DiseñoGamingGrid()

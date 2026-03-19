@@ -11,24 +11,26 @@ using InfinityGaming.CapaNegocios.Interfaces;
 
 namespace InfinityGaming.CapaNegocios
 {
-    public  class csJuego : IJuego
+    public class csJuego : IJuego
     {
         private const string STEAM_API_KEY = "4F29C9C4E77948153BE4CC5B064FB2CD";
         private const string STEAM_ID = "76561198366845135";
-
-        private const string STEAM_APPS =
-            @"C:\Program Files (x86)\Steam\steamapps";
+        private const string STEAM_APPS = @"C:\Program Files (x86)\Steam\steamapps";
 
         public int AppId { get; set; }
         public string Nombre { get; set; }
         public string IconoUrl { get; set; }
         public bool Instalado { get; set; }
+        public string Generos { get; set; }
+        public string Categorias { get; set; }
+
+        // Caché de detalles por appId
+        private static Dictionary<int, (List<string> generos, List<string> categorias)> cacheDetalles
+            = new Dictionary<int, (List<string>, List<string>)>();
 
         public static async Task<List<csJuego>> ObtenerJuegosSteam()
         {
-            string url =
-                $"https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/" +
-                $"?key={STEAM_API_KEY}&steamid={STEAM_ID}&include_appinfo=true";
+            string url = $"https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key={STEAM_API_KEY}&steamid={STEAM_ID}&include_appinfo=true";
 
             using (HttpClient client = new HttpClient())
             {
@@ -45,8 +47,7 @@ namespace InfinityGaming.CapaNegocios
                     {
                         AppId = appId,
                         Nombre = (string)game.name,
-                        IconoUrl =
-                            $"https://media.steampowered.com/steamcommunity/public/images/apps/{appId}/{game.img_icon_url}.jpg",
+                        IconoUrl = $"https://media.steampowered.com/steamcommunity/public/images/apps/{appId}/{game.img_icon_url}.jpg",
                         Instalado = EstaInstalado(appId)
                     });
                 }
@@ -55,11 +56,9 @@ namespace InfinityGaming.CapaNegocios
             }
         }
 
-        public static  bool EstaInstalado(int appId)
+        public static bool EstaInstalado(int appId)
         {
-            string manifest =
-                Path.Combine(STEAM_APPS, $"appmanifest_{appId}.acf");
-
+            string manifest = Path.Combine(STEAM_APPS, $"appmanifest_{appId}.acf");
             return File.Exists(manifest);
         }
 
@@ -69,9 +68,7 @@ namespace InfinityGaming.CapaNegocios
             {
                 using (var wc = new System.Net.WebClient())
                 {
-                    byte[] bytes =
-                        await wc.DownloadDataTaskAsync(IconoUrl);
-
+                    byte[] bytes = await wc.DownloadDataTaskAsync(IconoUrl);
                     using (MemoryStream ms = new MemoryStream(bytes))
                         return Image.FromStream(ms);
                 }
@@ -82,30 +79,68 @@ namespace InfinityGaming.CapaNegocios
             }
         }
 
-        public void Jugar()
-        {
-            Process.Start($"steam://run/{AppId}");
-        }
+        public void Jugar() => Process.Start($"steam://run/{AppId}");
+        public void Instalar() => Process.Start($"steam://install/{AppId}");
+        public void Desinstalar() => Process.Start($"steam://uninstall/{AppId}");
 
-        public void Instalar()
+        public static List<csJuego> Filtrar(List<csJuego> lista, string texto, List<string> categoriasSeleccionadas = null)
         {
-            Process.Start($"steam://install/{AppId}");
-        }
-
-        public void Desinstalar()
-        {
-            Process.Start($"steam://uninstall/{AppId}");
-        }
-
-        public static List<csJuego> Filtrar(
-            List<csJuego> lista,
-            string texto)
-        {
-            return lista
-                .Where(j => j.Nombre
-                .ToLower()
-                .Contains(texto.ToLower()))
+            var filtrados = lista
+                .Where(j => j.Nombre.ToLower().Contains(texto.ToLower()))
                 .ToList();
+
+            if (categoriasSeleccionadas != null && categoriasSeleccionadas.Count > 0)
+            {
+                filtrados = filtrados
+                    .Where(j => j.Categorias
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Any(c => categoriasSeleccionadas.Contains(c.Trim())))
+                    .ToList();
+            }
+
+            return filtrados;
+        }
+
+        public static async Task<(List<string> generos, List<string> categorias)> ObtenerDetallesSeguro(int appId)
+        {
+            if (cacheDetalles.ContainsKey(appId))
+                return cacheDetalles[appId];
+
+            await Task.Delay(150);
+
+            var detalles = await ObtenerDetalles(appId);
+            cacheDetalles[appId] = detalles;
+            return detalles;
+        }
+
+        public static async Task<(List<string> generos, List<string> categorias)> ObtenerDetalles(int appId)
+        {
+            string url = $"https://store.steampowered.com/api/appdetails?appids={appId}";
+
+            using (HttpClient client = new HttpClient())
+            {
+                string json = await client.GetStringAsync(url);
+                dynamic data = JsonConvert.DeserializeObject(json);
+
+                var generos = new List<string>();
+                var categorias = new List<string>();
+
+                var appData = data[appId.ToString()];
+                if (appData == null || appData.success != true || appData.data == null)
+                    return (generos, categorias);
+
+                var info = appData.data;
+
+                if (info.genres != null)
+                    foreach (var g in info.genres)
+                        generos.Add((string)g.description);
+
+                if (info.categories != null)
+                    foreach (var c in info.categories)
+                        categorias.Add((string)c.description);
+
+                return (generos, categorias);
+            }
         }
     }
 }
