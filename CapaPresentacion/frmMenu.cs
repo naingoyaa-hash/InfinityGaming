@@ -28,14 +28,25 @@ namespace InfinityGaming
 
         private void btnReservas_Click(object sender, EventArgs e)
         {
-            frmReserva reserva = new frmReserva();
-            reserva.ShowDialog();
+            if (Admin)
+            {
+                frmReserva reserva = new frmReserva();
+                reserva.ShowDialog();
+            }
+            else
+                MessageBox.Show("Solo el administrador tiene acceso");
+           
         }
 
         private void btnEquipos_Click(object sender, EventArgs e)
         {
-            frmEquipos equipos = new frmEquipos();
-            equipos.ShowDialog();
+            if (Admin)
+            {
+                frmEquipos equipos = new frmEquipos();
+                equipos.ShowDialog();
+            }
+            else
+                MessageBox.Show("Solo el administrador tiene acceso");
         }
 
         private void btnAdministrador_Click(object sender, EventArgs e)
@@ -51,32 +62,54 @@ namespace InfinityGaming
 
         private void btnJuegos_Click(object sender, EventArgs e)
         {
-            frmJuegos juego = new frmJuegos();
-            juego.ShowDialog();
+            
+                frmJuegos juego = new frmJuegos();
+                juego.ShowDialog();
+           
         }
 
         private void btnSesionJuego_Click(object sender, EventArgs e)
         {
+            if (Admin) 
+            {
             frmSesion sesion = new frmSesion();
             sesion.ShowDialog();
+            }
+            else
+                MessageBox.Show("Solo el administrador tiene acceso");
         }
 
         private void btnInventario_Click(object sender, EventArgs e)
         {
+            if (Admin) 
+            {
             frmInventario inventario = new frmInventario();
             inventario.ShowDialog();
+            }
+            else
+                MessageBox.Show("Solo el administrador tiene acceso");
         }
 
         private void btnMantenimiento_Click(object sender, EventArgs e)
         {
+            if (Admin) 
+            {
             frmMantenimiento mantenimiento = new frmMantenimiento();
             mantenimiento.ShowDialog();
+            }
+            else
+                MessageBox.Show("Solo el administrador tiene acceso");
         }
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
+            if (Admin) 
+            {
             frmVentas ventas = new frmVentas();
             ventas.ShowDialog();
+            }
+            else
+                MessageBox.Show("Solo el administrador tiene acceso");
         }
 
         private void frmMenu_MouseDown(object sender, MouseEventArgs e)
